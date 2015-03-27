@@ -11,7 +11,8 @@ var {
   Image,
   Text,
   View,
-  TouchableHighlight
+  ListView,
+  TouchableHighlight,
 } = React;
 
 var API_KEY = '7waqfqbprs7pajbz28mqf6vz';
@@ -27,7 +28,10 @@ var MOCKED_MOVIES_DATA = [
 var toy = React.createClass({
   getInitialState: function(){
     return {
-      movies: null,
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (row1, row2) => row1 !== row2,
+      }),
+      loaded: false,
     };
   },
 
@@ -36,7 +40,10 @@ var toy = React.createClass({
       .then((response) => response.json())
       .then((responseData) => {
         this.setState({
-          movies: responseData.movies,
+          dataSource: this.state.dataSource.cloneWithRows(
+            responseData.movies
+          ),
+          loaded: true,
         });
       })
       .done();
@@ -81,16 +88,24 @@ var toy = React.createClass({
   },
 
   render: function() {
-    if (!this.state.movies) {
+    if (!this.state.loaded) {
       return this.renderLoadingView();
     }
 
-    var movie = this.state.movies[0];
-    return this.renderMovie(movie);
+    var movies = this.state.movies;
+    return <ListView
+      dataSource={this.state.dataSource}
+      renderRow={this.renderMovie}
+      style={styles.listView}
+    />;
   }
 });
 
 var styles = StyleSheet.create({
+  listView: {
+    paddingTop: 20,
+    backgroundColor: '#F5FCFF',
+  },
   container: {
     flex: 1,
     flexDirection: 'row',
