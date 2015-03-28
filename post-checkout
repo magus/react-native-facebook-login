@@ -1,0 +1,11 @@
+#!/bin/sh
+
+ROOT_GIT_DIR=$(git rev-parse --show-toplevel);
+JS_BUNDLE="$ROOT_GIT_DIR/iOS/main.jsbundle";
+
+echo
+echo "Updating $JS_BUNDLE..."
+echo
+
+# Update the JS bundle
+curl -s http://localhost:8081/index.ios.bundle -o $JS_BUNDLE 1>/dev/null

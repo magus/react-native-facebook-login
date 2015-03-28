@@ -949,7 +949,9 @@ var $__0=
   
   
   
-  React,AppRegistry=$__0.AppRegistry,StyleSheet=$__0.StyleSheet,Image=$__0.Image,Text=$__0.Text,View=$__0.View,ListView=$__0.ListView,TouchableHighlight=$__0.TouchableHighlight;
+  
+  
+  React,AppRegistry=$__0.AppRegistry,StyleSheet=$__0.StyleSheet,Image=$__0.Image,Text=$__0.Text,View=$__0.View,ListView=$__0.ListView,TouchableHighlight=$__0.TouchableHighlight,AlertIOS=$__0.AlertIOS,VibrationIOS=$__0.VibrationIOS;
 
 var API_KEY = '7waqfqbprs7pajbz28mqf6vz';
 var API_URL = 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json';
@@ -991,6 +993,8 @@ var toy = React.createClass({displayName: "toy",
 
   movieClicked: function(movie){
     console.log(movie.title, "was clicked");
+    VibrationIOS.vibrate();
+    console.log("vibrated");
   },
 
   renderLoadingView: function(){
