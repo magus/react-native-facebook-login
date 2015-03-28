@@ -13,6 +13,8 @@ var {
   View,
   ListView,
   TouchableHighlight,
+  AlertIOS,
+  VibrationIOS,
 } = React;
 
 var API_KEY = '7waqfqbprs7pajbz28mqf6vz';
@@ -55,6 +57,7 @@ var toy = React.createClass({
 
   movieClicked: function(movie){
     console.log(movie.title, "was clicked");
+    VibrationIOS.vibrate();
   },
 
   renderLoadingView: function(){
