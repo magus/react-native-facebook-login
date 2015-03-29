@@ -2,7 +2,6 @@
 
 var React = require('react-native');
 var {
-  AppRegistry,
   StyleSheet,
   Image,
   Text,
@@ -99,7 +98,5 @@ var styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
 });
-
-AppRegistry.registerComponent('MovieList', () => MovieList);
 
 module.exports = MovieList;
