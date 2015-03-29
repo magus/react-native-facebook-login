@@ -2,7 +2,6 @@
 
 var React = require('react-native');
 var {
-  AppRegistry,
   StyleSheet,
   Image,
   Text,
@@ -11,7 +10,7 @@ var {
   PixelRatio,
 } = React;
 
-var MovieList = React.createClass({
+var MovieCell = React.createClass({
   propTypes: {
     movie: React.PropTypes.object.isRequired,
     onPress: React.PropTypes.func.isRequired,
@@ -77,6 +76,4 @@ var styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('MovieList', () => MovieList);
-
-module.exports = MovieList;
+module.exports = MovieCell;
