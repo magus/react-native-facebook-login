@@ -11,6 +11,8 @@ var {
   ActivityIndicatorIOS,
 } = React;
 
+var Rating = require('./Rating');
+
 var MovieView = React.createClass({
   propTypes: {
     movie: React.PropTypes.object.isRequired,
@@ -90,6 +92,8 @@ var MovieView = React.createClass({
     var poster = this.state.poster;
     var imdb = this.state.imdb;
     var imdbRating = imdb ? imdb.data.rating : "N/A";
+    var critics_score = movie.ratings.critics_score;
+    var audience_score = movie.ratings.audience_score;
 
     var posterImage = poster ?
       <Image
@@ -112,7 +116,8 @@ var MovieView = React.createClass({
                 {this.props.movie.mpaa_rating}
               </Text>
             </View>
-            <Text>{this.props.movie.ratings}</Text>
+            <Rating score={critics_score} />
+            <Rating score={audience_score} />
             <Text>{imdbRating}</Text>
           </View>
         </View>
