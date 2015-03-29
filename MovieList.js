@@ -1,7 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
 'use strict';
 
 var React = require('react-native');
@@ -27,7 +23,7 @@ var MOCKED_MOVIES_DATA = [
   {title: 'Title', year: '2015', posters: {thumbnail: 'http://i.imgur.com/UePbdph.jpg'}},
 ];
 
-var toy = React.createClass({
+var MovieList = React.createClass({
   getInitialState: function(){
     return {
       dataSource: new ListView.DataSource({
@@ -55,7 +51,7 @@ var toy = React.createClass({
     this.fetchData();
   },
 
-  movieClicked: function(movie){
+  selectMovie: function(movie: Object) {
     console.log(movie.title, "was clicked");
     VibrationIOS.vibrate();
   },
@@ -73,7 +69,7 @@ var toy = React.createClass({
   renderMovie: function(movie){
     return (
       <TouchableHighlight
-        onPress={this.movieClicked.bind(this, movie)}
+        onPress={this.selectMovie.bind(this, movie)}
         style={styles.container}
       >
         <View style={styles.container}>
@@ -133,4 +129,6 @@ var styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('toy', () => toy);
+AppRegistry.registerComponent('MovieList', () => MovieList);
+
+module.exports = MovieList;
