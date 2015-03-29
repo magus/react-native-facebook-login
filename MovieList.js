@@ -8,10 +8,11 @@ var {
   Text,
   View,
   ListView,
-  TouchableHighlight,
   AlertIOS,
   VibrationIOS,
 } = React;
+
+var MovieCell = require('./MovieCell.js');
 
 var API_KEY = '7waqfqbprs7pajbz28mqf6vz';
 var API_URL = 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json';
@@ -19,9 +20,6 @@ var PAGE_SIZE = 25;
 var PARAMS = '?apikey=' + API_KEY + '&page_limit=' + PAGE_SIZE;
 var REQUEST_URL = API_URL + PARAMS;
 
-var MOCKED_MOVIES_DATA = [
-  {title: 'Title', year: '2015', posters: {thumbnail: 'http://i.imgur.com/UePbdph.jpg'}},
-];
 
 var MovieList = React.createClass({
   getInitialState: function(){
@@ -66,21 +64,9 @@ var MovieList = React.createClass({
 
   renderMovie: function(movie){
     return (
-      <TouchableHighlight
-        onPress={this.selectMovie.bind(this, movie)}
-        style={styles.container}
-      >
-        <View style={styles.container}>
-          <Image
-            style={styles.thumbnail}
-            source={{uri: movie.posters.thumbnail}}
-          />
-          <View style={styles.rightContainer}>
-            <Text style={styles.title}>{movie.title}</Text>
-            <Text style={styles.year}>{movie.year}</Text>
-          </View>
-        </View>
-      </TouchableHighlight>
+      <MovieCell
+        movie={movie}
+        onPress={this.selectMovie.bind(this, movie)} />
     );
   },
 
