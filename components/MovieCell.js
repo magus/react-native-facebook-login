@@ -10,6 +10,10 @@ var {
   PixelRatio,
 } = React;
 
+var {
+  getStyleFromScore,
+} = require('../utils/RottenTomatoes')
+
 var MovieCell = React.createClass({
   propTypes: {
     movie: React.PropTypes.object.isRequired,
@@ -18,6 +22,7 @@ var MovieCell = React.createClass({
 
   render: function() {
     var movie = this.props.movie;
+    var critics_score = movie.ratings.critics_score;
     return (
       <View>
         <TouchableHighlight
@@ -31,6 +36,7 @@ var MovieCell = React.createClass({
             <View style={styles.rightContainer}>
               <Text style={styles.title} numberOfLines={2}>{movie.title}</Text>
               <Text style={styles.year} numberOfLines={1}>{movie.year}</Text>
+              <Text style={getStyleFromScore(critics_score)} numberOfLines={1}>{critics_score}%</Text>
             </View>
           </View>
         </TouchableHighlight>
