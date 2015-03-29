@@ -8,6 +8,7 @@ var {
   Text,
   View,
   TouchableHighlight,
+  PixelRatio,
 } = React;
 
 var MovieList = React.createClass({
@@ -19,21 +20,23 @@ var MovieList = React.createClass({
   render: function() {
     var movie = this.props.movie;
     return (
-      <TouchableHighlight
-        onPress={this.props.onPress}
-        style={styles.container}
-      >
-        <View style={styles.container}>
-          <Image
-            style={styles.thumbnail}
-            source={{uri: movie.posters.thumbnail}}
-          />
-          <View style={styles.rightContainer}>
-            <Text style={styles.title}>{movie.title}</Text>
-            <Text style={styles.year}>{movie.year}</Text>
+      <View>
+        <TouchableHighlight
+          onPress={this.props.onPress}
+        >
+          <View style={styles.container}>
+            <Image
+              style={styles.thumbnail}
+              source={{uri: movie.posters.thumbnail}}
+            />
+            <View style={styles.rightContainer}>
+              <Text style={styles.title} numberOfLines={2}>{movie.title}</Text>
+              <Text style={styles.year} numberOfLines={1}>{movie.year}</Text>
+            </View>
           </View>
-        </View>
-      </TouchableHighlight>
+        </TouchableHighlight>
+        <View style={styles.cellBorder} />
+      </View>
     );
   }
 });
@@ -43,23 +46,34 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#F5FCFF',
+
+    alignItems: 'center',
+    padding: 5,
   },
   rightContainer: {
     flex: 1,
+    marginLeft: 5,
   },
   thumbnail: {
     width: 53,
     height: 81,
   },
   title: {
-    fontSize: 20,
-    marginBottom: 8,
-    textAlign: 'center',
+    flex: 1,
+    fontSize: 16,
+    fontWeight: '500',
+    marginBottom: 2,
   },
   year: {
-    textAlign: 'center',
+    color: '#999999',
+    fontSize: 12,
+  },
+  cellBorder: {
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    // Trick to get the thinest line the device can display
+    height: 1 / PixelRatio.get(),
+    marginLeft: 4,
   },
 });
 
