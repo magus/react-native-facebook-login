@@ -29,7 +29,6 @@ var MovieList = React.createClass({
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
       }),
-      loaded: false,
     };
   },
 
@@ -41,7 +40,6 @@ var MovieList = React.createClass({
           dataSource: this.state.dataSource.cloneWithRows(
             responseData.movies
           ),
-          loaded: true,
         });
       })
       .done();
@@ -87,7 +85,7 @@ var MovieList = React.createClass({
   },
 
   render: function() {
-    if (!this.state.loaded) {
+    if (this.state.dataSource.getRowCount() === 0) {
       return this.renderLoadingView();
     }
 
