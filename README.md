@@ -2,7 +2,9 @@
 
 ## setup
 
-There are two branches, a development branch (`master`) and a publish branch (`publish`). `publish` will modify the `iOS/AppDelegate.m` file to correctly point to the local js bundle `iOS/main.jsbundle`. The command below will setup a post-checkout hook which will automatically update the js bundle.
+Modify the `iOS/AppDelegate.m` file to correctly point to the local js bundle `iOS/main.jsbundle` or the bundle served by packager.
+
+The command below will setup a post-commit hook which will automatically update the js bundle.
 ```sh
-ln -s $(pwd)/post-checkout .git/hooks/post-checkout
+ln -s $(pwd)/pre-commit .git/hooks/pre-commit
 ```
