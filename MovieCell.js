@@ -53,11 +53,11 @@ var styles = StyleSheet.create({
   },
   rightContainer: {
     flex: 1,
-    marginLeft: 5,
   },
   thumbnail: {
     width: 53,
     height: 81,
+    marginRight: 10,
   },
   title: {
     flex: 1,
@@ -73,7 +73,7 @@ var styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
     // Trick to get the thinest line the device can display
     height: 1 / PixelRatio.get(),
-    marginLeft: 4,
+    marginLeft: 5,
   },
 });
 
