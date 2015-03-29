@@ -13,6 +13,7 @@ var {
 } = React;
 
 var MovieCell = require('./MovieCell.js');
+var MovieView = require('./MovieView.js');
 
 var API_KEY = '7waqfqbprs7pajbz28mqf6vz';
 var API_URL = 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json';
@@ -50,6 +51,14 @@ var MovieList = React.createClass({
   selectMovie: function(movie: Object) {
     console.log(movie.title, "was clicked");
     VibrationIOS.vibrate();
+
+    this.props.navigator.push({
+      title: movie.title,
+      component: MovieView,
+      passProps: {
+        movie: movie,
+      },
+    });
   },
 
   renderLoadingView: function(){
@@ -77,9 +86,9 @@ var MovieList = React.createClass({
 
     var movies = this.state.movies;
     return <ListView
+      style={styles.listView}
       dataSource={this.state.dataSource}
       renderRow={this.renderMovie}
-      style={styles.listView}
     />;
   }
 });
@@ -88,28 +97,6 @@ var styles = StyleSheet.create({
   listView: {
     paddingTop: 20,
     backgroundColor: '#F5FCFF',
-  },
-  container: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  rightContainer: {
-    flex: 1,
-  },
-  thumbnail: {
-    width: 53,
-    height: 81,
-  },
-  title: {
-    fontSize: 20,
-    marginBottom: 8,
-    textAlign: 'center',
-  },
-  year: {
-    textAlign: 'center',
   },
 });
 
