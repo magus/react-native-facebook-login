@@ -1,5 +1,5 @@
 /* eslint global-strict:0 */
-__DEV__ = true;
+__DEV__ = false;
 
 /* eslint global-strict:0,eqeqeq:0,no-bitwise:0,no-undef:0 */
 (function(global) {
@@ -934,143 +934,39 @@ Object.assign = function(target, sources) {
   setupErrorGuard();
 })(this);
 
-__d('toy/index.ios',["react-native/Libraries/react-native/react-native"],function(global, require, requireDynamic, requireLazy, module, exports) {  /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
-'use strict';
-
-var React = require('react-native/Libraries/react-native/react-native');
+__d('toy/MoviesApp',["react-native/Libraries/react-native/react-native","toy/MovieList"],function(global, require, requireDynamic, requireLazy, module, exports) {  var React = require('react-native/Libraries/react-native/react-native');
 var $__0=
   
   
   
-  
-  
-  
-  
-  
-  
-  React,AppRegistry=$__0.AppRegistry,StyleSheet=$__0.StyleSheet,Image=$__0.Image,Text=$__0.Text,View=$__0.View,ListView=$__0.ListView,TouchableHighlight=$__0.TouchableHighlight,AlertIOS=$__0.AlertIOS,VibrationIOS=$__0.VibrationIOS;
+  React,AppRegistry=$__0.AppRegistry,NavigatorIOS=$__0.NavigatorIOS,StyleSheet=$__0.StyleSheet;
 
-var API_KEY = '7waqfqbprs7pajbz28mqf6vz';
-var API_URL = 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json';
-var PAGE_SIZE = 25;
-var PARAMS = '?apikey=' + API_KEY + '&page_limit=' + PAGE_SIZE;
-var REQUEST_URL = API_URL + PARAMS;
+var MovieList = require('toy/MovieList');
 
-var MOCKED_MOVIES_DATA = [
-  {title: 'Title', year: '2015', posters: {thumbnail: 'http://i.imgur.com/UePbdph.jpg'}},
-];
-
-var toy = React.createClass({displayName: "toy",
-  getInitialState: function(){
-    return {
-      dataSource: new ListView.DataSource({
-        rowHasChanged: function(row1, row2)  {return row1 !== row2;},
-      }),
-      loaded: false,
-    };
-  },
-
-  fetchData: function() {
-    fetch(REQUEST_URL)
-      .then(function(response)  {return response.json();})
-      .then(function(responseData)  {
-        this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(
-            responseData.movies
-          ),
-          loaded: true,
-        });
-      }.bind(this))
-      .done();
-  },
-
-  componentDidMount: function() {
-    this.fetchData();
-  },
-
-  movieClicked: function(movie){
-    console.log(movie.title, "was clicked");
-    VibrationIOS.vibrate();
-    console.log("vibrated");
-  },
-
-  renderLoadingView: function(){
-    return (
-      React.createElement(View, {style: styles.container}, 
-        React.createElement(Text, null, 
-          "Loading movies..."
-        )
-      )
-    );
-  },
-
-  renderMovie: function(movie){
-    return (
-      React.createElement(TouchableHighlight, {
-        onPress: this.movieClicked.bind(this, movie), 
-        style: styles.container
-      }, 
-        React.createElement(View, {style: styles.container}, 
-          React.createElement(Image, {
-            style: styles.thumbnail, 
-            source: {uri: movie.posters.thumbnail}}
-          ), 
-          React.createElement(View, {style: styles.rightContainer}, 
-            React.createElement(Text, {style: styles.title}, movie.title), 
-            React.createElement(Text, {style: styles.year}, movie.year)
-          )
-        )
-      )
-    );
-  },
-
+var MoviesApp = React.createClass({displayName: "MoviesApp",
   render: function() {
-    if (!this.state.loaded) {
-      return this.renderLoadingView();
-    }
-
-    var movies = this.state.movies;
-    return React.createElement(ListView, {
-      dataSource: this.state.dataSource, 
-      renderRow: this.renderMovie, 
-      style: styles.listView}
+    return (
+      React.createElement(NavigatorIOS, {
+        style: styles.container, 
+        initialRoute: {
+          title: 'Movies',
+          component: MovieList,
+        }}
+      )
     );
   }
 });
 
 var styles = StyleSheet.create({
-  listView: {
-    paddingTop: 20,
-    backgroundColor: '#F5FCFF',
-  },
   container: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  rightContainer: {
-    flex: 1,
-  },
-  thumbnail: {
-    width: 53,
-    height: 81,
-  },
-  title: {
-    fontSize: 20,
-    marginBottom: 8,
-    textAlign: 'center',
-  },
-  year: {
-    textAlign: 'center',
+    backgroundColor: 'white',
   },
 });
 
-AppRegistry.registerComponent('toy', function()  {return toy;});
+AppRegistry.registerComponent('MoviesApp', function()  {return MoviesApp;});
+
+module.exports = MoviesApp;
 });
 __d('react-native/Libraries/react-native/react-native',["React","ActivityIndicatorIOS","DatePickerIOS","Image","ListView","MapView","NavigatorIOS","PickerIOS","Navigator","ScrollView","SliderIOS","SwitchIOS","TabBarIOS","Text","TextInput","TouchableHighlight","TouchableOpacity","TouchableWithoutFeedback","View","WebView","AlertIOS","Animation","AppRegistry","AppStateIOS","AsyncStorage","CameraRoll","InteractionManager","LinkingIOS","LayoutAnimation","NetInfo","PixelRatio","PushNotificationIOS","PanResponder","StatusBarIOS","StyleSheet","VibrationIOS","RCTDeviceEventEmitter","NativeModules","LinkedStateMixin","ReactComponentWithPureRenderMixin","NativeModules","ReactUpdates","cloneWithProps","update","ReactDefaultPerf","ReactTestUtils"],function(global, require, requireDynamic, requireLazy, module, exports) {  /**
  * Copyright (c) 2015-present, Facebook, Inc.
@@ -38516,5 +38412,387 @@ for (eventType in topLevelTypes) {
 
 module.exports = ReactTestUtils;
 });
-;require("toy/index.ios");
-//@ sourceMappingURL=/index.ios.map
+__d('toy/MovieList',["react-native/Libraries/react-native/react-native","toy/MovieCell","toy/MovieView"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';
+
+var React = require('react-native/Libraries/react-native/react-native');
+var $__0=
+  
+  
+  
+  
+  
+  
+  
+  
+  React,AppRegistry=$__0.AppRegistry,StyleSheet=$__0.StyleSheet,Image=$__0.Image,Text=$__0.Text,View=$__0.View,ListView=$__0.ListView,AlertIOS=$__0.AlertIOS,VibrationIOS=$__0.VibrationIOS;
+
+var MovieCell = require('toy/MovieCell');
+var MovieView = require('toy/MovieView');
+
+var API_KEY = '7waqfqbprs7pajbz28mqf6vz';
+var API_URL = 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json';
+var PAGE_SIZE = 25;
+var PARAMS = '?apikey=' + API_KEY + '&page_limit=' + PAGE_SIZE;
+var REQUEST_URL = API_URL + PARAMS;
+
+
+var MovieList = React.createClass({displayName: "MovieList",
+  getInitialState: function(){
+    return {
+      dataSource: new ListView.DataSource({
+        rowHasChanged: function(row1, row2)  {return row1 !== row2;},
+      }),
+    };
+  },
+
+  fetchData: function() {
+    fetch(REQUEST_URL)
+      .then(function(response)  {return response.json();})
+      .then(function(responseData)  {
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(
+            responseData.movies
+          ),
+        });
+      }.bind(this))
+      .done();
+  },
+
+  componentDidMount: function() {
+    this.fetchData();
+  },
+
+  selectMovie: function(movie        ) {
+    console.log(movie.title, "was clicked");
+    VibrationIOS.vibrate();
+
+    this.props.navigator.push({
+      title: movie.title,
+      component: MovieView,
+      passProps: {
+        movie: movie,
+      },
+    });
+  },
+
+  renderLoadingView: function(){
+    return (
+      React.createElement(View, {style: styles.container}, 
+        React.createElement(Text, null, 
+          "Loading movies..."
+        )
+      )
+    );
+  },
+
+  renderMovie: function(movie){
+    return (
+      React.createElement(MovieCell, {
+        movie: movie, 
+        onPress: this.selectMovie.bind(this, movie)})
+    );
+  },
+
+  render: function() {
+    if (this.state.dataSource.getRowCount() === 0) {
+      return this.renderLoadingView();
+    }
+
+    var movies = this.state.movies;
+    return React.createElement(ListView, {
+      style: styles.listView, 
+      dataSource: this.state.dataSource, 
+      renderRow: this.renderMovie}
+    );
+  }
+});
+
+var styles = StyleSheet.create({
+  listView: {
+    paddingTop: 20,
+    backgroundColor: '#F5FCFF',
+  },
+});
+
+AppRegistry.registerComponent('MovieList', function()  {return MovieList;});
+
+module.exports = MovieList;
+});
+__d('toy/MovieCell',["react-native/Libraries/react-native/react-native"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';
+
+var React = require('react-native/Libraries/react-native/react-native');
+var $__0=
+  
+  
+  
+  
+  
+  
+  
+  React,AppRegistry=$__0.AppRegistry,StyleSheet=$__0.StyleSheet,Image=$__0.Image,Text=$__0.Text,View=$__0.View,TouchableHighlight=$__0.TouchableHighlight,PixelRatio=$__0.PixelRatio;
+
+var MovieList = React.createClass({displayName: "MovieList",
+  propTypes: {
+    movie: React.PropTypes.object.isRequired,
+    onPress: React.PropTypes.func.isRequired,
+  },
+
+  render: function() {
+    var movie = this.props.movie;
+    return (
+      React.createElement(View, null, 
+        React.createElement(TouchableHighlight, {
+          onPress: this.props.onPress
+        }, 
+          React.createElement(View, {style: styles.container}, 
+            React.createElement(Image, {
+              style: styles.thumbnail, 
+              source: {uri: movie.posters.thumbnail}}
+            ), 
+            React.createElement(View, {style: styles.rightContainer}, 
+              React.createElement(Text, {style: styles.title, numberOfLines: 2}, movie.title), 
+              React.createElement(Text, {style: styles.year, numberOfLines: 1}, movie.year)
+            )
+          )
+        ), 
+        React.createElement(View, {style: styles.cellBorder})
+      )
+    );
+  }
+});
+
+var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    backgroundColor: '#F5FCFF',
+
+    alignItems: 'center',
+    padding: 5,
+  },
+  rightContainer: {
+    flex: 1,
+  },
+  thumbnail: {
+    width: 53,
+    height: 81,
+    marginRight: 10,
+  },
+  title: {
+    flex: 1,
+    fontSize: 16,
+    fontWeight: '500',
+    marginBottom: 2,
+  },
+  year: {
+    color: '#999999',
+    fontSize: 12,
+  },
+  cellBorder: {
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    // Trick to get the thinest line the device can display
+    height: 1 / PixelRatio.get(),
+    marginLeft: 5,
+  },
+});
+
+AppRegistry.registerComponent('MovieList', function()  {return MovieList;});
+
+module.exports = MovieList;
+});
+__d('toy/MovieView',["react-native/Libraries/react-native/react-native"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';
+
+var React = require('react-native/Libraries/react-native/react-native');
+var $__0=
+  
+  
+  
+  
+  
+  
+  
+  React,Image=$__0.Image,PixelRatio=$__0.PixelRatio,ScrollView=$__0.ScrollView,StyleSheet=$__0.StyleSheet,Text=$__0.Text,View=$__0.View,ActivityIndicatorIOS=$__0.ActivityIndicatorIOS;
+
+var MovieView = React.createClass({displayName: "MovieView",
+  propTypes: {
+    movie: React.PropTypes.object.isRequired,
+  },
+
+  getInitialState: function(){
+    return {
+      imdb: "",
+      poster: "",
+    };
+  },
+
+  getIMDBIDOMDB: function(yearAdjust){
+    var _this = this;
+    var movie = this.props.movie;
+    var title = encodeURIComponent(movie.title);
+    var yearAdjust = yearAdjust ? yearAdjust : 0;
+    var year = (parseInt(movie.year)+yearAdjust).toString();
+
+    return fetch(("http://www.omdbapi.com/?type=movie&s=" + title + "&y=" + year))
+      .then(function(response)  {return response.json();})
+      .then(function(responseData)  {
+        if (_this.isMounted()){
+          var resultsKey = "Search";
+          if (responseData.hasOwnProperty(resultsKey)) {
+            // Call other APIs with IMDB id
+            var imdbID = responseData[resultsKey][0].imdbID;
+            this.getPoster(imdbID);
+            this.getIMDB(imdbID);
+          } else {
+            // Search all movie results within 3 years
+            if (yearAdjust < 3) {
+              // Search forwards then backwards
+              yearAdjust = yearAdjust <= 0 ? yearAdjust + 1 : yearAdjust * -1;
+              // Call self with new yearAdjust
+              _this.getIMDBIDOMDB(yearAdjust);
+            }
+          }
+        }
+      }.bind(this));
+  },
+
+  getIMDB: function(imdbID){
+    var _this = this;
+    var IMDB_API = ("http://app.imdb.com/title/maindetails?tconst=" + imdbID);
+    console.log(IMDB_API);
+
+    return fetch(IMDB_API)
+      .then(function(response)  {return response.json();})
+      .then(function(responseData)  {
+        if (_this.isMounted()){
+          _this.setState({ imdb : responseData });
+        }
+      });
+  },
+
+  getPoster: function(imdbID){
+    var _this = this;
+    var OMDB_API = ("http://www.omdbapi.com/?i=" + imdbID + "&plot=short&r=json");
+    console.log(OMDB_API);
+
+    return fetch(OMDB_API)
+      .then(function(response)  {return response.json();})
+      .then(function(responseData)  {
+        if (_this.isMounted()){
+          _this.setState({ poster : responseData.Poster });
+        }
+      });
+  },
+
+  componentDidMount: function () {
+    this.request = this.getIMDBIDOMDB();
+  },
+
+  render: function() {
+    var movie = this.props.movie;
+    var poster = this.state.poster;
+    var imdb = this.state.imdb;
+    var imdbRating = imdb ? imdb.data.rating : "N/A";
+
+    var posterImage = poster ?
+      React.createElement(Image, {
+        source: {uri: poster}, 
+        style: styles.detailsImage}
+      )
+      : React.createElement(View, {style: styles.detailsImage}, 
+        React.createElement(ActivityIndicatorIOS, {size: "large"})
+      );
+
+    return (
+      React.createElement(ScrollView, {contentContainerStyle: styles.contentContainer}, 
+        React.createElement(View, {style: styles.mainSection}, 
+           posterImage, 
+          React.createElement(View, {style: styles.rightPane}, 
+            React.createElement(Text, {style: styles.movieTitle}, this.props.movie.title), 
+            React.createElement(Text, null, this.props.movie.year), 
+            React.createElement(View, {style: styles.mpaaWrapper}, 
+              React.createElement(Text, {style: styles.mpaaText}, 
+                this.props.movie.mpaa_rating
+              )
+            ), 
+            React.createElement(Text, null, this.props.movie.ratings), 
+            React.createElement(Text, null, imdbRating)
+          )
+        ), 
+        React.createElement(View, {style: styles.separator}), 
+        React.createElement(Text, null, 
+          this.props.movie.synopsis
+        ), 
+        React.createElement(View, {style: styles.separator}), 
+        React.createElement(Text, null, this.props.movie.abridged_cast)
+      )
+    );
+  },
+});
+
+var styles = StyleSheet.create({
+  contentContainer: {
+    padding: 10,
+  },
+  rightPane: {
+    justifyContent: 'space-between',
+    flex: 1,
+  },
+  movieTitle: {
+    flex: 1,
+    fontSize: 16,
+    fontWeight: '500',
+  },
+  rating: {
+    marginTop: 10,
+  },
+  ratingTitle: {
+    fontSize: 14,
+  },
+  ratingValue: {
+    fontSize: 28,
+    fontWeight: '500',
+  },
+  mpaaWrapper: {
+    alignSelf: 'flex-start',
+    borderColor: 'black',
+    borderWidth: 1,
+    paddingHorizontal: 3,
+    marginVertical: 5,
+  },
+  mpaaText: {
+    fontFamily: 'Palatino',
+    fontSize: 13,
+    fontWeight: '500',
+  },
+  mainSection: {
+    flexDirection: 'row',
+  },
+  detailsImage: {
+    width: 134,
+    height: 200,
+    backgroundColor: '#eaeaea',
+    marginRight: 10,
+
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  separator: {
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    height: 1 / PixelRatio.get(),
+    marginVertical: 10,
+  },
+  castTitle: {
+    fontWeight: '500',
+    marginBottom: 3,
+  },
+  castActor: {
+    marginLeft: 2,
+  },
+});
+
+module.exports = MovieView;
+});
+;require("toy/MoviesApp");
+//@ sourceMappingURL=/MoviesApp.includeRequire.runModule.map
