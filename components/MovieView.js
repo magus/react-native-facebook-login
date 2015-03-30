@@ -139,8 +139,8 @@ var styles = StyleSheet.create({
     backgroundColor: '#fafafa',
   },
   rightPane: {
-    justifyContent: 'space-between',
     flex: 1,
+    justifyContent: 'space-between',
   },
   movieTitle: {
     flex: 1,

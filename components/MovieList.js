@@ -6,12 +6,16 @@ var {
   Text,
   View,
   ListView,
+  ScrollView,
   AlertIOS,
   VibrationIOS,
 } = React;
 
 var MovieCell = require('./MovieCell.js');
 var MovieView = require('./MovieView.js');
+
+var FBLogin = require('./facebook/FBLogin');
+
 
 var API_KEY = '7waqfqbprs7pajbz28mqf6vz';
 var API_URL = 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json';
@@ -82,18 +86,31 @@ var MovieList = React.createClass({
       return this.renderLoadingView();
     }
 
-    var movies = this.state.movies;
-    return <ListView
-      style={styles.listView}
-      dataSource={this.state.dataSource}
-      renderRow={this.renderMovie}
-    />;
+    return (
+      <View style={styles.container}>
+        <FBLogin />
+        <View style={styles.separator} />
+        <ListView
+          style={styles.listView}
+          dataSource={this.state.dataSource}
+          renderRow={this.renderMovie}
+          automaticallyAdjustContentInsets={false}
+        />
+      </View>
+    );
   }
 });
 
 var styles = StyleSheet.create({
+  container: {
+    marginTop: 63,
+  },
   listView: {
     backgroundColor: '#fafafa',
+  },
+  separator: {
+    height: 1,
+    backgroundColor: '#eeeeee',
   },
 });
 
