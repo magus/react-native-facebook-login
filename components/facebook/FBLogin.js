@@ -23,10 +23,11 @@ var FBLogin = React.createClass({
   },
 
   handleFacebookLogin: function(){
+    var _this = this;
     FacebookLogin.detect(function(error, credentials){
       if (!error) {
         console.log("existing login found: ", credentials);
-        this.setState({ credentials : credentials });
+        _this.setState({ credentials : credentials });
       } else {
         console.log("no existing login found, executing login flow");
         FacebookLogin.login(function(error, credentials){
@@ -34,7 +35,7 @@ var FBLogin = React.createClass({
             console.log("error encountered during fb login: ", error);
           } else {
             console.log("login success: ", credentials);
-            this.setState({ credentials : credentials });
+            _this.setState({ credentials : credentials });
           }
         });
       }
@@ -44,6 +45,18 @@ var FBLogin = React.createClass({
   onPress: function(){
     this.handleFacebookLogin();
     this.props.onPress && this.props.onPress();
+  },
+
+  componentWillMount: function(){
+    var _this = this;
+    FacebookLogin.detect(function(error, credentials){
+      if (!error) {
+        console.log("existing login found: ", credentials);
+        _this.setState({ credentials : credentials });
+      } else {
+        console.log("no existing login found: ", error);
+      }
+    });
   },
 
   render: function() {
