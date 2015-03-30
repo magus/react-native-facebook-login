@@ -51,7 +51,7 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#fafafa',
 
     alignItems: 'center',
     padding: 5,
@@ -69,9 +69,10 @@ var styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
     marginBottom: 2,
+    color: '#121b2e',
   },
   year: {
-    color: '#999999',
+    color: '#9197a3',
     fontSize: 12,
   },
   cellBorder: {
