@@ -1,6 +1,9 @@
 var React = require('react-native');
+var Parse = require('parse').Parse;
 
+// Make react and parse global
 window.React = React;
+window.Parse = Parse;
 
 var {
   AppRegistry,
