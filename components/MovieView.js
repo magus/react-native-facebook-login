@@ -109,7 +109,7 @@ var MovieView = React.createClass({
           { posterImage }
           <View style={styles.rightPane}>
             <Text style={styles.movieTitle}>{this.props.movie.title}</Text>
-            <Text>{this.props.movie.year}</Text>
+            <Text style={styles.movieYear}>{this.props.movie.year}</Text>
             <View style={styles.mpaaWrapper}>
               <Text style={styles.mpaaText}>
                 {this.props.movie.mpaa_rating}
@@ -136,6 +136,7 @@ var MovieView = React.createClass({
 var styles = StyleSheet.create({
   contentContainer: {
     padding: 10,
+    backgroundColor: '#fafafa',
   },
   rightPane: {
     justifyContent: 'space-between',
@@ -145,6 +146,10 @@ var styles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
     fontWeight: '500',
+    color: '#121b2e',
+  },
+  movieYear: {
+    color: '#9197a3',
   },
   rating: {
     marginTop: 10,

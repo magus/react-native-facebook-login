@@ -20,6 +20,7 @@ var MoviesApp = React.createClass({
     return (
       <NavigatorIOS
         style={styles.container}
+        itemWrapperStyle={styles.allPages}
         initialRoute={{
           title: 'Movies',
           component: MovieList,
@@ -32,7 +33,9 @@ var MoviesApp = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+  },
+  allPages: {
+    backgroundColor: '#dcdee3',
   },
 });
 

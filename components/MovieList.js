@@ -93,8 +93,7 @@ var MovieList = React.createClass({
 
 var styles = StyleSheet.create({
   listView: {
-    paddingTop: 20,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#fafafa',
   },
 });
 
