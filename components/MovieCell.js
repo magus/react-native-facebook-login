@@ -10,7 +10,8 @@ var {
   PixelRatio,
 } = React;
 
-var Rating = require('./Rating');
+var RottenTomatoeRatings = require('./RottenTomatoeRatings');
+
 
 var MovieCell = React.createClass({
   propTypes: {
@@ -20,8 +21,6 @@ var MovieCell = React.createClass({
 
   render: function() {
     var movie = this.props.movie;
-    var critics_score = movie.ratings.critics_score;
-    var audience_score = movie.ratings.audience_score;
     return (
       <View>
         <TouchableHighlight
@@ -35,8 +34,10 @@ var MovieCell = React.createClass({
             <View style={styles.rightContainer}>
               <Text style={styles.title} numberOfLines={2}>{movie.title}</Text>
               <Text style={styles.year} numberOfLines={1}>{movie.year}</Text>
-              <Rating score={critics_score} />
-              <Rating score={audience_score} />
+              <RottenTomatoeRatings
+                critics={movie.ratings.critics_score}
+                audience={movie.ratings.audience_score}
+              />
             </View>
           </View>
         </TouchableHighlight>

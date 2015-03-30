@@ -11,7 +11,7 @@ var {
   ActivityIndicatorIOS,
 } = React;
 
-var Rating = require('./Rating');
+var RottenTomatoeRatings = require('./RottenTomatoeRatings');
 
 var MovieView = React.createClass({
   propTypes: {
@@ -116,8 +116,10 @@ var MovieView = React.createClass({
                 {this.props.movie.mpaa_rating}
               </Text>
             </View>
-            <Rating score={critics_score} />
-            <Rating score={audience_score} />
+            <RottenTomatoeRatings
+              critics={movie.ratings.critics_score}
+              audience={movie.ratings.audience_score}
+            />
             <Text>{imdbRating}</Text>
           </View>
         </View>
