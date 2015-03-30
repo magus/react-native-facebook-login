@@ -1,5 +1,7 @@
 var React = require('react-native');
 
+window.React = React;
+
 var {
   AppRegistry,
   NavigatorIOS,
