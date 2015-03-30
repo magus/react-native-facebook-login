@@ -8,8 +8,12 @@
  */
 
 #import "AppDelegate.h"
-
 #import "RCTRootView.h"
+
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+
+#import <Parse/Parse.h>
 
 @implementation AppDelegate
 
@@ -45,7 +49,27 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-  return YES;
+
+  // Initialize Parse
+  [Parse setApplicationId:@"R5k700UGVk8mlesGAS4hSuG3TY6qkFvaXEfh8pt7"
+                clientKey:@"tCrMuPuml6XTdMRduAugw9kazx6bBNeN9YvbBQ7d"];
+
+  return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                    didFinishLaunchingWithOptions:launchOptions];
 }
+
+// Facebook SDK
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+  [FBSDKAppEvents activateApp];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+  return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                        openURL:url
+                                              sourceApplication:sourceApplication
+                                                     annotation:annotation];
+}
+
+
 
 @end
