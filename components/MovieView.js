@@ -10,7 +10,7 @@ var {
   ActivityIndicatorIOS,
 } = React;
 
-var RottenTomatoeRatings = require('./RottenTomatoeRatings');
+var RottenTomatoeRatings = require('./ratings/RottenTomatoeRatings');
 
 var MovieView = React.createClass({
   propTypes: {

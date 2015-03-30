@@ -9,7 +9,7 @@ var {
   PixelRatio,
 } = React;
 
-var RottenTomatoeRatings = require('./RottenTomatoeRatings');
+var RottenTomatoeRatings = require('./ratings/RottenTomatoeRatings');
 
 
 var MovieCell = React.createClass({
