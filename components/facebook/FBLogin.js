@@ -8,12 +8,11 @@ var {
   TouchableHighlight,
 } = React;
 
-var merge = require('mergeFast');
 var FacebookLogin = require('NativeModules').FacebookLogin;
 
 var FBLogin = React.createClass({
   propTypes: {
-    style: React.PropTypes.dict,
+    style: View.propTypes.style,
     onPress: React.PropTypes.func,
   },
 
@@ -24,19 +23,27 @@ var FBLogin = React.createClass({
   },
 
   handleFacebookLogin: function(){
-    FacebookLogin.login(function(error, credentials){
-      if (error) {
-        console.log("error encountered during fb login: ", error);
-      } else {
-        console.log(credentials);
+    FacebookLogin.detect(function(error, credentials){
+      if (!error) {
+        console.log("existing login found: ", credentials);
         this.setState({ credentials : credentials });
+      } else {
+        console.log("no existing login found, executing login flow");
+        FacebookLogin.login(function(error, credentials){
+          if (error) {
+            console.log("error encountered during fb login: ", error);
+          } else {
+            console.log("login success: ", credentials);
+            this.setState({ credentials : credentials });
+          }
+        });
       }
     });
   },
 
   onPress: function(){
     this.handleFacebookLogin();
-    this.props.onPress();
+    this.props.onPress && this.props.onPress();
   },
 
   render: function() {
