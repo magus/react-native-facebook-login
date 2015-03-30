@@ -37,4 +37,18 @@
     }];
 }
 
+- (void)detect:(RCTResponseSenderBlock)callback {
+  RCT_EXPORT();
+
+  if ([FBSDKAccessToken currentAccessToken]) {
+    FBSDKAccessToken *token = [FBSDKAccessToken currentAccessToken];
+    NSString *tokenString = token.tokenString;
+    NSString *userId = token.userID;
+    NSDictionary *credentials = @{ @"token" : tokenString, @"userId" : userId };
+    callback(@[[NSNull null], credentials]);
+  } else {
+    callback(@[@"Error::NoExistingLoginFound", [NSNull null]]);
+  }
+}
+
 @end
