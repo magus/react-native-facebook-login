@@ -1,5 +1,8 @@
 # toy
 
+## todo
+- Wrap FBSDKLoginButton and expose as component to NativeModules (could probably publish this on react rocks or something)
+
 ## setup
 
 Modify the `iOS/AppDelegate.m` file to correctly point to the local js bundle `iOS/main.jsbundle` or the bundle served by packager.

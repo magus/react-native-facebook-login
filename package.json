@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node_modules/react-native/packager/packager.sh"
+    "start": "node_modules/react-native/packager/packager.sh --assetRoots=./iOS/Images.xcassets"
   },
   "dependencies": {
     "parse": "^1.4.1",
     "parse-react": "^0.1.1",
-    "react-native": "^0.2.1"
+    "react-native": "^0.3.1"
   }
 }

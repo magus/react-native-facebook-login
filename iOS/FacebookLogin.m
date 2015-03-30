@@ -15,19 +15,24 @@
 
 - (void)login:(RCTResponseSenderBlock)callback {
     RCT_EXPORT();
-    
+
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
     [login logInWithReadPermissions:@[@"public_profile", @"email"] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
         if (error) {
-            // Process error
+          callback(@[@"Error", [NSNull null]]);
         } else if (result.isCancelled) {
-            // Handle cancellations
+          callback(@[@"Cancelled", [NSNull null]]);
         } else {
-            // If you ask for multiple permissions at once, you
-            // should check if specific permissions missing
-            if ([result.grantedPermissions containsObject:@"email"]) {
-                // Do work
-            }
+          if ([result.grantedPermissions containsObject:@"public_profile"] &&
+              [result.grantedPermissions containsObject:@"email"]) {
+            FBSDKAccessToken *token = result.token;
+            NSString *tokenString = token.tokenString;
+            NSString *userId = token.userID;
+            NSDictionary *credentials = @{ @"token" : tokenString, @"userId" : userId };
+            callback(@[[NSNull null], credentials]);
+          } else {
+            callback(@[@"PermissionError", [NSNull null]]);
+          }
         }
     }];
 }

@@ -51,10 +51,10 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-    backgroundColor: '#fafafa',
-
     alignItems: 'center',
+
     padding: 5,
+    backgroundColor: '#fafafa',
   },
   rightContainer: {
     flex: 1,
@@ -65,7 +65,6 @@ var styles = StyleSheet.create({
     marginRight: 10,
   },
   title: {
-    flex: 1,
     fontSize: 16,
     fontWeight: '500',
     marginBottom: 2,
