@@ -5,6 +5,8 @@ var Parse = require('parse').Parse;
 window.React = React;
 window.Parse = Parse;
 
+Parse.initialize("R5k700UGVk8mlesGAS4hSuG3TY6qkFvaXEfh8pt7", "8XXUnoCELevIUO03rasXbrKugitx4wKb9PkrnQty");
+
 var {
   AppRegistry,
   NavigatorIOS,
