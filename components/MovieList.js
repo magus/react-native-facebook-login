@@ -87,7 +87,7 @@ var MovieList = React.createClass({
     }
 
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <FBLogin />
         <View style={styles.separator} />
         <ListView
@@ -96,14 +96,13 @@ var MovieList = React.createClass({
           renderRow={this.renderMovie}
           automaticallyAdjustContentInsets={false}
         />
-      </View>
+    </ScrollView>
     );
   }
 });
 
 var styles = StyleSheet.create({
   container: {
-    marginTop: 63,
   },
   listView: {
     backgroundColor: '#fafafa',
