@@ -88,13 +88,13 @@ var MovieList = React.createClass({
 
     return (
       <View style={styles.container}>
-        <FBLogin />
         <ListView
           style={styles.listView}
           dataSource={this.state.dataSource}
           renderRow={this.renderMovie}
           automaticallyAdjustContentInsets={false}
         />
+        <FBLogin style={styles.FBLoginButton} />
     </View>
     );
   }
@@ -112,7 +112,7 @@ var styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0)',
+    backgroundColor: 'transparent',
     height: 25,
     flex: 1,
     flexDirection: 'row',
