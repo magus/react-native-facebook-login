@@ -7,6 +7,7 @@ var {
   View,
   ListView,
   ScrollView,
+  ActivityIndicatorIOS,
   AlertIOS,
   VibrationIOS,
 } = React;
@@ -65,10 +66,9 @@ var MovieList = React.createClass({
 
   renderLoadingView: function(){
     return (
-      <View style={styles.container}>
-        <Text>
-          Loading movies...
-        </Text>
+      <View style={styles.loadingMoviesContainer}>
+        <Text style={styles.loadingMovies}>Loading movies...</Text>
+        <ActivityIndicatorIOS size={"large"} />
       </View>
     );
   },
@@ -88,13 +88,13 @@ var MovieList = React.createClass({
 
     return (
       <View style={styles.container}>
+        <FBLogin />
         <ListView
           style={styles.listView}
           dataSource={this.state.dataSource}
           renderRow={this.renderMovie}
           automaticallyAdjustContentInsets={false}
         />
-        <FBLogin style={styles.FBLoginButton} />
     </View>
     );
   }
@@ -102,8 +102,8 @@ var MovieList = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
+    marginTop: 64,
     flex: 1,
-    marginTop: 60,
   },
   FBLoginButton: {
     position: 'absolute',
@@ -119,12 +119,21 @@ var styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   listView: {
-    marginTop: 40,
     backgroundColor: '#fafafa',
   },
   separator: {
     height: 1,
     backgroundColor: '#eeeeee',
+  },
+  loadingMoviesContainer: {
+    marginTop: 64,
+
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  loadingMovies: {
+    marginBottom: 10,
   },
 });
 
