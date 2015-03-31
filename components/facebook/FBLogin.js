@@ -66,7 +66,7 @@ var FBLogin = React.createClass({
   },
 
   render: function() {
-    var text = this.state.credentials || "Login with Facebook";
+    var text = this.state.credentials || "Log in with Facebook";
     return (
       <View style={this.props.style}>
         <TouchableHighlight
@@ -93,20 +93,43 @@ var styles = StyleSheet.create({
   FBLoginButton: {
     flex: 1,
     flexDirection: 'row',
-    margin: 5,
-    height: 25,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#627aad',
+
+    marginTop: 5,
+    marginHorizontal: 80,
+    height: 35,
+
+    backgroundColor: '#4c69ba',
+    borderRadius: 3,
+    borderWidth: 1,
+    borderColor: '#354c8c',
+
+    shadowColor: "#000000",
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    shadowOffset: {
+      height: 1,
+      width: 0
+    },
   },
   FBLoginButtonText: {
     color: 'white',
-    backgroundColor: '#627aad',
+    fontWeight: '900',
+    fontFamily: 'Helvetica neue',
+
+    shadowColor: "#000000",
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    shadowOffset: {
+      height: 1,
+      width: 0
+    },
   },
   FBLogo: {
-    height: 20,
-    width: 20,
-    marginRight: 5,
+    height: 25,
+    width: 25,
+    marginRight: 8,
   },
 });
 
