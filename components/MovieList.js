@@ -87,24 +87,39 @@ var MovieList = React.createClass({
     }
 
     return (
-      <ScrollView style={styles.container}>
-        <FBLogin />
-        <View style={styles.separator} />
+      <View style={styles.container}>
         <ListView
           style={styles.listView}
           dataSource={this.state.dataSource}
           renderRow={this.renderMovie}
           automaticallyAdjustContentInsets={false}
         />
-    </ScrollView>
+        <FBLogin style={styles.FBLoginButton} />
+    </View>
     );
   }
 });
 
 var styles = StyleSheet.create({
   container: {
+    flex: 1,
+    marginTop: 60,
+  },
+  FBLoginButton: {
+    position: 'absolute',
+    margin: 5,
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0)',
+    height: 25,
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
   },
   listView: {
+    marginTop: 40,
     backgroundColor: '#fafafa',
   },
   separator: {
