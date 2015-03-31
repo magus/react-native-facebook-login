@@ -62,15 +62,17 @@ var FBLogin = React.createClass({
   render: function() {
     var text = this.state.credentials || "Login with Facebook";
     return (
-      <TouchableHighlight
-        style={styles.container}
-        onPress={this.onPress}
-      >
-        <View style={styles.FBLoginButton}>
-          <Image style={styles.FBLogo} source={require('image!FB-f-Logo__white_144')} />
-          <Text style={styles.FBLoginButtonText} numberOfLines={1}>{text}</Text>
-        </View>
-      </TouchableHighlight>
+      <View style={this.props.style}>
+        <TouchableHighlight
+          style={styles.container}
+          onPress={this.onPress}
+        >
+          <View style={styles.FBLoginButton}>
+            <Image style={styles.FBLogo} source={require('image!FB-f-Logo__white_144')} />
+            <Text style={styles.FBLoginButtonText} numberOfLines={1}>{text}</Text>
+          </View>
+        </TouchableHighlight>
+      </View>
     );
   }
 });
