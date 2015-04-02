@@ -96,14 +96,14 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
 
-    marginTop: 5,
-    marginHorizontal: 80,
-    height: 35,
+    height: 30,
+    width: 175,
+    paddingLeft: 2,
 
-    backgroundColor: '#4c69ba',
+    backgroundColor: 'rgb(66,93,174)',
     borderRadius: 3,
     borderWidth: 1,
-    borderColor: '#354c8c',
+    borderColor: 'rgb(66,93,174)',
 
     shadowColor: "#000000",
     shadowOpacity: 0.8,
@@ -115,8 +115,9 @@ var styles = StyleSheet.create({
   },
   FBLoginButtonText: {
     color: 'white',
-    fontWeight: '900',
+    fontWeight: '600',
     fontFamily: 'Helvetica neue',
+    fontSize: 14.2,
 
     shadowColor: "#000000",
     shadowOpacity: 0.8,
@@ -127,9 +128,9 @@ var styles = StyleSheet.create({
     },
   },
   FBLogo: {
-    height: 25,
-    width: 25,
-    marginRight: 8,
+    height: 14,
+    width: 14,
+    marginRight: 5,
   },
 });
 
