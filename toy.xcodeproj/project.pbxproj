@@ -46,6 +46,8 @@
 		4F5AA4881AC946F60048AFF6 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5AA4871AC946F60048AFF6 /* libsqlite3.dylib */; };
 		4F5AA48A1AC948140048AFF6 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5AA4891AC948140048AFF6 /* Social.framework */; };
 		4F5AA49E1AC9BAA50048AFF6 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5AA49D1AC9BAA50048AFF6 /* ParseFacebookUtilsV4.framework */; };
+		4F5AA4A11ACA74190048AFF6 /* RCTFBLoginButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5AA4A01ACA74190048AFF6 /* RCTFBLoginButton.m */; };
+		4F5AA4AC1ACA75B60048AFF6 /* RCTFBLoginButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5AA4AB1ACA75B60048AFF6 /* RCTFBLoginButtonManager.m */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
 
@@ -152,6 +154,10 @@
 		4F5AA4871AC946F60048AFF6 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		4F5AA4891AC948140048AFF6 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		4F5AA49D1AC9BAA50048AFF6 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = iOS/Frameworks/ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
+		4F5AA49F1ACA74190048AFF6 /* RCTFBLoginButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBLoginButton.h; path = iOS/RCTFBLoginButton.h; sourceTree = "<group>"; };
+		4F5AA4A01ACA74190048AFF6 /* RCTFBLoginButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBLoginButton.m; path = iOS/RCTFBLoginButton.m; sourceTree = "<group>"; };
+		4F5AA4AA1ACA75B60048AFF6 /* RCTFBLoginButtonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBLoginButtonManager.h; path = iOS/RCTFBLoginButtonManager.h; sourceTree = "<group>"; };
+		4F5AA4AB1ACA75B60048AFF6 /* RCTFBLoginButtonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBLoginButtonManager.m; path = iOS/RCTFBLoginButtonManager.m; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -251,6 +257,10 @@
 		13B07FAE1A68108700A75B9A /* toy */ = {
 			isa = PBXGroup;
 			children = (
+				4F5AA4AA1ACA75B60048AFF6 /* RCTFBLoginButtonManager.h */,
+				4F5AA4AB1ACA75B60048AFF6 /* RCTFBLoginButtonManager.m */,
+				4F5AA49F1ACA74190048AFF6 /* RCTFBLoginButton.h */,
+				4F5AA4A01ACA74190048AFF6 /* RCTFBLoginButton.m */,
 				4F5AA4541AC941C60048AFF6 /* FacebookLogin.h */,
 				4F5AA4551AC941C60048AFF6 /* FacebookLogin.m */,
 				4F5AA4321AC541180048AFF6 /* main.jsbundle */,
@@ -535,7 +545,9 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				4F5AA4561AC941C60048AFF6 /* FacebookLogin.m in Sources */,
+				4F5AA4AC1ACA75B60048AFF6 /* RCTFBLoginButtonManager.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				4F5AA4A11ACA74190048AFF6 /* RCTFBLoginButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

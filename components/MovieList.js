@@ -15,6 +15,7 @@ var {
 var MovieCell = require('./MovieCell.js');
 var MovieView = require('./MovieView.js');
 
+var FBLoginButton = require('./iOS/FBLoginButton.ios.js')
 var FBLogin = require('./facebook/FBLogin');
 
 
@@ -94,7 +95,7 @@ var MovieList = React.createClass({
           renderRow={this.renderMovie}
           automaticallyAdjustContentInsets={false}
         />
-        <FBLogin style={styles.FBLoginButton} />
+      <FBLoginButton style={styles.FBLoginButton} />
     </View>
     );
   }

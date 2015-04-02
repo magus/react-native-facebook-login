@@ -2,6 +2,10 @@
 
 ## todo
 - Wrap FBSDKLoginButton and expose as component to NativeModules (could probably publish this on react rocks or something)
+  RTCFBLoginButton
+  FBLoginButton.ios.js
+  https://github.com/brentvatne/react-native-login/blob/master/RCTVideoManager.m
+  https://github.com/brentvatne/react-native-login/blob/master/RCTVideo.m
 
 ## setup
 
