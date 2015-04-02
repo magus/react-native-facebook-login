@@ -47,7 +47,7 @@
     NSDictionary *credentials = @{ @"token" : tokenString, @"userId" : userId };
     callback(@[[NSNull null], credentials]);
   } else {
-    callback(@[@"Error::NoExistingLoginFound", [NSNull null]]);
+    callback(@[@"NoExistingLoginFound", [NSNull null]]);
   }
 }
 
