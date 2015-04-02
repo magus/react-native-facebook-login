@@ -13,6 +13,7 @@ var {
   StyleSheet,
 } = React;
 
+var Login = require('./Login');
 var MovieList = require('./MovieList');
 
 var MoviesApp = React.createClass({
@@ -22,8 +23,8 @@ var MoviesApp = React.createClass({
         style={styles.container}
         itemWrapperStyle={styles.allPages}
         initialRoute={{
-          title: 'Movies',
-          component: MovieList,
+          title: 'Login',
+          component: Login,
         }}
       />
     );
