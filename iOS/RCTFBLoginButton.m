@@ -17,6 +17,7 @@
   if ((self = [super init])) {
       _loginButton = [[FBSDKLoginButton alloc] init];
       _loginButton.center = self.center;
+      _loginButton.readPermissions = @[@"public_profile", @"email", @"user_friends"];
       [self addSubview:_loginButton];
   }
 
