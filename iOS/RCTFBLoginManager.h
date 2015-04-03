@@ -1,5 +1,5 @@
 #import "RCTViewManager.h"
 
-@interface RCTFBLoginManager : RCTViewManager
+@interface RCTFBLoginManager : RCTViewManager <FBSDKLoginButtonDelegate>
 
 @end

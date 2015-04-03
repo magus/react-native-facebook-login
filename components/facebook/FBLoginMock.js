@@ -8,65 +8,65 @@ var {
   TouchableHighlight,
 } = React;
 
-var FacebookLogin = require('NativeModules').FacebookLogin;
+var FBLoginManager = require('NativeModules').FBLoginManager;
 
-var FBLogin = React.createClass({
+var FBLoginMock = React.createClass({
   propTypes: {
     style: View.propTypes.style,
     onPress: React.PropTypes.func,
-    onSuccess: React.PropTypes.func,
+    onLogin: React.PropTypes.func,
+    onLogout: React.PropTypes.func,
   },
 
   getInitialState: function(){
     return {
-      credentials: "",
+      user: null,
     };
   },
 
-  setCredentials: function(credentials){
-    this.setState({ credentials : credentials });
-    this.props.onSuccess(credentials);
+  handleLogin: function(){
+    var _this = this;
+    FBLoginManager.login(function(error, credentials){
+      if (!error) {
+        _this.setState({ user : credentials});
+        _this.props.onLogin && _this.props.onLogin();
+      } else {
+        console.log(error);
+      }
+    });
   },
 
-  handleFacebookLogin: function(){
+  handleLogout: function(){
     var _this = this;
-    FacebookLogin.detect(function(error, credentials){
+    FBLoginManager.logout(function(error, message){
       if (!error) {
-        console.log("existing login found: ", credentials);
-        _this.setCredentials(credentials);
+        _this.setState({ user : null});
+        _this.props.onLogout && _this.props.onLogout();
       } else {
-        console.log("no existing login found, executing login flow");
-        FacebookLogin.login(function(error, credentials){
-          if (error) {
-            console.log("error encountered during fb login: ", error);
-          } else {
-            console.log("login success: ", credentials);
-            _this.setCredentials(credentials);
-          }
-        });
+        console.log(error);
       }
     });
   },
 
   onPress: function(){
-    this.handleFacebookLogin();
+    this.state.user
+      ? this.handleLogout()
+      : this.handleLogin();
+
     this.props.onPress && this.props.onPress();
   },
 
   componentWillMount: function(){
     var _this = this;
-    FacebookLogin.detect(function(error, credentials){
+    FBLoginManager.getCredentials(function(error, credentials){
       if (!error) {
-        console.log("existing login found: ", credentials);
-        _this.setState({ credentials : credentials });
-      } else {
-        console.log("no existing login found: ", error);
+        _this.setState({ user : credentials})
       }
     });
   },
 
   render: function() {
-    var text = this.state.credentials || "Log in with Facebook";
+    var text = this.state.user ? "Log out" : "Log in with Facebook";
     return (
       <View style={this.props.style}>
         <TouchableHighlight
@@ -75,7 +75,8 @@ var FBLogin = React.createClass({
         >
           <View style={styles.FBLoginButton}>
             <Image style={styles.FBLogo} source={require('image!FB-f-Logo__white_144')} />
-            <Text style={styles.FBLoginButtonText} numberOfLines={1}>{text}</Text>
+            <Text style={[styles.FBLoginButtonText, this.state.user ? styles.FBLoginButtonTextLoggedIn : styles.FBLoginButtonTextLoggedOut]}
+              numberOfLines={1}>{text}</Text>
           </View>
         </TouchableHighlight>
       </View>
@@ -127,11 +128,20 @@ var styles = StyleSheet.create({
       width: 0
     },
   },
+  FBLoginButtonTextLoggedIn: {
+    marginLeft: 5,
+  },
+  FBLoginButtonTextLoggedOut: {
+    marginLeft: 18,
+  },
   FBLogo: {
+    position: 'absolute',
     height: 14,
     width: 14,
-    marginRight: 5,
+
+    left: 7,
+    top: 7,
   },
 });
 
-module.exports = FBLogin;
+module.exports = FBLoginMock;

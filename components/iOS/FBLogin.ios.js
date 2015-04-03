@@ -1,5 +1,4 @@
 var React = require('React');
-var NativeModules = require('NativeModules');
 var ReactIOSViewAttributes = require('ReactIOSViewAttributes');
 var StyleSheet = require('StyleSheet');
 var createReactIOSNativeComponentClass = require('createReactIOSNativeComponentClass');
@@ -7,22 +6,65 @@ var PropTypes = require('ReactPropTypes');
 var LayoutPropTypes = require('LayoutPropTypes');
 var StyleSheetPropType = require('StyleSheetPropType');
 var NativeMethodsMixin = require('NativeMethodsMixin');
-var flattenStyle = require('flattenStyle');
-var merge = require('merge');
+var RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
+var FBLoginManager = require('NativeModules').FBLoginManager;
 
 var FBLogin = React.createClass({
+  statics: {
+    Events: FBLoginManager.Events,
+  },
+
   propTypes: {
     style: StyleSheetPropType(LayoutPropTypes),
-    permissions: PropTypes.array, // [public_profile, email]
+    permissions: PropTypes.array, // default: ["public_profile", "email"]
+    onLogin: PropTypes.func,
+    onError: PropTypes.func,
+    onCancel: PropTypes.func,
+    onPermissionsMissing: PropTypes.func,
+    onLoginNotFound: PropTypes.func,
+  },
+
+  getInitialState: function(){
+    return {
+      subscriptions: [],
+    };
   },
 
   mixins: [NativeMethodsMixin],
 
+  componentWillMount: function(){
+    var _this = this;
+    var subscriptions = this.state.subscriptions;
+
+    // For each event key in FBLoginManager constantsToExport
+    // Create listener and call event handler from props
+    // e.g.  this.props.onError, this.props.onLogin
+    Object.keys(FBLoginManager.Events).forEach(function(event){
+      subscriptions.push(RCTDeviceEventEmitter.addListener(
+        FBLoginManager.Events[event],
+        (eventData) => {
+          // event handler defined? call it.
+          var errorHandler = _this.props["on"+event];
+          errorHandler && errorHandler();
+        }
+      ));
+    })
+
+    // Add listeners to state
+    this.setState({ subscriptions : subscriptions });
+  },
+
+  componentWillUnmount: function(){
+    var subscriptions = this.state.subscriptions;
+    subscriptions.forEach(function(subscription){
+      subscription.remove();
+    });
+  },
+
   render: function() {
     var props = {
       ...this.props,
-      permissions: this.props.permissions,
-      style: ([styles.base, this.props.style]: ?Array<any>),
+      style: ([styles.base, this.props.style]),
     };
 
     return <RCTFBLogin {...props} />
