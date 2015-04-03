@@ -1,4 +1,6 @@
-# toy
+# react-native-fb-login
+
+![preview](preview.gif)
 
 ## todo
 - Polish, package and publish
