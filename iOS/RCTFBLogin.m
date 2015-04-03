@@ -1,10 +1,10 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-#import "RCTFBLoginButton.h"
+#import "RCTFBLogin.h"
 #import "RCTLog.h"
 
-@implementation RCTFBLoginButton
+@implementation RCTFBLogin
 {
     FBSDKLoginButton *_loginButton;
 }
