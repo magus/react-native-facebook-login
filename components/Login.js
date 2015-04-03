@@ -45,7 +45,8 @@ var Login = React.createClass({
         { user && <Photo user={user} /> }
         { user && <Info user={user} /> }
 
-        <FBLoginButton style={{ marginBottom: 10, }} />
+        <FBLoginButton style={{ marginBottom: 10, }}
+          permissions={["email"]} />
 
         <Text>{ user ? user.token : "N/A" }</Text>
       </View>

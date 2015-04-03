@@ -13,30 +13,27 @@ var merge = require('merge');
 var FBLoginButton = React.createClass({
   propTypes: {
     style: StyleSheetPropType(LayoutPropTypes),
-    param: PropTypes.string,
+    permissions: PropTypes.array, // [public_profile, email]
   },
 
   mixins: [NativeMethodsMixin],
 
-  viewConfig: {
-    uiViewClassName: 'UIView',
-    validAttributes: ReactIOSViewAttributes.UIView
-  },
-
   render: function() {
-    var style = flattenStyle([styles.base, this.props.style]);
+    var props = {
+      ...this.props,
+      permissions: this.props.permissions,
+      style: ([styles.base, this.props.style]: ?Array<any>),
+    };
 
-    var nativeProps = merge(this.props, {
-      style,
-      param: this.props.param,
-    });
-
-    return <RCTFBLoginButton {... nativeProps} />
+    return <RCTFBLoginButton {...props} />
   },
 });
 
 var RCTFBLoginButton = createReactIOSNativeComponentClass({
-  validAttributes: merge(ReactIOSViewAttributes.UIView, {param: true}),
+  validAttributes: {
+    ...ReactIOSViewAttributes.UIView,
+    permissions: true,
+  },
   uiViewClassName: 'RCTFBLoginButton',
 });
 
