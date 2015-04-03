@@ -11,6 +11,6 @@
   return [[RCTFBLoginButton alloc] init];
 }
 
-RCT_EXPORT_VIEW_PROPERTY(param, NSString);
+RCT_EXPORT_VIEW_PROPERTY(permissions, NSStringArray);
 
 @end

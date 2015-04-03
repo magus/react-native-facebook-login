@@ -1,5 +1,7 @@
-#import <UIKit/UIKit.h>
+#import "RCTView.h"
 
-@interface RCTFBLoginButton : UIView
+@interface RCTFBLoginButton : RCTView
+
+@property (nonatomic, assign) NSArray *permissions;
 
 @end

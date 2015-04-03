@@ -4,9 +4,6 @@
 #import "RCTFBLoginButton.h"
 #import "RCTLog.h"
 
-#import "RCTEventDispatcher.h"
-#import "UIView+React.h"
-
 @implementation RCTFBLoginButton
 {
     FBSDKLoginButton *_loginButton;
@@ -16,22 +13,23 @@
 {
   if ((self = [super init])) {
       _loginButton = [[FBSDKLoginButton alloc] init];
-      _loginButton.readPermissions = @[@"public_profile", @"email"];
+      _loginButton.readPermissions = @[@"email"];
       [self addSubview:_loginButton];
   }
 
   return self;
 }
 
-- (NSArray *)reactSubviews
+- (void)setPermissions:(NSArray *)permissions
 {
-    NSArray *subviews = @[_loginButton];
-    return subviews;
+    _loginButton.readPermissions = permissions;
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    RCTAssert(self.subviews.count == 1, @"we should only have exactly one subview");
+    RCTAssert([self.subviews lastObject] == _loginButton, @"our only subview should be a fbsdkloginbutton");
     _loginButton.frame = _loginButton.bounds;
 }
 
@@ -45,6 +43,11 @@
 {
     RCTLogError(@"FBLoginButton does not support subviews");
     return;
+}
+
+- (NSArray *)reactSubviews
+{
+    return @[];
 }
 
 @end
