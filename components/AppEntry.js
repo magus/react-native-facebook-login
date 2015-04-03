@@ -14,9 +14,8 @@ var {
 } = React;
 
 var Login = require('./Login');
-var MovieList = require('./MovieList');
 
-var MoviesApp = React.createClass({
+var AppEntry = React.createClass({
   render: function() {
     return (
       <NavigatorIOS
@@ -40,6 +39,6 @@ var styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('MoviesApp', () => MoviesApp);
+AppRegistry.registerComponent('AppEntry', () => AppEntry);
 
-module.exports = MoviesApp;
+module.exports = AppEntry;
