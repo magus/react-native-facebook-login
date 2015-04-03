@@ -5,15 +5,11 @@ var {
   Image,
   Text,
   View,
-  AlertIOS,
-  TouchableHighlight,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
 } = React;
 
-var FBLogin = require('./facebook/FBLogin');
-var FBLoginButton = require('./iOS/FBLogin.ios.js')
-var FacebookLogin = require('NativeModules').FBLoginManager;
+var FBLogin = require('./iOS/FBLogin.ios.js')
+var FBLoginMock = require('./facebook/FBLoginMock.js')
+var FBLoginManager = require('NativeModules').FBLoginManager;
 
 var FB_PHOTO_WIDTH = 200;
 
@@ -24,29 +20,66 @@ var Login = React.createClass({
     };
   },
 
-  getToken: function(){
+  componentWillMount: function(){
+    this.updateView();
+  },
+
+  updateView: function(){
     var _this = this;
-    FacebookLogin.detect(function(error, credentials){
+    FBLoginManager.getCredentials(function(error, credentials){
       if (!error) {
         _this.setState({ user : credentials });
+      } else {
+        _this.setState({ user : null });
       }
     });
   },
 
-  componentWillMount: function(){
-    this.getToken();
-  },
-
   render: function() {
+    var _this = this;
     var user = this.state.user;
 
     return (
       <View style={styles.loginContainer}>
+
         { user && <Photo user={user} /> }
         { user && <Info user={user} /> }
 
-        <FBLoginButton style={{ marginBottom: 10, }}
-          permissions={["email","user_friends"]} />
+        <FBLoginMock style={{ marginBottom: 10, }}
+          onPress={function(){
+            console.log("FBLoginMock clicked.");
+          }}
+          onLogin={function(){
+            console.log("FBLoginMock logged in!");
+          }}
+          onLogout={function(){
+            console.log("FBLoginMock logged out.");
+          }}
+        />
+
+        <FBLogin style={{ marginBottom: 10, }}
+          permissions={["email","user_friends"]}
+          onLogin={function(){
+            console.log("Logged in!");
+            _this.updateView();
+          }}
+          onLogout={function(){
+            console.log("Logged out.");
+            _this.updateView();
+          }}
+          onError={function(){
+            console.log("ERROR");
+          }}
+          onCancel={function(){
+            console.log("User cancelled.");
+          }}
+          onPermissionsMissing={function(){
+            console.log("Check permissions!");
+          }}
+          onLoginNotFound={function(){
+            console.log("No user logged in.");
+          }}
+        />
 
         <Text>{ user ? user.token : "N/A" }</Text>
       </View>

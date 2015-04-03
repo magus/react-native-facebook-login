@@ -20,6 +20,11 @@
   return self;
 }
 
+- (void)setDelegate:(id<FBSDKLoginButtonDelegate>)delegate
+{
+    _loginButton.delegate = delegate;
+}
+
 - (void)setPermissions:(NSArray *)permissions
 {
     _loginButton.readPermissions = permissions;
