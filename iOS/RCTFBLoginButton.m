@@ -9,14 +9,14 @@
 
 @implementation RCTFBLoginButton
 {
-  FBSDKLoginButton *_loginButton;
+    FBSDKLoginButton *_loginButton;
 }
 
 - (id)init
 {
   if ((self = [super init])) {
       _loginButton = [[FBSDKLoginButton alloc] init];
-      _loginButton.readPermissions = @[@"public_profile", @"email", @"user_friends"];
+      _loginButton.readPermissions = @[@"public_profile", @"email"];
       [self addSubview:_loginButton];
   }
 
