@@ -10,7 +10,7 @@ var NativeMethodsMixin = require('NativeMethodsMixin');
 var flattenStyle = require('flattenStyle');
 var merge = require('merge');
 
-var FBLoginButton = React.createClass({
+var FBLogin = React.createClass({
   propTypes: {
     style: StyleSheetPropType(LayoutPropTypes),
     permissions: PropTypes.array, // [public_profile, email]
@@ -25,16 +25,16 @@ var FBLoginButton = React.createClass({
       style: ([styles.base, this.props.style]: ?Array<any>),
     };
 
-    return <RCTFBLoginButton {...props} />
+    return <RCTFBLogin {...props} />
   },
 });
 
-var RCTFBLoginButton = createReactIOSNativeComponentClass({
+var RCTFBLogin = createReactIOSNativeComponentClass({
   validAttributes: {
     ...ReactIOSViewAttributes.UIView,
     permissions: true,
   },
-  uiViewClassName: 'RCTFBLoginButton',
+  uiViewClassName: 'RCTFBLogin',
 });
 
 var styles = StyleSheet.create({
@@ -44,4 +44,4 @@ var styles = StyleSheet.create({
   },
 });
 
-module.exports = FBLoginButton;
+module.exports = FBLogin;

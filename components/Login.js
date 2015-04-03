@@ -12,8 +12,8 @@ var {
 } = React;
 
 var FBLogin = require('./facebook/FBLogin');
-var FBLoginButton = require('./iOS/FBLoginButton.ios.js')
-var FacebookLogin = require('NativeModules').FacebookLogin;
+var FBLoginButton = require('./iOS/FBLogin.ios.js')
+var FacebookLogin = require('NativeModules').FBLoginManager;
 
 var FB_PHOTO_WIDTH = 200;
 
@@ -46,7 +46,7 @@ var Login = React.createClass({
         { user && <Info user={user} /> }
 
         <FBLoginButton style={{ marginBottom: 10, }}
-          permissions={["email"]} />
+          permissions={["email","user_friends"]} />
 
         <Text>{ user ? user.token : "N/A" }</Text>
       </View>

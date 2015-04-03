@@ -15,9 +15,6 @@ var {
 var MovieCell = require('./MovieCell.js');
 var MovieView = require('./MovieView.js');
 
-var FBLoginButton = require('./iOS/FBLoginButton.ios.js')
-var FBLogin = require('./facebook/FBLogin');
-
 
 var API_KEY = '7waqfqbprs7pajbz28mqf6vz';
 var API_URL = 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json';
