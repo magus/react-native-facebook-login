@@ -8,4 +8,4 @@ echo "Updating $JS_BUNDLE..."
 echo
 
 # Update the JS bundle
-curl -s "http://localhost:8081/components/MoviesApp.includeRequire.runModule.bundle?dev=false&minify=true" -o $JS_BUNDLE 1>/dev/null
+curl -s "http://localhost:8081/components/AppEntry.includeRequire.runModule.bundle?dev=false&minify=true" -o $JS_BUNDLE 1>/dev/null
