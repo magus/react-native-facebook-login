@@ -119,14 +119,6 @@ var styles = StyleSheet.create({
     fontWeight: '600',
     fontFamily: 'Helvetica neue',
     fontSize: 14.2,
-
-    shadowColor: "#000000",
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0
-    },
   },
   FBLoginButtonTextLoggedIn: {
     marginLeft: 5,
