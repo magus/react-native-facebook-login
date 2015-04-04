@@ -1,4 +1,4 @@
-# react-native-fb-login
+# react-native-facebook-login
 
 ![preview](preview.gif)
 
