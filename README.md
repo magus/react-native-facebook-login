@@ -1,24 +1,24 @@
 # react-native-facebook-login
 `<FBLogin />` provides a React Native component wrapping the native Facebook SDK login button and manager.
 
-
 <img src="preview.gif" alt="preview" height="450">
 
-## todo
-- Polish, package and publish
-
 ## setup
+- `npm install --save react-native-facebook-login`
 - Facebook SDK setup (link)
-- ```command to open module directory```
-  - Drag `RCTFBLogin.xcodeproj` into your Libraries folder in xcode
-- Project settings > Add link to static library
-- ⌘+R
+- ```open node_modules/react-native-facebook-login```
+- Drag `RCTFBLogin.xcodeproj` into your `Libraries` group
+- Select your main project in the navigator to bring up settings
+- Under `Build Phases` expands the `Link Binary With Libraries` header
+- Scroll down and click the `+`
+- Find and add `libRTCFBLogin.a`
+- ⌘+R and enjoy!
 
 
 ## usage
 
 ```js
-var FBLogin = require('FBLogin');
+var FBLogin = require('react-native-facebook-login');
 
 var Login = React.createClass({
   render: function() {
@@ -31,24 +31,16 @@ var Login = React.createClass({
         onLogout={function(){
           console.log("Logged out.");
         }}
-        onError={function(){
-          console.log("ERROR");
-        }}
-        onCancel={function(){
-          console.log("User cancelled.");
-        }}
-        onPermissionsMissing={function(){
-          console.log("Check permissions!");
-        }}
-        onLoginNotFound={function(){
-          console.log("No user logged in.");
-        }}
       />
     );
   }
 });
 ```
 
+### FBLogin
+TODO: Document the props, expected values (FB SDK links), etc.
+
 ### FBLoginManager
-Wraps various features of the  `FBSDKLoginManager` and provides interaction through callback functions and firing events.
-See `FBLoginMock.js` for an example using only exposed native methods to recreate the native `FBSDKLoginButton`.
+Wraps features of the native iOS Facebook SDK `FBSDKLoginManager` interface. Provides interaction through callback functions and firing events which can be observed through the `RCTDeviceEventEmitter.addListener` method.
+
+See [example/components/facebook/FBLoginMock.js](example/components/facebook/FBLoginMock.js) for an example using only the exposed native methods of the FBLoginManager to recreate the native `FBSDKLoginButton`.
