@@ -280,7 +280,7 @@
 		4F5AA43A1AC921560048AFF6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4F5AA48E1AC948D70048AFF6 /* Facebook SDK 4.0 */,
+				4F5AA48E1AC948D70048AFF6 /* FacebookSDK */,
 				4F5AA48D1AC9485D0048AFF6 /* System Frameworks */,
 				4F5AA48F1AC949260048AFF6 /* Parse */,
 			);
@@ -311,7 +311,7 @@
 			name = "System Frameworks";
 			sourceTree = "<group>";
 		};
-		4F5AA48E1AC948D70048AFF6 /* Facebook SDK 4.0 */ = {
+		4F5AA48E1AC948D70048AFF6 /* FacebookSDK */ = {
 			isa = PBXGroup;
 			children = (
 				4F5AA43D1AC92AF60048AFF6 /* Bolts.framework */,
@@ -319,7 +319,7 @@
 				4F5AA43F1AC92AF60048AFF6 /* FBSDKLoginKit.framework */,
 				4F5AA4401AC92AF60048AFF6 /* FBSDKShareKit.framework */,
 			);
-			name = "Facebook SDK 4.0";
+			name = FacebookSDK;
 			sourceTree = "<group>";
 		};
 		4F5AA48F1AC949260048AFF6 /* Parse */ = {
