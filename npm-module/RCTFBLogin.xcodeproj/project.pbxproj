@@ -1,0 +1,290 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4F3A6BA31ACFC16C00CA65F7 /* RCTFBLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A6BA01ACFC16C00CA65F7 /* RCTFBLogin.m */; };
+		4F3A6BA41ACFC16C00CA65F7 /* RCTFBLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A6BA21ACFC16C00CA65F7 /* RCTFBLoginManager.m */; };
+		4F3A6BA91ACFC19D00CA65F7 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3A6BA51ACFC19D00CA65F7 /* Bolts.framework */; };
+		4F3A6BAA1ACFC19D00CA65F7 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3A6BA61ACFC19D00CA65F7 /* FBSDKCoreKit.framework */; };
+		4F3A6BAB1ACFC19D00CA65F7 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3A6BA71ACFC19D00CA65F7 /* FBSDKLoginKit.framework */; };
+		4F3A6BAC1ACFC19D00CA65F7 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3A6BA81ACFC19D00CA65F7 /* FBSDKShareKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4F3A6B591ACFBCC500CA65F7 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		4F3A6B5B1ACFBCC500CA65F7 /* libRCTFBLogin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCTFBLogin.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F3A6B9F1ACFC16C00CA65F7 /* RCTFBLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBLogin.h; path = RCTFBLogin/RCTFBLogin.h; sourceTree = "<group>"; };
+		4F3A6BA01ACFC16C00CA65F7 /* RCTFBLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBLogin.m; path = RCTFBLogin/RCTFBLogin.m; sourceTree = "<group>"; };
+		4F3A6BA11ACFC16C00CA65F7 /* RCTFBLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBLoginManager.h; path = RCTFBLogin/RCTFBLoginManager.h; sourceTree = "<group>"; };
+		4F3A6BA21ACFC16C00CA65F7 /* RCTFBLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBLoginManager.m; path = RCTFBLogin/RCTFBLoginManager.m; sourceTree = "<group>"; };
+		4F3A6BA51ACFC19D00CA65F7 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
+		4F3A6BA61ACFC19D00CA65F7 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		4F3A6BA71ACFC19D00CA65F7 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		4F3A6BA81ACFC19D00CA65F7 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4F3A6B581ACFBCC500CA65F7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F3A6BAC1ACFC19D00CA65F7 /* FBSDKShareKit.framework in Frameworks */,
+				4F3A6BA91ACFC19D00CA65F7 /* Bolts.framework in Frameworks */,
+				4F3A6BAA1ACFC19D00CA65F7 /* FBSDKCoreKit.framework in Frameworks */,
+				4F3A6BAB1ACFC19D00CA65F7 /* FBSDKLoginKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4F3A6B521ACFBCC500CA65F7 = {
+			isa = PBXGroup;
+			children = (
+				4F3A6B9F1ACFC16C00CA65F7 /* RCTFBLogin.h */,
+				4F3A6BA01ACFC16C00CA65F7 /* RCTFBLogin.m */,
+				4F3A6BA11ACFC16C00CA65F7 /* RCTFBLoginManager.h */,
+				4F3A6BA21ACFC16C00CA65F7 /* RCTFBLoginManager.m */,
+				4F3A6B961ACFBEC400CA65F7 /* FacebookSDK */,
+				4F3A6B5C1ACFBCC500CA65F7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4F3A6B5C1ACFBCC500CA65F7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4F3A6B5B1ACFBCC500CA65F7 /* libRCTFBLogin.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4F3A6B961ACFBEC400CA65F7 /* FacebookSDK */ = {
+			isa = PBXGroup;
+			children = (
+				4F3A6BA51ACFC19D00CA65F7 /* Bolts.framework */,
+				4F3A6BA61ACFC19D00CA65F7 /* FBSDKCoreKit.framework */,
+				4F3A6BA71ACFC19D00CA65F7 /* FBSDKLoginKit.framework */,
+				4F3A6BA81ACFC19D00CA65F7 /* FBSDKShareKit.framework */,
+			);
+			name = FacebookSDK;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4F3A6B5A1ACFBCC500CA65F7 /* RCTFBLogin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F3A6B6F1ACFBCC500CA65F7 /* Build configuration list for PBXNativeTarget "RCTFBLogin" */;
+			buildPhases = (
+				4F3A6B571ACFBCC500CA65F7 /* Sources */,
+				4F3A6B581ACFBCC500CA65F7 /* Frameworks */,
+				4F3A6B591ACFBCC500CA65F7 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RCTFBLogin;
+			productName = RCTFBLogin;
+			productReference = 4F3A6B5B1ACFBCC500CA65F7 /* libRCTFBLogin.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4F3A6B531ACFBCC500CA65F7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = "Noah Jorgenson";
+				TargetAttributes = {
+					4F3A6B5A1ACFBCC500CA65F7 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+				};
+			};
+			buildConfigurationList = 4F3A6B561ACFBCC500CA65F7 /* Build configuration list for PBXProject "RCTFBLogin" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4F3A6B521ACFBCC500CA65F7;
+			productRefGroup = 4F3A6B5C1ACFBCC500CA65F7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4F3A6B5A1ACFBCC500CA65F7 /* RCTFBLogin */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4F3A6B571ACFBCC500CA65F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F3A6BA31ACFC16C00CA65F7 /* RCTFBLogin.m in Sources */,
+				4F3A6BA41ACFC16C00CA65F7 /* RCTFBLoginManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4F3A6B6D1ACFBCC500CA65F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		4F3A6B6E1ACFBCC500CA65F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4F3A6B701ACFBCC500CA65F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/FacebookSDK",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../../React",
+					"$(SRCROOT)/../react-native/React/**",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		4F3A6B711ACFBCC500CA65F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/FacebookSDK",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../../React",
+					"$(SRCROOT)/../react-native/React/**",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4F3A6B561ACFBCC500CA65F7 /* Build configuration list for PBXProject "RCTFBLogin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F3A6B6D1ACFBCC500CA65F7 /* Debug */,
+				4F3A6B6E1ACFBCC500CA65F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F3A6B6F1ACFBCC500CA65F7 /* Build configuration list for PBXNativeTarget "RCTFBLogin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F3A6B701ACFBCC500CA65F7 /* Debug */,
+				4F3A6B711ACFBCC500CA65F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4F3A6B531ACFBCC500CA65F7 /* Project object */;
+}
