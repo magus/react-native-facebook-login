@@ -1,13 +1,31 @@
 {
-  "name": "toy",
+  "name": "react-native-facebook-login",
   "version": "0.0.1",
-  "private": true,
+  "description": "<FBLogin />: React Native wrapper for native iOS Facebook SDK login button and manager",
+  "main": "FBLogin.ios.js",
   "scripts": {
-    "start": "node_modules/react-native/packager/packager.sh --assetRoots=./iOS/Images.xcassets"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magus/react-native-facebook-login"
+  },
+  "keywords": [
+    "react",
+    "react-native",
+    "native",
+    "ios",
+    "facebook",
+    "login",
+    "sdk"
+  ],
+  "author": "Noah Jorgenson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/magus/react-native-facebook-login/issues"
+  },
+  "homepage": "https://github.com/magus/react-native-facebook-login",
   "dependencies": {
-    "parse": "^1.4.1",
-    "parse-react": "^0.1.1",
-    "react-native": "^0.3.1"
+    "react-native": "^0.3.4"
   }
 }
