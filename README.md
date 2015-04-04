@@ -1,20 +1,24 @@
 # react-native-facebook-login
+`<FBLogin />` provides a React Native component wrapping the native Facebook SDK login button and manager.
 
-![preview](preview.gif)
+
+<img src="preview.gif" alt="preview" height="450">
 
 ## todo
 - Polish, package and publish
 
 ## setup
-- ```open toy.xcodeproj```
+- Facebook SDK setup (link)
+- ```command to open module directory```
+  - Drag `RCTFBLogin.xcodeproj` into your Libraries folder in xcode
+- Project settings > Add link to static library
 - ⌘+R
+
 
 ## usage
 
-### FBLogin
-Wraps the native `FBSDKLoginButton` and provides hooks to various Facebook login events.
 ```js
-var FBLogin = require('./iOS/FBLogin.ios.js');
+var FBLogin = require('FBLogin');
 
 var Login = React.createClass({
   render: function() {
