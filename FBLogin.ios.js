@@ -67,6 +67,8 @@ var FBLogin = React.createClass({
       style: ([styles.base, this.props.style]),
     };
 
+    FBLoginManager.getCredentials(function(){ /* Do nothing */ });
+
     return <RCTFBLogin {...props} />
   },
 });
