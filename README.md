@@ -23,11 +23,9 @@ var Login = React.createClass({
         permissions={["email","user_friends"]}
         onLogin={function(){
           console.log("Logged in!");
-          _this.updateView();
         }}
         onLogout={function(){
           console.log("Logged out.");
-          _this.updateView();
         }}
         onError={function(){
           console.log("ERROR");
