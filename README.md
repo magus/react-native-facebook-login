@@ -1,9 +1,9 @@
-# react-native-facebook-login
+# React Native : Facebook SDK Login Button
 `<FBLogin />` provides a [React Native][react-native] component wrapping the native [Facebook SDK login button](fb-sdk-loginbutton) and [manager](fb-sdk-loginmanager).
 
 <img src="preview.gif" alt="preview" height="450">
 
-## usage
+## Usage
 ```js
 var FBLogin = require('react-native-facebook-login');
 
@@ -24,7 +24,7 @@ var Login = React.createClass({
 });
 ```
 
-## setup
+## Setup
 ```sh
 npm install --save react-native-facebook-login
 ```
@@ -62,6 +62,14 @@ writePermissions for button
   break up 'permissions' argument array into two parameters passed to native module?
   writePermissions & readPermissions?
 
+
+## Contributing
+```sh
+cd example && npm install react-native
+ln -s $(git rev-parse --show-toplevel) $(git rev-parse --show-toplevel)/example/node_modules/react-native-facebook-login
+open toy.xcodeproj
+```
+This will install the react-native dependency in the local node_modules folder of the toy example project, then link the local copy of react-native-facebook-login to the node_modules folder of toy example project. Now you can make changes to the toy example and RCTFBLogin.xcodeproj the changes will be reflected in the root git directory for committing.
 
 [react-native]: http://facebook.github.io/react-native/
 [fb-sdk-loginbutton]: https://developers.facebook.com/docs/facebook-login/ios/v2.3#login-button
