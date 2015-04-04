@@ -1,5 +1,5 @@
 # react-native-facebook-login
-`<FBLogin />` provides a React Native component wrapping the native Facebook SDK login button and manager.
+`<FBLogin />` provides a [React Native][react-native] component wrapping the native [Facebook SDK login button](fb-sdk-loginbutton) and [manager](fb-sdk-loginmanager).
 
 <img src="preview.gif" alt="preview" height="450">
 
@@ -45,3 +45,24 @@ TODO: Document the props, expected values (FB SDK links), etc.
 Wraps features of the native iOS Facebook SDK `FBSDKLoginManager` interface. Provides interaction through callback functions and firing events which can be observed through the `RCTDeviceEventEmitter.addListener` method.
 
 See [example/components/facebook/FBLoginMock.js](example/components/facebook/FBLoginMock.js) for an example using only the exposed native methods of the FBLoginManager to recreate the native `FBSDKLoginButton`.
+
+
+## todo
+documentation for FBLogin component
+
+expose RCT_EXPORT functions on FBLogin, docs as component method, use 'refs' to call login/logout/getCredentials via FBLogin component
+
+
+
+create @"LoginFound" event which is fired when the button is created
+
+
+
+writePermissions for button
+  break up 'permissions' argument array into two parameters passed to native module?
+  writePermissions & readPermissions?
+
+
+[react-native]: http://facebook.github.io/react-native/
+[fb-sdk-loginbutton]: https://developers.facebook.com/docs/facebook-login/ios/v2.3#login-button
+[fb-sdk-loginmanager]: https://developers.facebook.com/docs/facebook-login/ios/v2.3#login-apicalls
