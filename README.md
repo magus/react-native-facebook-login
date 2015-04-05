@@ -52,14 +52,18 @@ A variety of events are emitted across the React Native bridge back to your java
 ```js
 var RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
 var FBLoginManager = require('NativeModules').FBLoginManager;
+
 ...
+
 var subscriber = RCTDeviceEventEmitter.addListener(
   FBLoginManager.Events["Login"],
   (eventData) => {
     console.log("[Login] ", eventData);
   }
 );
+
 ...
+
 // Be sure to remove subscribers when they are no longer needed
 // e.g. componentWillUnmount
 subscriber.remove();
