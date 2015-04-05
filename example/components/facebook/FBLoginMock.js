@@ -26,24 +26,24 @@ var FBLoginMock = React.createClass({
 
   handleLogin: function(){
     var _this = this;
-    FBLoginManager.login(function(error, credentials){
+    FBLoginManager.login(function(error, data){
       if (!error) {
-        _this.setState({ user : credentials});
+        _this.setState({ user : data});
         _this.props.onLogin && _this.props.onLogin();
       } else {
-        console.log(error);
+        console.log(error, data);
       }
     });
   },
 
   handleLogout: function(){
     var _this = this;
-    FBLoginManager.logout(function(error, message){
+    FBLoginManager.logout(function(error, data){
       if (!error) {
         _this.setState({ user : null});
         _this.props.onLogout && _this.props.onLogout();
       } else {
-        console.log(error);
+        console.log(error, data);
       }
     });
   },
@@ -58,9 +58,9 @@ var FBLoginMock = React.createClass({
 
   componentWillMount: function(){
     var _this = this;
-    FBLoginManager.getCredentials(function(error, credentials){
+    FBLoginManager.getCredentials(function(error, data){
       if (!error) {
-        _this.setState({ user : credentials})
+        _this.setState({ user : data})
       }
     });
   },
