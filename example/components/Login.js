@@ -20,21 +20,6 @@ var Login = React.createClass({
     };
   },
 
-  componentWillMount: function(){
-    this.updateView();
-  },
-
-  updateView: function(){
-    var _this = this;
-    FBLoginManager.getCredentials(function(error, credentials){
-      if (!error) {
-        _this.setState({ user : credentials });
-      } else {
-        _this.setState({ user : null });
-      }
-    });
-  },
-
   render: function() {
     var _this = this;
     var user = this.state.user;
