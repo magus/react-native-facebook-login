@@ -61,9 +61,17 @@ RCT_EXPORT_VIEW_PROPERTY(permissions, NSStringArray);
   NSDictionary *credentials = nil;
   FBSDKAccessToken *token = [FBSDKAccessToken currentAccessToken];
 
+  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+  NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+  [dateFormatter setLocale:enUSPOSIXLocale];
+  [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+
+  NSString *tokenExpirationDate = [dateFormatter stringFromDate:token.expirationDate];
+
   if (token) {
     credentials = @{
       @"token" : token.tokenString,
+      @"tokenExpirationDate" : tokenExpirationDate,
       @"userId" : token.userID,
       @"permissions" : [token.permissions allObjects]
     };
