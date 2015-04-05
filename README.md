@@ -39,10 +39,10 @@ npm install --save react-native-facebook-login
 **Note**: While the RCTFBLogin project contains references to the necessary Facebook SDK frameworks. You will still need to ensure you have setup the Facebook SDK for use with your app. See the [example/toy.xcodeproj](example/toy.xcodeproj) project for an example or follow the instructions from the [Facebook quick start guide](https://developers.facebook.com/docs/ios/getting-started#).
 
 ### FBLogin
-TODO: Document the props, expected values (FB SDK links), etc.
+Provides a React Native component which wraps the Facebook SDK `FBSDKLoginButton`.
 
 ### FBLoginManager
-Wraps features of the native iOS Facebook SDK `FBSDKLoginManager` interface. Provides interaction through callback functions and firing events which can be observed through the `RCTDeviceEventEmitter.addListener` method.
+Wraps features of the native iOS Facebook SDK `FBSDKLoginManager` interface.
 
 See [example/components/facebook/FBLoginMock.js](example/components/facebook/FBLoginMock.js) for an example using only the exposed native methods of the FBLoginManager to recreate the native `FBSDKLoginButton`.
 
@@ -71,7 +71,7 @@ subscriber.remove();
 
 
 ## todo
-documentation for FBLogin component
+documentation for FBLogin component props, expected values (FB SDK links), etc.
 
 expose RCT_EXPORT functions on FBLogin, docs as component method, use 'refs' to call login/logout/getCredentials via FBLogin component
 
