@@ -97,16 +97,21 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
   } else {
     NSArray *permissions = [loginButton.readPermissions arrayByAddingObjectsFromArray:loginButton.publishPermissions];
     NSArray *missingPermissions = [self getMissingPermissions:permissions];
-
-    [self fireEvent:@"Login" withData:@{
+    NSArray *decliendPermissions = [result.declinedPermissions allObjects];
+    NSDictionary *loginData = @{
       @"credentials": [self buildCredentials],
-      @"missingPermissions": missingPermissions
-    }];
+      @"missingPermissions": missingPermissions,
+      @"declinedPermissions": decliendPermissions
+    };
+
+    [self fireEvent:@"Login" withData:loginData];
 
     if (missingPermissions.count > 0) {
-      [self fireEvent:@"PermissionsMissing" withData:@{
-        @"missingPermissions": missingPermissions
-      }];
+      NSDictionary *permissionData = @{
+        @"missingPermissions": missingPermissions,
+        @"declinedPermissions": decliendPermissions
+      };
+      [self fireEvent:@"PermissionsMissing" withData:permissionData];
     }
   }
 }
