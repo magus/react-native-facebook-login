@@ -91,6 +91,10 @@ Just submit a pull request!
 
 Use the simple toy project under the example directory to verify your changes.
 
+```sh
+open example/toy.xcodeproj
+```
+
 [react-native]: http://facebook.github.io/react-native/
 [fb-sdk-loginbutton]: https://developers.facebook.com/docs/facebook-login/ios/v2.3#login-button
 [fb-sdk-loginmanager]: https://developers.facebook.com/docs/facebook-login/ios/v2.3#login-apicalls
