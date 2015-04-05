@@ -5,10 +5,19 @@
 
 **Note**: Demo above includes debug text to confirm login (i.e. user name, email and access token). `<FBLogin />`, by default, will only display the native blue 'Log in with Facebook' button.
 
-## FBLogin
+## Table of contents
+- [Usage](#usage)
+- [Setup](#setup)
+- [Example project](#example-project)
+- [Documentation](#documentation)
+- [Contributing](#contributing)
+- [Copyright and license](#copyright-and-license)
+
+## Usage
+
+### FBLogin
 Provides a React Native component which wraps the Facebook SDK `FBSDKLoginButton`.
 
-### Usage
 ```js
 var FBLogin = require('react-native-facebook-login');
 
@@ -29,31 +38,6 @@ var Login = React.createClass({
   }
 });
 ```
-
-## Setup
-```sh
-npm install --save react-native-facebook-login
-```
-- Run ```open node_modules/react-native-facebook-login```
-- Drag `RCTFBLogin.xcodeproj` into your `Libraries` group
-- Select your main project in the navigator to bring up settings
-- Under `Build Phases` expands the `Link Binary With Libraries` header
-- Scroll down and click the `+` to add a
-- Find and add `libRTCFBLogin.a` under the `Workspace` group
-- ⌘+B
-
-**Note**: If your build fails, you most likely forgot to setup the Facebook SDK
-
-### Facebook SDK
-While the RCTFBLogin project contains references to the necessary Facebook SDK frameworks. You will still need to ensure you have setup the Facebook SDK for use with your app. See the [example/toy.xcodeproj](example/toy.xcodeproj) project for an example or follow the instructions from the [Facebook quick start guide](https://developers.facebook.com/docs/ios/getting-started#configurePlist).
-
-- Select your main project in the navigator to bring up settings
-- Under `Build Phases` expands the `Link Binary With Libraries` header
-- Scroll down and click the `+` to add a reference
-- Click `Add Other...`
-- Navigate to `node_modules/react-native-facebook-login/FacebookSDK`
-- Select all the framework files and click `Open`
-- Follow the instructions from the [Facebook quick start guide](https://developers.facebook.com/docs/ios/getting-started#configurePlist) for setting up your plist and app specific settings
 
 ## FBLoginManager
 Wraps features of the native iOS Facebook SDK `FBSDKLoginManager` interface.
@@ -96,6 +80,40 @@ var subscriber = RCTDeviceEventEmitter.addListener(
 // e.g. componentWillUnmount
 subscriber.remove();
 ```
+
+## Setup
+```sh
+npm install --save react-native-facebook-login
+```
+- Run ```open node_modules/react-native-facebook-login```
+- Drag `RCTFBLogin.xcodeproj` into your `Libraries` group
+- Select your main project in the navigator to bring up settings
+- Under `Build Phases` expands the `Link Binary With Libraries` header
+- Scroll down and click the `+` to add a
+- Find and add `libRTCFBLogin.a` under the `Workspace` group
+- ⌘+B
+
+**Note**: If your build fails, you most likely forgot to setup the [Facebook SDK](#facebook-sdk)
+
+### Facebook SDK
+[Facebook : Quick Start for iOS](https://developers.facebook.com/quickstarts/?platform=ios)
+
+### Adding the Facebook SDK
+- Run `open node_modules/react-native-facebook-login/FacebookSDK`
+- Select all the `.framework` files and click drag them into your project
+- Be sure to [configure your .plist file](https://developers.facebook.com/docs/ios/getting-started#configurePlist)
+
+## Example project
+### Toy
+```sh
+open example/toy.xcodeproj
+```
+
+See the [example](example/) project for a working example.
+
+## Documentation
+TODO
+
 ## Contributing
 Just submit a pull request!
 
@@ -111,6 +129,10 @@ open example/toy.xcodeproj
 - documentation for FBLogin component props, expected values (FB SDK links), etc.
 - expose RCT_EXPORT functions on FBLogin, docs as component method, use 'refs' to call - login/logout/getCredentials as methods via FBLogin component ref
 - writePermissions parameter for button
+
+## Copyright and license
+
+Code and documentation copyright 2015 Noah M Jorgenson. Code released under [the MIT license](https://github.com/magus/react-native-facebook-login/blob/master/LICENSE).
 
 
 [react-native]: http://facebook.github.io/react-native/
