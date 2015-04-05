@@ -18,10 +18,12 @@ var FBLogin = React.createClass({
     style: StyleSheetPropType(LayoutPropTypes),
     permissions: PropTypes.array, // default: ["public_profile", "email"]
     onLogin: PropTypes.func,
+    onLogout: PropTypes.func,
+    onLoginFound: PropTypes.func,
+    onLoginNotFound: PropTypes.func,
     onError: PropTypes.func,
     onCancel: PropTypes.func,
     onPermissionsMissing: PropTypes.func,
-    onLoginNotFound: PropTypes.func,
   },
 
   getInitialState: function(){
@@ -43,9 +45,9 @@ var FBLogin = React.createClass({
       subscriptions.push(RCTDeviceEventEmitter.addListener(
         FBLoginManager.Events[event],
         (eventData) => {
-          // event handler defined? call it.
+          // event handler defined? call it and pass along any event data
           var errorHandler = _this.props["on"+event];
-          errorHandler && errorHandler();
+          errorHandler && errorHandler(eventData);
         }
       ));
     })
@@ -66,8 +68,6 @@ var FBLogin = React.createClass({
       ...this.props,
       style: ([styles.base, this.props.style]),
     };
-
-    FBLoginManager.getCredentials(function(){ /* Do nothing */ });
 
     return <RCTFBLogin {...props} />
   },
