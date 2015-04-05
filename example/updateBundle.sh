@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ROOT_GIT_DIR=$(git rev-parse --show-toplevel);
-JS_BUNDLE="$ROOT_GIT_DIR/iOS/main.jsbundle";
+JS_BUNDLE="$ROOT_GIT_DIR/example/iOS/main.jsbundle";
 
 echo
 echo "Updating $JS_BUNDLE..."
