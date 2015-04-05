@@ -28,6 +28,7 @@ var FBLogin = React.createClass({
 
   getInitialState: function(){
     return {
+      credentials: null,
       subscriptions: [],
     };
   },
@@ -60,6 +61,17 @@ var FBLogin = React.createClass({
     var subscriptions = this.state.subscriptions;
     subscriptions.forEach(function(subscription){
       subscription.remove();
+    });
+  },
+
+  componentDidMount: function(){
+    var _this = this;
+    FBLoginManager.getCredentials(function(error, data){
+      if (!error) {
+        _this.setState({ credentials : data.credentials });
+      } else {
+        _this.setState({ credentials : null });
+      }
     });
   },
 
