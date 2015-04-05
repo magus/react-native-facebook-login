@@ -80,7 +80,7 @@ RCT_EXPORT_VIEW_PROPERTY(permissions, NSStringArray);
 - (void) fireEvent:(NSString *)event withData:(NSDictionary *)data {
   NSString *eventName = self.constantsToExport[@"Events"][event];
   [self.bridge.eventDispatcher sendDeviceEventWithName:eventName
-                                                    body:data];
+                                                  body:[NSMutableDictionary dictionaryWithDictionary:data]];
 }
 
 
