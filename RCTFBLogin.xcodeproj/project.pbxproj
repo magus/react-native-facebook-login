@@ -13,6 +13,7 @@
 		4F3A6BAA1ACFC19D00CA65F7 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3A6BA61ACFC19D00CA65F7 /* FBSDKCoreKit.framework */; };
 		4F3A6BAB1ACFC19D00CA65F7 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3A6BA71ACFC19D00CA65F7 /* FBSDKLoginKit.framework */; };
 		4F3A6BAC1ACFC19D00CA65F7 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3A6BA81ACFC19D00CA65F7 /* FBSDKShareKit.framework */; };
+		4FB8EA311AD0B958008A82BC /* RCTFBLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB8EA301AD0B958008A82BC /* RCTFBLoginManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +38,7 @@
 		4F3A6BA61ACFC19D00CA65F7 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		4F3A6BA71ACFC19D00CA65F7 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		4F3A6BA81ACFC19D00CA65F7 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
+		4FB8EA301AD0B958008A82BC /* RCTFBLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBLoginManager.m; path = ../../../RCTFBLogin/RCTFBLoginManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 		4F3A6B521ACFBCC500CA65F7 = {
 			isa = PBXGroup;
 			children = (
+				4FB8EA301AD0B958008A82BC /* RCTFBLoginManager.m */,
 				4F3A6B9F1ACFC16C00CA65F7 /* RCTFBLogin.h */,
 				4F3A6BA01ACFC16C00CA65F7 /* RCTFBLogin.m */,
 				4F3A6BA11ACFC16C00CA65F7 /* RCTFBLoginManager.h */,
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F3A6BA31ACFC16C00CA65F7 /* RCTFBLogin.m in Sources */,
+				4FB8EA311AD0B958008A82BC /* RCTFBLoginManager.m in Sources */,
 				4F3A6BA41ACFC16C00CA65F7 /* RCTFBLoginManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
