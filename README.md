@@ -66,7 +66,22 @@ writePermissions for button
 ## Contributing
 ```sh
 cd example && npm install react-native
-ln -s $(git rev-parse --show-toplevel) $(git rev-parse --show-toplevel)/example/node_modules/react-native-facebook-login
+
+ROOT="$(git rev-parse --show-toplevel)";
+EXAMPLE_MODULE="$ROOT/example/node_modules/react-native-facebook-login/";
+
+mkdir $EXAMPLE_MODULE;
+
+function linkModule() {
+  ln -s $ROOT/$@ $EXAMPLE_MODULE/$@
+}
+
+linkModule "FacebookSDK";
+linkModule "FBLogin.ios.js";
+linkModule "RCTFBLogin";
+linkModule "RCTFBLogin.xcodeproj";
+linkModule "package.json";
+
 open toy.xcodeproj
 ```
 This will install the react-native dependency in the local node_modules folder of the toy example project, then link the local copy of react-native-facebook-login to the node_modules folder of toy example project. Now you can make changes to the toy example and RCTFBLogin.xcodeproj the changes will be reflected in the root git directory for committing.
