@@ -3,6 +3,8 @@
 
 <img src="preview.gif" alt="preview" height="450">
 
+**Note**: Demo above includes debug text to confirm login (i.e. user name, email and access token). `<FBLogin />`, by default, will only display the native blue 'Log in with Facebook' button.
+
 ## FBLogin
 Provides a React Native component which wraps the Facebook SDK `FBSDKLoginButton`.
 
