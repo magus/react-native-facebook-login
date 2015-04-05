@@ -38,11 +38,22 @@ npm install --save react-native-facebook-login
 - Drag `RCTFBLogin.xcodeproj` into your `Libraries` group
 - Select your main project in the navigator to bring up settings
 - Under `Build Phases` expands the `Link Binary With Libraries` header
-- Scroll down and click the `+`
-- Find and add `libRTCFBLogin.a`
-- ⌘+R and enjoy!
+- Scroll down and click the `+` to add a
+- Find and add `libRTCFBLogin.a` under the `Workspace` group
+- ⌘+B
 
-**Note**: While the RCTFBLogin project contains references to the necessary Facebook SDK frameworks. You will still need to ensure you have setup the Facebook SDK for use with your app. See the [example/toy.xcodeproj](example/toy.xcodeproj) project for an example or follow the instructions from the [Facebook quick start guide](https://developers.facebook.com/docs/ios/getting-started#).
+**Note**: If your build fails, you most likely forgot to setup the Facebook SDK
+
+### Facebook SDK
+While the RCTFBLogin project contains references to the necessary Facebook SDK frameworks. You will still need to ensure you have setup the Facebook SDK for use with your app. See the [example/toy.xcodeproj](example/toy.xcodeproj) project for an example or follow the instructions from the [Facebook quick start guide](https://developers.facebook.com/docs/ios/getting-started#configurePlist).
+
+- Select your main project in the navigator to bring up settings
+- Under `Build Phases` expands the `Link Binary With Libraries` header
+- Scroll down and click the `+` to add a reference
+- Click `Add Other...`
+- Navigate to `node_modules/react-native-facebook-login/FacebookSDK`
+- Select all the framework files and click `Open`
+- Follow the instructions from the [Facebook quick start guide](https://developers.facebook.com/docs/ios/getting-started#configurePlist) for setting up your plist and app specific settings
 
 ## FBLoginManager
 Wraps features of the native iOS Facebook SDK `FBSDKLoginManager` interface.
