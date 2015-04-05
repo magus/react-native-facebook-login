@@ -13,8 +13,6 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-#import <Parse/Parse.h>
-
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -50,10 +48,6 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
 
-  // Initialize Parse
-  [Parse setApplicationId:@"R5k700UGVk8mlesGAS4hSuG3TY6qkFvaXEfh8pt7"
-                clientKey:@"tCrMuPuml6XTdMRduAugw9kazx6bBNeN9YvbBQ7d"];
-
   return [[FBSDKApplicationDelegate sharedInstance] application:application
                                     didFinishLaunchingWithOptions:launchOptions];
 }
@@ -69,7 +63,5 @@
                                               sourceApplication:sourceApplication
                                                      annotation:annotation];
 }
-
-
 
 @end
