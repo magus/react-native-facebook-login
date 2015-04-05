@@ -76,14 +76,7 @@ documentation for FBLogin component
 expose RCT_EXPORT functions on FBLogin, docs as component method, use 'refs' to call login/logout/getCredentials via FBLogin component
 
 
-
-create @"LoginFound" event which is fired when the button is created
-
-
-
-writePermissions for button
-  break up 'permissions' argument array into two parameters passed to native module?
-  writePermissions & readPermissions?
+writePermissions parameter for button
 
 
 ## Contributing
