@@ -15,10 +15,11 @@ var FBLogin = require('react-native-facebook-login');
 var Login = React.createClass({
   render: function() {
     return (
-      <FBLogin style={{ marginBottom: 10, }}
+      <FBLogin style={{ marginTop: 150, }}
         permissions={["email","user_friends"]}
-        onLogin={function(){
+        onLogin={function(data){
           console.log("Logged in!");
+          console.log(data.credentials);
         }}
         onLogout={function(){
           console.log("Logged out.");
@@ -94,11 +95,11 @@ open example/toy.xcodeproj
 ```
 
 ## todo
-documentation for FBLogin component props, expected values (FB SDK links), etc.
-
-expose RCT_EXPORT functions on FBLogin, docs as component method, use 'refs' to call login/logout/getCredentials via FBLogin component
-
-writePermissions parameter for button
+- Auth with javascript Api as an exposed method on button
+- Clean up duplicate code in login methods
+- documentation for FBLogin component props, expected values (FB SDK links), etc.
+- expose RCT_EXPORT functions on FBLogin, docs as component method, use 'refs' to call - login/logout/getCredentials as methods via FBLogin component ref
+- writePermissions parameter for button
 
 
 [react-native]: http://facebook.github.io/react-native/
