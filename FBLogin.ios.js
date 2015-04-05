@@ -48,8 +48,8 @@ var FBLogin = React.createClass({
         (eventData) => {
           // event handler defined? call it and pass along any event data
           var eventHandler = _this.props["on"+event];
-            eventHandler && eventHandler(eventData);
-          }
+          eventHandler && eventHandler(eventData);
+        }
       ));
     })
 
