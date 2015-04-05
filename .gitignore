@@ -26,3 +26,6 @@ DerivedData
 
 # Node
 node_modules
+
+# Adding example plist since it contains user specific facebook info
+example/iOS/Info.plist
