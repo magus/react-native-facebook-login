@@ -10,6 +10,7 @@ var {
 } = React;
 
 var Login = require('./Login');
+var LoginMock = require('./LoginMock');
 
 var AppEntry = React.createClass({
   render: function() {
@@ -31,7 +32,7 @@ var styles = StyleSheet.create({
     flex: 1,
   },
   allPages: {
-    backgroundColor: '#dcdee3',
+    backgroundColor: '#EEE',
   },
 });
 
