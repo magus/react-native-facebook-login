@@ -131,13 +131,11 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
 }
 
 // Exposed native methods (FBLoginManager.<methodName>)
-- (void)login:(RCTResponseSenderBlock)callback {
-  RCT_EXPORT();
+RCT_EXPORT_METHOD(login:(RCTResponseSenderBlock)callback) {
   [self loginWithPermissions:_defaultPermissions callback:callback];
 }
 
-- (void)loginWithPermissions:(NSArray *)permissions callback:(RCTResponseSenderBlock)callback {
-  RCT_EXPORT();
+RCT_EXPORT_METHOD(loginWithPermissions:(NSArray *)permissions callback:(RCTResponseSenderBlock)callback) {
 
   // Detect current access and return if no new permissions requested
   NSDictionary *currentCredentials = [self buildCredentials];
@@ -184,18 +182,14 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
   }];
 }
 
-- (void)logout:(RCTResponseSenderBlock)callback {
-    RCT_EXPORT();
-
+RCT_EXPORT_METHOD(logout:(RCTResponseSenderBlock)callback) {
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
     [login logOut];
     [self fireEvent:@"Logout"];
     callback(@[[NSNull null], @"Logout"]);
 }
 
-- (void)getCredentials:(RCTResponseSenderBlock)callback {
-    RCT_EXPORT();
-
+RCT_EXPORT_METHOD(getCredentials:(RCTResponseSenderBlock)callback) {
     NSDictionary *credentials = [self buildCredentials];
     if(credentials) {
       [self fireEvent:@"LoginFound" withData:credentials];
