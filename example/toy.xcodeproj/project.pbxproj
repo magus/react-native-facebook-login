@@ -19,7 +19,6 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
-		4F5AA4331AC541180048AFF6 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 4F5AA4321AC541180048AFF6 /* main.jsbundle */; };
 		4F5AA4411AC92AF60048AFF6 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5AA43D1AC92AF60048AFF6 /* Bolts.framework */; };
 		4F5AA4421AC92AF60048AFF6 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5AA43E1AC92AF60048AFF6 /* FBSDKCoreKit.framework */; };
 		4F5AA4431AC92AF60048AFF6 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5AA43F1AC92AF60048AFF6 /* FBSDKLoginKit.framework */; };
@@ -127,7 +126,6 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = iOS/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = iOS/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
-		4F5AA4321AC541180048AFF6 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.jsbundle; path = iOS/main.jsbundle; sourceTree = "<group>"; };
 		4F5AA43D1AC92AF60048AFF6 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = iOS/Frameworks/Bolts.framework; sourceTree = "<group>"; };
 		4F5AA43E1AC92AF60048AFF6 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = iOS/Frameworks/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		4F5AA43F1AC92AF60048AFF6 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = iOS/Frameworks/FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -246,7 +244,6 @@
 		13B07FAE1A68108700A75B9A /* toy */ = {
 			isa = PBXGroup;
 			children = (
-				4F5AA4321AC541180048AFF6 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -521,7 +518,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F5AA4331AC541180048AFF6 /* main.jsbundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
@@ -564,7 +560,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/iOS/Frameworks",
-					"/Users/noah/Downloads/parse-library-1.7.0",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -591,7 +586,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/iOS/Frameworks",
-					"/Users/noah/Downloads/parse-library-1.7.0",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
