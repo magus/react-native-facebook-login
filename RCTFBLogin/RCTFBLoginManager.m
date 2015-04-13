@@ -26,6 +26,7 @@
 }
 
 RCT_EXPORT_VIEW_PROPERTY(permissions, NSStringArray);
+RCT_EXPORT_MODULE();
 
 - (NSDictionary *)constantsToExport {
   return @{
