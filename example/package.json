@@ -1,12 +1,12 @@
 {
-  "name": "toy",
-  "version": "0.0.1",
+  "name": "example",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "start": "node_modules/react-native/packager/packager.sh --assetRoots=./iOS/Images.xcassets"
   },
   "dependencies": {
-    "react-native": "^0.3.1",
-    "react-native-facebook-login": "^0.2.1"
+    "react-native": "^0.3.11",
+    "react-native-facebook-login": "^0.3.4"
   }
 }
