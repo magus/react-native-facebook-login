@@ -70,7 +70,7 @@ See [example/components/facebook/FBLoginMock.js](example/components/facebook/FBL
 
 **Note**: Make sure to add the following to your AppDelegate:
 
-```
+```objectivec
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   // ...
