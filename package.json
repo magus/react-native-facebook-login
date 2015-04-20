@@ -27,6 +27,6 @@
   },
   "homepage": "https://github.com/magus/react-native-facebook-login",
   "dependencies": {
-    "react-native": "^0.3.11"
+    "react-native": "^0.4.0"
   }
 }
