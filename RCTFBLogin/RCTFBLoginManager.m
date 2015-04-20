@@ -127,7 +127,7 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
 
 // FBSDKLoginButtonDelegate :: Logout
 - (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton{
-    [self fireEvent:@"Logout"];
+  [self fireEvent:@"Logout"];
 }
 
 // Exposed native methods (FBLoginManager.<methodName>)
@@ -141,8 +141,12 @@ RCT_EXPORT_METHOD(loginWithPermissions:(NSArray *)permissions callback:(RCTRespo
   NSDictionary *currentCredentials = [self buildCredentials];
   NSArray *missingPermissions = [self getMissingPermissions:permissions];
   if(currentCredentials && (missingPermissions.count == 0)) {
-    [self fireEvent:@"LoginFound" withData:currentCredentials];
-    callback(@[[NSNull null], currentCredentials]);
+    NSDictionary *loginData = @{
+      @"credentials": currentCredentials,
+      @"missingPermissions": missingPermissions
+    };
+    [self fireEvent:@"LoginFound" withData:loginData];
+    callback(@[[NSNull null], loginData]);
     return;
   }
 
@@ -183,21 +187,24 @@ RCT_EXPORT_METHOD(loginWithPermissions:(NSArray *)permissions callback:(RCTRespo
 }
 
 RCT_EXPORT_METHOD(logout:(RCTResponseSenderBlock)callback) {
-    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
-    [login logOut];
-    [self fireEvent:@"Logout"];
-    callback(@[[NSNull null], @"Logout"]);
+  FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+  [login logOut];
+  [self fireEvent:@"Logout"];
+  callback(@[[NSNull null], @"Logout"]);
 }
 
 RCT_EXPORT_METHOD(getCredentials:(RCTResponseSenderBlock)callback) {
-    NSDictionary *credentials = [self buildCredentials];
-    if(credentials) {
-      [self fireEvent:@"LoginFound" withData:credentials];
-      callback(@[[NSNull null], credentials]);
-    } else {
-      [self fireEvent:@"LoginNotFound"];
-      callback(@[@"LoginNotFound", [NSNull null]]);
-    }
+  NSDictionary *credentials = [self buildCredentials];
+  NSDictionary *loginData = @{
+    @"credentials": credentials
+  };
+  if(credentials) {
+    [self fireEvent:@"LoginFound" withData:loginData];
+    callback(@[[NSNull null], loginData]);
+  } else {
+    [self fireEvent:@"LoginNotFound"];
+    callback(@[@"LoginNotFound", [NSNull null]]);
+  }
 }
 
 @end
