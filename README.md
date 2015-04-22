@@ -23,8 +23,8 @@ var FBLogin = require('react-native-facebook-login');
 var FBLoginManager = require('NativeModules').FBLoginManager;
 
 var Login = React.createClass({
-  var _this = this;
   render: function() {
+    var _this = this;
     return (
       <FBLogin style={{ marginBottom: 10, }}
         permissions={["email","user_friends"]}
