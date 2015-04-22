@@ -33,8 +33,8 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    RCTAssert(self.subviews.count == 1, @"we should only have exactly one subview");
-    RCTAssert([self.subviews lastObject] == _loginButton, @"our only subview should be a fbsdkloginbutton");
+    // RCTAssert(self.subviews.count == 1, @"we should only have exactly one subview");
+    // RCTAssert([self.subviews lastObject] == _loginButton, @"our only subview should be a fbsdkloginbutton");
     _loginButton.frame = _loginButton.bounds;
 }
 
