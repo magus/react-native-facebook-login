@@ -20,18 +20,42 @@ Provides a React Native component which wraps the Facebook SDK `FBSDKLoginButton
 
 ```js
 var FBLogin = require('react-native-facebook-login');
+var FBLoginManager = require('NativeModules').FBLoginManager;
 
 var Login = React.createClass({
+  var _this = this;
   render: function() {
     return (
-      <FBLogin style={{ marginTop: 150, }}
+      <FBLogin style={{ marginBottom: 10, }}
         permissions={["email","user_friends"]}
         onLogin={function(data){
           console.log("Logged in!");
-          console.log(data.credentials);
+          console.log(data);
+          _this.setState({ user : data.credentials });
         }}
         onLogout={function(){
           console.log("Logged out.");
+          _this.setState({ user : null });
+        }}
+        onLoginFound={function(data){
+          console.log("Existing login found.");
+          console.log(data);
+          _this.setState({ user : data.credentials });
+        }}
+        onLoginNotFound={function(){
+          console.log("No user logged in.");
+          _this.setState({ user : null });
+        }}
+        onError={function(data){
+          console.log("ERROR");
+          console.log(data);
+        }}
+        onCancel={function(){
+          console.log("User cancelled.");
+        }}
+        onPermissionsMissing={function(data){
+          console.log("Check permissions!");
+          console.log(data);
         }}
       />
     );
@@ -43,6 +67,29 @@ var Login = React.createClass({
 Wraps features of the native iOS Facebook SDK `FBSDKLoginManager` interface.
 
 See [example/components/facebook/FBLoginMock.js](example/components/facebook/FBLoginMock.js) for an example using only the exposed native methods of the FBLoginManager to recreate the native `FBSDKLoginButton`.
+
+**Note**: Make sure to add the following to your AppDelegate:
+
+```objectivec
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+  // ...
+  return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                    didFinishLaunchingWithOptions:launchOptions];
+}
+
+// Facebook SDK
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [FBSDKAppEvents activateApp];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                          openURL:url
+                                                sourceApplication:sourceApplication
+                                                       annotation:annotation];
+}
+```
 
 ### Usage
 ```js
