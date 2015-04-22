@@ -7,6 +7,6 @@
   },
   "dependencies": {
     "react-native": "^0.4.0",
-    "react-native-facebook-login": "^0.3.4"
+    "react-native-facebook-login": "^0.x.x"
   }
 }
