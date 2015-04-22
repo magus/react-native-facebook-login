@@ -195,10 +195,12 @@ RCT_EXPORT_METHOD(logout:(RCTResponseSenderBlock)callback) {
 
 RCT_EXPORT_METHOD(getCredentials:(RCTResponseSenderBlock)callback) {
   NSDictionary *credentials = [self buildCredentials];
-  NSDictionary *loginData = @{
-    @"credentials": credentials
-  };
+
   if(credentials) {
+    NSDictionary *loginData = @{
+      @"credentials": credentials
+    };
+
     [self fireEvent:@"LoginFound" withData:loginData];
     callback(@[[NSNull null], loginData]);
   } else {
