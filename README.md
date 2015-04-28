@@ -130,6 +130,8 @@ npm install --save react-native-facebook-login
 **Note**: Make sure to add the following to your AppDelegate
 
 ```objectivec
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   // ...
