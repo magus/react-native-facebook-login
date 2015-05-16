@@ -1,7 +1,7 @@
 var React = require('React');
-var ReactIOSViewAttributes = require('ReactIOSViewAttributes');
+var ReactNativeViewAttributes = require('ReactNativeViewAttributes');
 var StyleSheet = require('StyleSheet');
-var createReactIOSNativeComponentClass = require('createReactIOSNativeComponentClass');
+var createReactNativeComponentClass = require('createReactNativeComponentClass');
 var PropTypes = require('ReactPropTypes');
 var LayoutPropTypes = require('LayoutPropTypes');
 var StyleSheetPropType = require('StyleSheetPropType');
@@ -85,9 +85,9 @@ var FBLogin = React.createClass({
   },
 });
 
-var RCTFBLogin = createReactIOSNativeComponentClass({
+var RCTFBLogin = createReactNativeComponentClass({
   validAttributes: {
-    ...ReactIOSViewAttributes.UIView,
+    ...ReactNativeViewAttributes.UIView,
     permissions: true,
   },
   uiViewClassName: 'RCTFBLogin',
