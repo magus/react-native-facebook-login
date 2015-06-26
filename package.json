@@ -26,7 +26,7 @@
     "url": "https://github.com/magus/react-native-facebook-login/issues"
   },
   "homepage": "https://github.com/magus/react-native-facebook-login",
-  "dependencies": {
-    "react-native": "^0.6.0"
+  "peerDependencies": {
+    "react-native": ">=0.6.0"
   }
 }
