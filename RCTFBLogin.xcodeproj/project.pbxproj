@@ -236,8 +236,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(PROJECT_DIR)/node_modules/react-native/React/**",
-					"$(SRCROOT)/../react-native/React/**",
-					"$(SRCROOT)/node_modules/react-native/React/**",
+					"$(SRCROOT)/example/node_modules/react-native/React/**",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -258,8 +257,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(PROJECT_DIR)/node_modules/react-native/React/**",
-					"$(SRCROOT)/../react-native/React/**",
-					"$(SRCROOT)/node_modules/react-native/React/**",
+					"$(SRCROOT)/example/node_modules/react-native/React/**",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
