@@ -1,13 +1,18 @@
-var React = require('React');
-var ReactNativeViewAttributes = require('ReactNativeViewAttributes');
-var StyleSheet = require('StyleSheet');
-var createReactNativeComponentClass = require('createReactNativeComponentClass');
-var PropTypes = require('ReactPropTypes');
-var LayoutPropTypes = require('LayoutPropTypes');
-var StyleSheetPropType = require('StyleSheetPropType');
-var NativeMethodsMixin = require('NativeMethodsMixin');
-var RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
-var FBLoginManager = require('NativeModules').FBLoginManager;
+var React = require('react-native');
+var {
+  StyleSheet,
+  PropTypes,
+  NativeModules
+} = React;
+var createReactNativeComponentClass = require('react-native/Libraries/ReactNative/createReactNativeComponentClass');
+var ReactNativeViewAttributes = require('react-native/Libraries/ReactNative/ReactNativeViewAttributes');
+var LayoutPropTypes = require('react-native/Libraries/StyleSheet/LayoutPropTypes');
+var StyleSheetPropType = require('react-native/Libraries/StyleSheet/StyleSheetPropType');
+var NativeMethodsMixin = require('react-native/Libraries/ReactIOS/NativeMethodsMixin');
+var RCTDeviceEventEmitter = require('react-native/Libraries/Device/RCTDeviceEventEmitter');
+var StyleSheetPropType = require('react-native/Libraries/StyleSheet/StyleSheetPropType');
+
+var { FBLoginManager } = NativeModules;
 
 var FBLogin = React.createClass({
   statics: {
