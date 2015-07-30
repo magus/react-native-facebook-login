@@ -2,10 +2,9 @@ var React = require('react-native');
 var {
   StyleSheet,
   PropTypes,
-  NativeModules
+  NativeModules,
+  requireNativeComponent
 } = React;
-var createReactNativeComponentClass = require('react-native/Libraries/ReactNative/createReactNativeComponentClass');
-var ReactNativeViewAttributes = require('react-native/Libraries/ReactNative/ReactNativeViewAttributes');
 var LayoutPropTypes = require('react-native/Libraries/StyleSheet/LayoutPropTypes');
 var StyleSheetPropType = require('react-native/Libraries/StyleSheet/StyleSheetPropType');
 var NativeMethodsMixin = require('react-native/Libraries/ReactIOS/NativeMethodsMixin');
@@ -90,13 +89,7 @@ var FBLogin = React.createClass({
   },
 });
 
-var RCTFBLogin = createReactNativeComponentClass({
-  validAttributes: {
-    ...ReactNativeViewAttributes.UIView,
-    permissions: true,
-  },
-  uiViewClassName: 'RCTFBLogin',
-});
+var RCTFBLogin = requireNativeComponent('RCTFBLogin', FBLogin);
 
 var styles = StyleSheet.create({
   base: {
