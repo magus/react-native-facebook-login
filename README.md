@@ -130,7 +130,21 @@ npm install --save react-native-facebook-login
 
 - Be sure to [configure your .plist file](https://developers.facebook.com/docs/ios/getting-started#configurePlist)
 
-**Note**: Make sure to add the following to your AppDelegate
+**Note**: Make sure to add the following to your `AppDelegate.m`
+
+- Import statements for FBSDK kits
+
+```objectivec
+#import "AppDelegate.h"
+#import "RCTRootView.h"
+
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+
+@implementation AppDelegate
+```
+
+- Modify the application methods to return FBSDKApplicationDelegate before the `@end`
 
 ```objectivec
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
