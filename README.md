@@ -1,7 +1,8 @@
 # React Native : Facebook SDK Login Button
 `<FBLogin />` provides a [React Native][react-native] component wrapping the native [Facebook SDK login button](fb-sdk-loginbutton) and [manager](fb-sdk-loginmanager).
 
-<img src="https://raw.githubusercontent.com/magus/react-native-facebook-login/master/images/preview.gif" alt="preview" height="450">
+
+<img src="https://raw.githubusercontent.com/magus/react-native-facebook-login/master/images/preview.gif" alt="preview" />
 
 **Note**: Demo above includes debug text to confirm login (i.e. user name, email and access token). `<FBLogin />`, by default, will only display the native blue 'Log in with Facebook' button.
 
@@ -125,10 +126,9 @@ npm install --save react-native-facebook-login
 ### Adding the Facebook SDK
 - Run `open node_modules/react-native-facebook-login/FacebookSDK`
 - Select all the `.framework` files and click drag them into your project
-
-<img src="https://raw.githubusercontent.com/magus/react-native-facebook-login/master/images/facebook-framework-example.png" alt="example-fbsdk-frameworks">
-
 - Be sure to [configure your .plist file](https://developers.facebook.com/docs/ios/getting-started#configurePlist)
+
+<img src="https://raw.githubusercontent.com/magus/react-native-facebook-login/master/images/facebook-framework-example.png" alt="example-fbsdk-frameworks" />
 
 **Note**: Make sure to add the following to your `AppDelegate.m`
 
