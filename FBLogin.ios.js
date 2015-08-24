@@ -5,11 +5,11 @@ var {
   NativeModules,
   requireNativeComponent
 } = React;
-var LayoutPropTypes = require('react-native/Libraries/StyleSheet/LayoutPropTypes');
-var StyleSheetPropType = require('react-native/Libraries/StyleSheet/StyleSheetPropType');
-var NativeMethodsMixin = require('react-native/Libraries/ReactIOS/NativeMethodsMixin');
-var RCTDeviceEventEmitter = require('react-native/Libraries/Device/RCTDeviceEventEmitter');
-var StyleSheetPropType = require('react-native/Libraries/StyleSheet/StyleSheetPropType');
+var LayoutPropTypes = require('LayoutPropTypes');
+var StyleSheetPropType = require('StyleSheetPropType');
+var NativeMethodsMixin = require('NativeMethodsMixin');
+var RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
+var StyleSheetPropType = require('StyleSheetPropType');
 
 var { FBLoginManager } = NativeModules;
 
