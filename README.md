@@ -1,5 +1,5 @@
 # React Native : Facebook SDK Login Button
-`<FBLogin />` provides a [React Native][react-native] component wrapping the native [Facebook SDK login button](fb-sdk-loginbutton) and [manager](fb-sdk-loginmanager).
+`<FBLogin />` provides a [React Native][react-native] component wrapping the native [Facebook SDK login button](https://developers.facebook.com/docs/reference/ios/current/class/FBSDKLoginButton/) and [manager](https://developers.facebook.com/docs/reference/ios/current/class/FBSDKLoginManager/).
 
 
 <img src="https://raw.githubusercontent.com/magus/react-native-facebook-login/master/images/preview.gif" alt="preview" />
