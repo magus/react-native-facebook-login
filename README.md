@@ -113,7 +113,7 @@ npm install --save react-native-facebook-login
 - Run ```open node_modules/react-native-facebook-login```
 - Drag `RCTFBLogin.xcodeproj` into your `Libraries` group
 - Select your main project in the navigator to bring up settings
-- Under `Build Phases` expands the `Link Binary With Libraries` header
+- Under `Build Phases` expand the `Link Binary With Libraries` header
 - Scroll down and click the `+` to add a library
 - Find and add `libRTCFBLogin.a` under the `Workspace` group
 - ⌘+B
@@ -130,33 +130,33 @@ npm install --save react-native-facebook-login
 
 <img src="https://raw.githubusercontent.com/magus/react-native-facebook-login/master/images/facebook-framework-example.png" alt="example-fbsdk-frameworks" />
 
-**Note**: Make sure to add the following to your `AppDelegate.m`
-
 - Import statements for FBSDK kits
 
 ```objectivec
-#import "AppDelegate.h"
-#import "RCTRootView.h"
-
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
-
-@implementation AppDelegate
 ```
 
-- Modify the application methods to return FBSDKApplicationDelegate before the `@end`
+- Modify the application methods to return FBSDKApplicationDelegate before the `@end`.
 
 ```objectivec
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   // ...
+  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+  UIViewController *rootViewController = [[UIViewController alloc] init];
+  rootViewController.view = rootView;
+  self.window.rootViewController = rootViewController;
+  [self.window makeKeyAndVisible];
+  // return YES;
   return [[FBSDKApplicationDelegate sharedInstance] application:application
                                     didFinishLaunchingWithOptions:launchOptions];
 }
+```
 
+- Add the following new methods after the application didFinishLaunchingWithOptions method above, before the `@end`.
+
+```objectivec
 // Facebook SDK
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     [FBSDKAppEvents activateApp];
@@ -169,6 +169,8 @@ npm install --save react-native-facebook-login
                                                        annotation:annotation];
 }
 ```
+
+<img src="https://raw.githubusercontent.com/magus/react-native-facebook-login/master/images/fbsdkapplicationdelegate-methods-example.png" alt="example-fbsdk-frameworks" />
 
 ## Example project
 ### Toy
