@@ -126,7 +126,7 @@ npm install --save react-native-facebook-login
 ### Adding the Facebook SDK
 - Run `open node_modules/react-native-facebook-login/FacebookSDK`
 - Select all the `.framework` files and click drag them into your project
-- Be sure to [configure your .plist file](https://developers.facebook.com/docs/ios/getting-started#configurePlist)
+- Be sure to [configure your .plist file](https://developers.facebook.com/docs/ios/getting-started#xcode)
 
 <img src="https://raw.githubusercontent.com/magus/react-native-facebook-login/master/images/facebook-framework-example.png" alt="example-fbsdk-frameworks" />
 
