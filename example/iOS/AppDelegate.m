@@ -28,20 +28,20 @@
   //
   // To run on device, change `localhost` to the IP address of your computer, and make sure your computer and
   // iOS device are on the same Wi-Fi network.
-  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/components/AppEntry.includeRequire.runModule.bundle"];
+  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/components/AppEntry.includeRequire.runModule.bundle?platform=ios&dev=true"];
 
   // OPTION 2
   // Load from pre-bundled file on disk. To re-generate the static bundle, run
   //
-  // $ curl http://localhost:8081/components/AppEntry.includeRequire.runModule.bundle?dev=false&minify=true -o main.jsbundle
+  // $ curl http://localhost:8081/components/AppEntry.includeRequire.runModule.bundle?platform=ios&dev=false&minify=true -o main.jsbundle
   //
   // and uncomment the next following line
   // jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
-
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"AppEntry"
+                                               initialProperties:nil
                                                    launchOptions:launchOptions];
-
+  
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [[UIViewController alloc] init];
   rootViewController.view = rootView;

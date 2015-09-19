@@ -27,6 +27,6 @@
   },
   "homepage": "https://github.com/magus/react-native-facebook-login",
   "peerDependencies": {
-    "react-native": ">=0.8.0"
+    "react-native": ">=0.11.0"
   }
 }
