@@ -16,6 +16,7 @@ var { FBLoginManager } = NativeModules;
 var FBLogin = React.createClass({
   statics: {
     Events: FBLoginManager.Events,
+    LoginBehaviors: FBLoginManager.LoginBehaviors
   },
 
   propTypes: {
@@ -28,6 +29,7 @@ var FBLogin = React.createClass({
     onError: PropTypes.func,
     onCancel: PropTypes.func,
     onPermissionsMissing: PropTypes.func,
+    loginBehavior: React.PropTypes.number
   },
 
   getInitialState: function(){

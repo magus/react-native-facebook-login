@@ -31,6 +31,7 @@
 }
 
 RCT_EXPORT_VIEW_PROPERTY(permissions, NSStringArray);
+RCT_EXPORT_VIEW_PROPERTY(loginBehavior, NSNumber);
 RCT_EXPORT_MODULE();
 
 - (NSDictionary *)constantsToExport {
@@ -44,6 +45,12 @@ RCT_EXPORT_MODULE();
       @"PermissionsMissing": @"FBLoginPermissionsMissingEvent",
       @"LoginNotFound": @"FBLoginLoginNotFoundEvent"
     },
+    @"LoginBehaviors": @{
+      @"Web": [NSNumber numberWithInt:FBSDKLoginBehaviorWeb],
+      @"Browser": [NSNumber numberWithInt:FBSDKLoginBehaviorBrowser],
+      @"Native": [NSNumber numberWithInt:FBSDKLoginBehaviorNative],
+      @"SystemAccount": [NSNumber numberWithInt:FBSDKLoginBehaviorSystemAccount]
+    }
   };
 }
 

@@ -30,6 +30,11 @@
     _loginButton.readPermissions = permissions;
 }
 
+- (void)setLoginBehavior:(NSNumber *)loginBehavior
+{
+    _loginButton.loginBehavior = [loginBehavior intValue];
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
