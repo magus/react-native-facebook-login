@@ -3,13 +3,21 @@ var {
   StyleSheet,
   PropTypes,
   NativeModules,
-  requireNativeComponent
+  requireNativeComponent,
+
+  // Once these are exposed, use them
+  // LayoutPropTypes,
+  // StyleSheetPropType,
+  // NativeMethodsMixin,
+  // RCTDeviceEventEmitter,
 } = React;
+
+// These are not yet exposed by the react-native package, so we must
+// continue requiring them this way, which will cause warnings.
 var LayoutPropTypes = require('LayoutPropTypes');
 var StyleSheetPropType = require('StyleSheetPropType');
 var NativeMethodsMixin = require('NativeMethodsMixin');
 var RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
-var StyleSheetPropType = require('StyleSheetPropType');
 
 var { FBLoginManager } = NativeModules;
 
