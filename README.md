@@ -64,6 +64,15 @@ var Login = React.createClass({
 });
 ```
 
+You can change the login behavior by using the `loginBehavior` prop on the `FBLogin` component.  
+Acceptable property values are:
+
+* `FBLogin.LoginBehaviors.Web`: This is the default behavior, and indicates logging in through the native Facebook app may be used. The SDK may still use Safari instead.
+* `FBLogin.LoginBehaviors.Browser`: Attempts log in through the Safari or SFSafariViewController, if available
+* `FBLogin.LoginBehaviors.Native`: Attempts log in through the Facebook account currently signed in through the device Settings.
+* `FBLogin.LoginBehaviors.SystemAccount`: Attempts log in through a modal UIWebView pop up
+
+
 ## FBLoginManager
 Wraps features of the native iOS Facebook SDK `FBSDKLoginManager` interface.
 

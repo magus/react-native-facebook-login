@@ -17,6 +17,12 @@ var FBLogin = React.createClass({
   statics: {
     Events: FBLoginManager.Events,
     LoginBehaviors: FBLoginManager.LoginBehaviors
+    /* Exported values for LoginBehavior
+     * Web: This is the default behavior, and indicates logging in through the native Facebook app may be used. The SDK may still use Safari instead.
+     * Browser: Attempts log in through the Safari or SFSafariViewController, if available
+     * Native: Attempts log in through the Facebook account currently signed in through the device Settings.
+     * SystemAccount: Attempts log in through a modal UIWebView pop up
+     */
   },
 
   propTypes: {
