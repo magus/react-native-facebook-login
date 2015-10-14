@@ -35,7 +35,7 @@ var FBLogin = React.createClass({
     onError: PropTypes.func,
     onCancel: PropTypes.func,
     onPermissionsMissing: PropTypes.func,
-    loginBehavior: React.PropTypes.number
+    loginBehavior: React.PropTypes.number // default: Native
   },
 
   getInitialState: function(){
