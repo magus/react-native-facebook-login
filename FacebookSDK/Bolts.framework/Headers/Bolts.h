@@ -9,18 +9,24 @@
  */
 
 #import <Bolts/BoltsVersion.h>
+#import <Bolts/BFCancellationToken.h>
+#import <Bolts/BFCancellationTokenRegistration.h>
+#import <Bolts/BFCancellationTokenSource.h>
+#import <Bolts/BFDefines.h>
 #import <Bolts/BFExecutor.h>
 #import <Bolts/BFTask.h>
 #import <Bolts/BFTaskCompletionSource.h>
 
-#if TARGET_OS_IPHONE
+#if __has_include(<Bolts/BFAppLink.h>) && TARGET_OS_IPHONE && !TARGET_OS_WATCH && !TARGET_OS_TV
 #import <Bolts/BFAppLinkNavigation.h>
 #import <Bolts/BFAppLink.h>
-#import <Bolts/BFAppLinkTarget.h>
-#import <Bolts/BFURL.h>
-#import <Bolts/BFMeasurementEvent.h>
+#import <Bolts/BFAppLinkResolving.h>
 #import <Bolts/BFAppLinkReturnToRefererController.h>
 #import <Bolts/BFAppLinkReturnToRefererView.h>
+#import <Bolts/BFAppLinkTarget.h>
+#import <Bolts/BFMeasurementEvent.h>
+#import <Bolts/BFURL.h>
+#import <Bolts/BFWebViewAppLinkResolver.h>
 #endif
 
 /*! @abstract 80175001: There were multiple errors. */

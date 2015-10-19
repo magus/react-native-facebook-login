@@ -19,6 +19,7 @@
 #import <Foundation/Foundation.h>
 
 #import <FBSDKCoreKit/FBSDKCopying.h>
+#import <FBSDKCoreKit/FBSDKGraphRequestConnection.h>
 #import <FBSDKCoreKit/FBSDKMacros.h>
 
 /*!
@@ -36,6 +37,10 @@ FBSDK_EXTERN NSString *const FBSDKAccessTokenDidChangeNotification;
   which do not change the user. If you're only interested in user
   changes (such as logging out), you should check for the existence
   of this key. The value is a NSNumber with a boolValue.
+
+  On a fresh start of the app where the SDK reads in the cached value
+  of an access token, this key will also exist since the access token
+  is moving from a null state (no user) to a non-null state (user).
  */
 FBSDK_EXTERN NSString *const FBSDKAccessTokenDidChangeUserID;
 
@@ -93,6 +98,9 @@ FBSDK_EXTERN NSString *const FBSDKAccessTokenChangeNewKey;
  */
 @property (readonly, copy, nonatomic) NSString *userID;
 
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 /*!
  @abstract Initializes a new instance.
  @param tokenString the opaque token string.
@@ -143,5 +151,16 @@ NS_DESIGNATED_INITIALIZER;
  @discussion This will broadcast a notification and save the token to the app keychain.
  */
 + (void)setCurrentAccessToken:(FBSDKAccessToken *)token;
+
+/*!
+ @abstract Refresh the current access token's permission state and extend the token's expiration date,
+  if possible.
+ @param completionHandler an optional callback handler that can surface any errors related to permission refreshing.
+ @discussion On a successful refresh, the currentAccessToken will be updated so you typically only need to
+  observe the `FBSDKAccessTokenDidChangeNotification` notification.
+
+ If a token is already expired, it cannot be refreshed.
+ */
++ (void)refreshCurrentAccessToken:(FBSDKGraphRequestHandler)completionHandler;
 
 @end
