@@ -25,9 +25,9 @@ var Login = React.createClass({
 
   updateView: function(){
     var _this = this;
-    FBLoginManager.getCredentials(function(error, credentials){
+    FBLoginManager.getCredentials(function(error, data){
       if (!error) {
-        _this.setState({ user : credentials });
+        _this.setState({ user : data.credentials });
       } else {
         _this.setState({ user : null });
       }
