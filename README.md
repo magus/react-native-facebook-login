@@ -146,6 +146,8 @@ npm install --save react-native-facebook-login
 ### Facebook SDK
 [Facebook : Quick Start for iOS](https://developers.facebook.com/quickstarts/?platform=ios)
 
+As of iOS 9 you must now explicitly whitelist requests your application makes in the Info.plist. Be sure to [follow the instructions for iOS 9](https://developers.facebook.com/docs/ios/ios9) during the setup process.
+
 ### Adding the Facebook SDK
 - Run `open node_modules/react-native-facebook-login/FacebookSDK`
 - Select all the `.framework` files and click drag them into your project
