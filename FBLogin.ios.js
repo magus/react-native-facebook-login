@@ -80,6 +80,7 @@ var FBLogin = React.createClass({
   componentDidMount: function(){
     var _this = this;
     FBLoginManager.getCredentials(function(error, data){
+      if( !_this.isMounted() ) return;
       if (!error) {
         _this.setState({ credentials : data.credentials });
       } else {
