@@ -6,7 +6,7 @@
     "start": "node_modules/react-native/packager/packager.sh --assetRoots=./iOS/Images.xcassets"
   },
   "dependencies": {
-    "react-native": ">=0.12.0",
+    "react-native": ">=0.14.2",
     "react-native-facebook-login": "file:../"
   }
 }
