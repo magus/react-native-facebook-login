@@ -1,23 +1,13 @@
 var React = require('react-native');
 var {
+  View,
   StyleSheet,
   PropTypes,
   NativeModules,
   requireNativeComponent,
-
-  // Once these are exposed, use them
-  // LayoutPropTypes,
-  // StyleSheetPropType,
-  // NativeMethodsMixin,
-  // RCTDeviceEventEmitter,
+  NativeMethodsMixin,
+  DeviceEventEmitter,
 } = React;
-
-// These are not yet exposed by the react-native package, so we must
-// continue requiring them this way, which will cause warnings.
-var LayoutPropTypes = require('LayoutPropTypes');
-var StyleSheetPropType = require('StyleSheetPropType');
-var NativeMethodsMixin = require('NativeMethodsMixin');
-var RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
 
 var { FBLoginManager } = NativeModules;
 
@@ -27,7 +17,7 @@ var FBLogin = React.createClass({
   },
 
   propTypes: {
-    style: StyleSheetPropType(LayoutPropTypes),
+    style: View.propTypes.style,
     permissions: PropTypes.array, // default: ["public_profile", "email"]
     loginBehavior: PropTypes.number, // default: Native
     onLogin: PropTypes.func,
@@ -56,7 +46,7 @@ var FBLogin = React.createClass({
     // Create listener and call event handler from props
     // e.g.  this.props.onError, this.props.onLogin
     Object.keys(FBLoginManager.Events).forEach(function(event){
-      subscriptions.push(RCTDeviceEventEmitter.addListener(
+      subscriptions.push(DeviceEventEmitter.addListener(
         FBLoginManager.Events[event],
         (eventData) => {
           // event handler defined? call it and pass along any event data

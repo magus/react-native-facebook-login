@@ -74,7 +74,7 @@ var FBLoginMock = React.createClass({
           onPress={this.onPress}
         >
           <View style={styles.FBLoginButton}>
-            <Image style={styles.FBLogo} source={require('image!FB-f-Logo__white_144')} />
+            <Image style={styles.FBLogo} source={require('./images/FB-f-Logo__white_144.png')} />
             <Text style={[styles.FBLoginButtonText, this.state.user ? styles.FBLoginButtonTextLoggedIn : styles.FBLoginButtonTextLoggedOut]}
               numberOfLines={1}>{text}</Text>
           </View>
