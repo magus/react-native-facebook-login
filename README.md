@@ -146,23 +146,44 @@ npm install --save react-native-facebook-login
 ### Facebook SDK
 [Facebook : Quick Start for iOS](https://developers.facebook.com/quickstarts/?platform=ios)
 
-As of iOS 9 you must now explicitly whitelist requests your application makes in the Info.plist. Be sure to [follow the instructions for iOS 9](https://developers.facebook.com/docs/ios/ios9) during the setup process.
+Be sure to [configure your .plist file](https://developers.facebook.com/docs/ios/getting-started#xcode)
 
-### Adding the Facebook SDK
+As of iOS 9 you must now explicitly whitelist requests your application makes in the `Info.plist`. Be sure to [follow the instructions for iOS 9](https://developers.facebook.com/docs/ios/ios9) during the setup process.
+
+- Specifically, you will need to add the following to your `Info.plist` file
+
+```xml
+<key>LSApplicationQueriesSchemes</key>
+<array>
+        <string>fbapi</string>
+        <string>fb-messenger-api</string>
+        <string>fbauth2</string>
+        <string>fbshareextension</string>
+</array>
+```
+
+#### Adding the Facebook SDK
 - Run `open node_modules/react-native-facebook-login/FacebookSDK`
 - Select all the `.framework` files and click drag them into your project
-- Be sure to [configure your .plist file](https://developers.facebook.com/docs/ios/getting-started#xcode)
+- Select your main project in the navigator to bring up settings
+- Under `Build Settings` scroll down to `Search Paths`
+- Add the following path to your `Framework Search Paths`
 
-<img src="https://raw.githubusercontent.com/magus/react-native-facebook-login/master/images/facebook-framework-example.png" alt="example-fbsdk-frameworks" />
+```sh
+$(SRCROOT)/../node_modules/react-native-facebook-login/FacebookSDK
+```
 
-- Import statements for FBSDK kits
+<img src="https://raw.githubusercontent.com/magus/react-native-facebook-login/master/images/framework-search-paths.png" alt="framework-search-paths" />
+
+#### AppDelegate.m modifications
+- Add the following import statements for FBSDK kits at the top of your `AppDelegate.m`
 
 ```objectivec
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 ```
 
-- Modify the application methods to return FBSDKApplicationDelegate before the `@end`.
+- Modify the application didFinishLaunchingWithOptions method to return FBSDKApplicationDelegate instead of `YES`
 
 ```objectivec
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -200,7 +221,7 @@ As of iOS 9 you must now explicitly whitelist requests your application makes in
 ## Example project
 ### Toy
 ```sh
-open example/toy.xcodeproj
+open example/ios/examples.xcodeproj
 ```
 
 See the [example](example/) project for a working example.
