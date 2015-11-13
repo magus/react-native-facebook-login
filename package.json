@@ -2,7 +2,7 @@
   "name": "react-native-facebook-login",
   "version": "0.7.0",
   "description": "React Native wrapper for native iOS Facebook SDK login button and manager",
-  "main": "FBLogin.ios.js",
+  "main": "index",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,6 +16,7 @@
     "react-native",
     "native",
     "ios",
+    "android",
     "facebook",
     "login",
     "sdk"
