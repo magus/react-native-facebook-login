@@ -13,6 +13,7 @@ import com.facebook.FacebookRequestError;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.facebook.login.LoginBehavior;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.react.bridge.ActivityEventListener;
@@ -22,13 +23,16 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
+import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.text.SimpleDateFormat;
+import java.util.Map;
 
 public class FacebookLoginModule extends ReactContextBaseJavaModule implements ActivityEventListener {
 
@@ -53,7 +57,7 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule implements A
                 new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(final LoginResult loginResult) {
-                        if (loginResult.getRecentlyGrantedPermissions().contains("email")) {
+                        if (loginResult.getRecentlyGrantedPermissions().size() > 0) {
 
                             GraphRequest request = GraphRequest.newMeRequest(
                                     loginResult.getAccessToken(),
@@ -77,11 +81,7 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule implements A
                                                     consumeCallback(CALLBACK_TYPE_ERROR, map);
                                                 } else {
                                                     WritableMap map = Arguments.createMap();
-
-                                                    map.putString("token", loginResult.getAccessToken().getToken());
-                                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-                                                    map.putString("expiration", sdf.format(loginResult.getAccessToken().getExpires()));
-
+                                                    map.putMap("credentials", getCredentialsFromToken(AccessToken.getCurrentAccessToken()));
                                                     //TODO: figure out a way to return profile as WriteableMap
                                                     //    OR: expose method to get current profile
                                                     map.putString("profile", me.toString());
@@ -139,8 +139,10 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule implements A
 
     private void consumeCallback(String type, WritableMap map) {
         if (mTokenCallback != null) {
+            AccessToken accessToken = AccessToken.getCurrentAccessToken();
             map.putString("type", type);
             map.putString("provider", "facebook");
+            map.putArray("declinedPermissions", getDeclinedPermissions(accessToken));
 
             if(type.equals(CALLBACK_TYPE_SUCCESS)){
                 mTokenCallback.invoke(null, map);
@@ -157,15 +159,65 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule implements A
         return "FBLoginManager";
     }
 
+    @Override
+    public Map<String, Object> getConstants() {
+        final Map<String, Object> constants = new HashMap<>();
+        constants.put("LoginBehaviors", getLoginBehaviorMap());
+        return constants;
+    }
+
+    private Map<String,String>  getLoginBehaviorMap(){
+        Map<String,String> LoginBehaviourMap = new HashMap<String, String>();
+        /**
+         * Getting LoginBehaviours in natural state
+         *
+            for (LoginBehavior type : LoginBehavior.values()) {
+                LoginBehaviourMap.put(type.name(), type.name());
+            }
+         */
+
+        /**
+         * Mapping to React-Native enum types
+         * Notes:
+         * - there is no browser behaviour in this android sdk
+         * - NativeOnly is unique to android
+         */
+        LoginBehaviourMap.put("Native", LoginBehavior.NATIVE_WITH_FALLBACK.name());
+        LoginBehaviourMap.put("NativeOnly", LoginBehavior.NATIVE_ONLY.name());
+        LoginBehaviourMap.put("SystemAccount", LoginBehavior.DEVICE_AUTH.name());
+        LoginBehaviourMap.put("Web", LoginBehavior.WEB_ONLY.name());
+        return LoginBehaviourMap;
+    }
+
+    @ReactMethod
+    public void setLoginBehavior(String loginBehavior){
+        Log.i("LoginBehavior", "Received: " + loginBehavior);
+        if(loginBehavior != null && (loginBehavior != null && LoginBehavior.valueOf(loginBehavior) != null)){
+            LoginManager.getInstance().setLoginBehavior(LoginBehavior.valueOf(loginBehavior));
+        }
+        Log.i("LoginBehavior", "Using: " + LoginManager.getInstance().getLoginBehavior().name());
+    }
+
     @ReactMethod
     public void loginWithPermissions(ReadableArray permissions, final Callback callback) {
+        String loginType = "loginWithPermissions";
+        login(permissions, loginType, callback);
+    }
+
+    @ReactMethod
+    public void logInWithPublishPermissions(ReadableArray permissions, final Callback callback) {
+        String loginType = "logInWithPublishPermissions";
+        login(permissions, loginType, callback);
+    }
+
+    private void login(ReadableArray permissions, String loginType, Callback callback) {
         if (mTokenCallback != null) {
             AccessToken accessToken = AccessToken.getCurrentAccessToken();
 
             WritableMap map = Arguments.createMap();
 
             if (accessToken != null) {
-                map.putString("token", AccessToken.getCurrentAccessToken().getToken());
+                map.putMap("credentials", getCredentialsFromToken(AccessToken.getCurrentAccessToken()));
                 map.putString("eventName", "onLoginFound");
                 map.putBoolean("cache", true);
                 consumeCallback(CALLBACK_TYPE_SUCCESS, map);
@@ -179,20 +231,32 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule implements A
         mTokenCallback = callback;
 
         List<String> _permissions = getPermissions(permissions);
-        if(_permissions != null && _permissions.size() > 0 && _permissions.contains("email")){
+        if(_permissions != null && _permissions.size() > 0){
             Log.i("FBLoginPermissions", "Using: " + _permissions.toString());
 
             Activity currentActivity = getCurrentActivity();
 
             if(currentActivity != null){
-                LoginManager.getInstance().logInWithReadPermissions(currentActivity, _permissions);
+                Log.i("FBLoginBehavior", "Using for login: " + LoginManager.getInstance().getLoginBehavior().name());
+
+                switch (loginType) {
+                    case "logInWithReadPermissions":
+                        LoginManager.getInstance().logInWithReadPermissions(currentActivity, _permissions);
+                        break;
+                    case "logInWithPublishPermissions":
+                        LoginManager.getInstance().logInWithPublishPermissions(currentActivity, _permissions);
+                        break;
+
+                    default:
+                        LoginManager.getInstance().logInWithReadPermissions(currentActivity, _permissions);
+                        break;
+                }
             }else{
                 handleError("Activity doesn't exist", "onError", CALLBACK_TYPE_ERROR);
             }
         }else{
             handleError("Insufficient permissions", "onPermissionsMissing", CALLBACK_TYPE_ERROR);
         }
-
     }
 
     @ReactMethod
@@ -228,13 +292,53 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule implements A
     }
 
     @ReactMethod
-    public void getCurrentToken(final Callback callback) {
+    public void getCredentials(final Callback callback) {
         AccessToken currentAccessToken = AccessToken.getCurrentAccessToken();
+        WritableMap map = Arguments.createMap();
         if(currentAccessToken != null){
-            callback.invoke(currentAccessToken.getToken());
+            map.putMap("credentials", getCredentialsFromToken(currentAccessToken) );
+            map.putString("type", CALLBACK_TYPE_SUCCESS);
+            map.putString("eventName", "onLoginFound");
         }else{
-            callback.invoke("");
+            map.putString("type", CALLBACK_TYPE_CANCEL);
+            map.putString("eventName", "onLoginNotFound");
+            map.putString("message", "No user found");
         }
+
+        map.putString("provider", "facebook");
+        map.putArray("declinedPermissions", getDeclinedPermissions(currentAccessToken));
+        callback.invoke(map);
+    }
+
+    private WritableMap getCredentialsFromToken(AccessToken currentAccessToken){
+        WritableMap map = Arguments.createMap();
+        WritableArray array = Arguments.createArray();
+        if(currentAccessToken != null){
+            if(currentAccessToken.getPermissions() != null){
+                for (String value: currentAccessToken.getPermissions()) {
+                    array.pushString(value);
+                }
+            }
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+            map.putString("token", currentAccessToken.getToken());
+            map.putString("userId", currentAccessToken.getUserId());
+            map.putString("tokenExpirationDate", sdf.format(currentAccessToken.getExpires()) );
+            map.putArray("permissions", array);
+        }
+
+        return map;
+    }
+
+    private WritableArray getDeclinedPermissions(AccessToken currentAccessToken){
+        WritableArray array = Arguments.createArray();
+        if(currentAccessToken != null && currentAccessToken.getDeclinedPermissions() != null){
+            for (String value: currentAccessToken.getDeclinedPermissions()) {
+                array.pushString(value);
+            }
+        }
+
+        return array;
     }
 
     public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
