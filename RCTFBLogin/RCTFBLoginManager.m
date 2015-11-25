@@ -192,7 +192,6 @@ RCT_EXPORT_METHOD(loginWithPermissions:(NSArray *)permissions callback:(RCTRespo
             @"declinedPermissions": decliendPermissions
           };
           [self fireEvent:@"PermissionsMissing" withData:permissionData];
-          callback(@[@"PermissionsMissing", permissionData]);
       }
     }
   }];
