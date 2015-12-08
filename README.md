@@ -9,7 +9,6 @@
 ## Table of contents
 - [Usage](#usage)
 - [Setup](#setup)
-- [Android Setup](Android.md)
 - [Example project](#example-project)
 - [Documentation](#documentation)
 - [Contributing](#contributing)
@@ -131,6 +130,9 @@ subscriber.remove();
 ```
 
 ## Setup
+### [Android](/android/README.md)
+[Click here for Android setup instructions](/android/README.md)
+### iOS
 ```sh
 npm install --save react-native-facebook-login
 ```
@@ -144,7 +146,7 @@ npm install --save react-native-facebook-login
 
 **Note**: If your build fails, you most likely forgot to setup the [Facebook SDK](#facebook-sdk)
 
-### Facebook SDK
+#### Facebook SDK
 [Facebook : Quick Start for iOS](https://developers.facebook.com/quickstarts/?platform=ios)
 
 Be sure to [configure your .plist file](https://developers.facebook.com/docs/ios/getting-started#xcode)
@@ -163,7 +165,7 @@ As of iOS 9 you must now explicitly whitelist requests your application makes in
 </array>
 ```
 
-#### Adding the Facebook SDK
+##### Adding the Facebook SDK
 - Run `open node_modules/react-native-facebook-login/FacebookSDK`
 - Select all the `.framework` files and click drag them into your project
 - Select your main project in the navigator to bring up settings
@@ -176,7 +178,7 @@ $(SRCROOT)/../node_modules/react-native-facebook-login/FacebookSDK
 
 <img src="https://raw.githubusercontent.com/magus/react-native-facebook-login/master/images/framework-search-paths.png" alt="framework-search-paths" />
 
-#### AppDelegate.m modifications
+##### AppDelegate.m modifications
 - Add the following import statements for FBSDK kits at the top of your `AppDelegate.m`
 
 ```objectivec
