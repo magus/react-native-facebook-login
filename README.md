@@ -9,6 +9,7 @@
 ## Table of contents
 - [Usage](#usage)
 - [Setup](#setup)
+- [Android Setup](Android.md)
 - [Example project](#example-project)
 - [Documentation](#documentation)
 - [Contributing](#contributing)
