@@ -149,7 +149,7 @@ npm install --save react-native-facebook-login
 #### Facebook SDK
 [Facebook : Quick Start for iOS](https://developers.facebook.com/quickstarts/?platform=ios)
 
-Be sure to [configure your .plist file](https://developers.facebook.com/docs/ios/getting-started#xcode)
+Be sure to [configure your .plist file](https://developers.facebook.com/docs/ios/getting-started#xcode). This file is located under the `ios/<project-name>` directory of your generated react-native project. It should be in the same folder as your `AppDelegate.m` file.
 
 As of iOS 9 you must now explicitly whitelist requests your application makes in the `Info.plist`. Be sure to [follow the instructions for iOS 9](https://developers.facebook.com/docs/ios/ios9) during the setup process.
 
