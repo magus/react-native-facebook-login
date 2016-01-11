@@ -33,36 +33,21 @@ dependencies {
 import android.content.Intent; // import
 import com.magus.fblogin.FacebookLoginPackage; // import
 
-public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
-
-    private ReactInstanceManager mReactInstanceManager;
-    private ReactRootView mReactRootView;
+public class MainActivity extends ReactActivity {
 
     // declare package
     private FacebookLoginPackage mFacebookLoginPackage;
 
+    ...
+    
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mReactRootView = new ReactRootView(this);
+    protected List<ReactPackage> getPackages() {
 
-        // instantiate package
-        mFacebookLoginPackage = new FacebookLoginPackage(this);
+        mFacebookLoginPackage = new FacebookLoginPackage(this); //Instantiate
 
-        mReactInstanceManager = ReactInstanceManager.builder()
-                .setApplication(getApplication())
-                .setBundleAssetName("index.android.bundle")
-                .setJSMainModuleName("index.android")
-                .addPackage(new MainReactPackage())
-
-                // register package here
-                .addPackage(mFacebookLoginPackage)
-
-                .setUseDeveloperSupport(BuildConfig.DEBUG)
-                .setInitialLifecycleState(LifecycleState.RESUMED)
-                .build();
-        mReactRootView.startReactApplication(mReactInstanceManager, "AwesomeProject", null);
-        setContentView(mReactRootView);
+        return Arrays.<ReactPackage>asList(
+            new MainReactPackage(),
+            mFacebookLoginPackage); // Add to the package list
     }
 
     @Override
