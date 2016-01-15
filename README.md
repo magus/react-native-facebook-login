@@ -141,7 +141,7 @@ npm install --save react-native-facebook-login
 - Select your main project in the navigator to bring up settings
 - Under `Build Phases` expand the `Link Binary With Libraries` header
 - Scroll down and click the `+` to add a library
-- Find and add `libRTCFBLogin.a` under the `Workspace` group
+- Find and add `libRCTFBLogin.a` under the `Workspace` group
 - ⌘+B
 
 **Note**: If your build fails, you most likely forgot to setup the [Facebook SDK](#facebook-sdk)
