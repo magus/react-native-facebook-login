@@ -32,6 +32,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.text.SimpleDateFormat;
 
 public class FacebookLoginModule extends ReactContextBaseJavaModule {
 
@@ -83,7 +84,8 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule {
                                                     WritableMap map = Arguments.createMap();
 
                                                     map.putString("token", loginResult.getAccessToken().getToken());
-                                                    map.putString("expiration", String.valueOf(loginResult.getAccessToken().getExpires()));
+                                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+                                                    map.putString("expiration", sdf.format(loginResult.getAccessToken().getExpires()));
 
                                                     //TODO: figure out a way to return profile as WriteableMap
                                                     //    OR: expose method to get current profile
