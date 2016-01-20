@@ -3,6 +3,8 @@ package com.magus.fblogin;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -25,9 +27,13 @@ import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableType;
 import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareDialog;
 
 import org.json.JSONObject;
 
+import java.io.File;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,12 +46,12 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule {
     private final String CALLBACK_TYPE_ERROR = "error";
     private final String CALLBACK_TYPE_CANCEL = "cancel";
 
-    private Context mActivityContext;
+    private Activity mActivityContext;
     private CallbackManager mCallbackManager;
     private Callback mTokenCallback;
     private Callback mLogoutCallback;
 
-    public FacebookLoginModule(ReactApplicationContext reactContext, Context activityContext) {
+    public FacebookLoginModule(ReactApplicationContext reactContext, Activity activityContext) {
         super(reactContext);
 
         mActivityContext = activityContext;
@@ -147,9 +153,9 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule {
             map.putString("type", type);
             map.putString("provider", "facebook");
 
-            if(type == CALLBACK_TYPE_SUCCESS){
+            if (type == CALLBACK_TYPE_SUCCESS) {
                 mTokenCallback.invoke(null, map);
-            }else{
+            } else {
                 mTokenCallback.invoke(map, null);
             }
 
@@ -185,17 +191,17 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule {
         mTokenCallback = callback;
 
         List<String> _permissions = getPermissions(permissions);
-        if(_permissions != null && _permissions.size() > 0 && _permissions.contains("email")){
+        if (_permissions != null && _permissions.size() > 0 && _permissions.contains("email")) {
             Log.i("FBLoginPermissions", "Using: " + _permissions.toString());
 
             LoginManager.getInstance().logInWithReadPermissions(
                     (Activity) mActivityContext, _permissions);
-        }else{
+        } else {
             handleInsufficientPermissions("Insufficient permissions", "onPermissionsMissing", CALLBACK_TYPE_ERROR);
         }
 
     }
-    
+
     @ReactMethod
     public void sendImage(String path, String title, String desc, Callback errCallback) {
         Bitmap bitmap = null;
@@ -228,9 +234,9 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule {
     private List<String> getPermissions(ReadableArray permissions) {
         List<String> _permissions = new ArrayList<String>();
 //        List<String> defaultPermissions = Arrays.asList("public_profile", "email");
-        if(permissions != null && permissions.size() > 0){
-            for(int i = 0; i < permissions.size(); i++){
-                if(permissions.getType(i).name() == "String"){
+        if (permissions != null && permissions.size() > 0) {
+            for (int i = 0; i < permissions.size(); i++) {
+                if (permissions.getType(i).name() == "String") {
                     String permission = permissions.getString(i);
                     Log.i("FBLoginPermissions", "adding permission: " + permission);
                     _permissions.add(permission);
@@ -247,9 +253,9 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void getCurrentToken(final Callback callback) {
         AccessToken currentAccessToken = AccessToken.getCurrentAccessToken();
-        if(currentAccessToken != null){
+        if (currentAccessToken != null) {
             callback.invoke(currentAccessToken.getToken());
-        }else{
+        } else {
             callback.invoke("");
         }
     }

@@ -1,5 +1,6 @@
 package com.magus.fblogin;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
@@ -15,10 +16,10 @@ import java.util.List;
 
 public class FacebookLoginPackage implements ReactPackage {
 
-    private Context mContext;
+    private Activity mContext;
     private FacebookLoginModule mModuleInstance;
 
-    public FacebookLoginPackage(Context activityContext) {
+    public FacebookLoginPackage(Activity activityContext) {
         mContext = activityContext;
     }
 
