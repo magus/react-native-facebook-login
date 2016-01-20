@@ -1,5 +1,6 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKShareKit/FBSDKShareKit.h>
 #import "RCTBridge.h"
 #import "RCTEventDispatcher.h"
 #import "RCTLog.h"
