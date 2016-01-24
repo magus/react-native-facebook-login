@@ -30,6 +30,6 @@ repositories {
 }
 
 dependencies {
-    compile 'com.facebook.react:react-native:0.14.+'
+    compile 'com.facebook.react:react-native:0.18.+'
     compile 'com.facebook.android:facebook-android-sdk:4.6.0'
 }

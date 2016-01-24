@@ -1,7 +1,6 @@
 package com.magus.fblogin;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,41 +15,37 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.facebook.react.bridge.ActivityEventListener;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
-import com.facebook.react.bridge.ReadableType;
-import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
 
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.text.SimpleDateFormat;
 
-public class FacebookLoginModule extends ReactContextBaseJavaModule {
+public class FacebookLoginModule extends ReactContextBaseJavaModule implements ActivityEventListener {
 
     private final String CALLBACK_TYPE_SUCCESS = "success";
     private final String CALLBACK_TYPE_ERROR = "error";
     private final String CALLBACK_TYPE_CANCEL = "cancel";
 
-    private Context mActivityContext;
     private CallbackManager mCallbackManager;
     private Callback mTokenCallback;
     private Callback mLogoutCallback;
 
-    public FacebookLoginModule(ReactApplicationContext reactContext, Context activityContext) {
+    public FacebookLoginModule(ReactApplicationContext reactContext) {
         super(reactContext);
 
-        mActivityContext = activityContext;
+        reactContext.addActivityEventListener(this);
 
-        FacebookSdk.sdkInitialize(activityContext.getApplicationContext());
+        FacebookSdk.sdkInitialize(reactContext.getApplicationContext());
 
         mCallbackManager = CallbackManager.Factory.create();
 
@@ -105,7 +100,7 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule {
                             request.setParameters(parameters);
                             request.executeAsync();
                         } else {
-                            handleInsufficientPermissions("Insufficient permissions", "onPermissionsMissing", CALLBACK_TYPE_ERROR);
+                            handleError("Insufficient permissions", "onPermissionsMissing", CALLBACK_TYPE_ERROR);
                         }
                     }
 
@@ -133,7 +128,7 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule {
                 });
     }
 
-    private void handleInsufficientPermissions(String value, String onPermissionsMissing, String callbackType) {
+    private void handleError(String value, String onPermissionsMissing, String callbackType) {
         WritableMap map = Arguments.createMap();
 
         map.putString("message", value);
@@ -147,7 +142,7 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule {
             map.putString("type", type);
             map.putString("provider", "facebook");
 
-            if(type == CALLBACK_TYPE_SUCCESS){
+            if(type.equals(CALLBACK_TYPE_SUCCESS)){
                 mTokenCallback.invoke(null, map);
             }else{
                 mTokenCallback.invoke(map, null);
@@ -173,7 +168,6 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule {
                 map.putString("token", AccessToken.getCurrentAccessToken().getToken());
                 map.putString("eventName", "onLoginFound");
                 map.putBoolean("cache", true);
-
                 consumeCallback(CALLBACK_TYPE_SUCCESS, map);
             } else {
                 map.putString("message", "Cannot register multiple callbacks");
@@ -188,10 +182,15 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule {
         if(_permissions != null && _permissions.size() > 0 && _permissions.contains("email")){
             Log.i("FBLoginPermissions", "Using: " + _permissions.toString());
 
-            LoginManager.getInstance().logInWithReadPermissions(
-                    (Activity) mActivityContext, _permissions);
+            Activity currentActivity = getCurrentActivity();
+
+            if(currentActivity != null){
+                LoginManager.getInstance().logInWithReadPermissions(currentActivity, _permissions);
+            }else{
+                handleError("Activity doesn't exist", "onError", CALLBACK_TYPE_ERROR);
+            }
         }else{
-            handleInsufficientPermissions("Insufficient permissions", "onPermissionsMissing", CALLBACK_TYPE_ERROR);
+            handleError("Insufficient permissions", "onPermissionsMissing", CALLBACK_TYPE_ERROR);
         }
 
     }
@@ -238,7 +237,7 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule {
         }
     }
 
-    public boolean handleActivityResult(final int requestCode, final int resultCode, final Intent data) {
-        return mCallbackManager.onActivityResult(requestCode, resultCode, data);
+    public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
 }
