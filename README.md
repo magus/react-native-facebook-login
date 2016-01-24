@@ -250,7 +250,7 @@ open example/toy.xcodeproj
 
 ## Copyright and license
 
-Code and documentation copyright 2015 Noah M Jorgenson. Code released under [the MIT license](https://github.com/magus/react-native-facebook-login/blob/master/LICENSE).
+Code and documentation copyright 2015 Noah. Code released under [the MIT license](https://github.com/magus/react-native-facebook-login/blob/master/LICENSE).
 
 
 [react-native]: http://facebook.github.io/react-native/
