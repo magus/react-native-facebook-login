@@ -23,16 +23,16 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb1591236194426539</string>
+				<string>fb1718228835119946</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>FacebookAppID</key>
-	<string>1591236194426539</string>
+	<string>1718228835119946</string>
 	<key>FacebookDisplayName</key>
-	<string>toy</string>
+	<string>React Native Login Example</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>LSApplicationQueriesSchemes</key>
@@ -58,10 +58,34 @@
 	<false/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<!--See http://ste.vn/2015/06/10/configuring-app-transport-security-ios-9-osx-10-11/-->
-		<key>NSAllowsArbitraryLoads</key><true/>
-	</dict>
+  <key>NSAppTransportSecurity</key>
+  <dict>
+    <!--See http://ste.vn/2015/06/10/configuring-app-transport-security-ios-9-osx-10-11/ -->
+    <key>NSAllowsArbitraryLoads</key><true/>
+    <key>NSExceptionDomains</key>
+    <dict>
+      <key>facebook.com</key>
+      <dict>
+        <key>NSIncludesSubdomains</key>
+        <true/>
+        <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+        <false/>
+      </dict>
+      <key>fbcdn.net</key>
+      <dict>
+        <key>NSIncludesSubdomains</key>
+        <true/>
+        <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+        <false/>
+      </dict>
+      <key>akamaihd.net</key>
+      <dict>
+        <key>NSIncludesSubdomains</key>
+        <true/>
+        <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+        <false/>
+      </dict>
+    </dict>
+  </dict>
 </dict>
 </plist>
