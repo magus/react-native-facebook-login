@@ -21,13 +21,13 @@
     "login",
     "sdk"
   ],
-  "author": "Noah Jorgenson",
+  "author": "Noah",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/magus/react-native-facebook-login/issues"
   },
   "homepage": "https://github.com/magus/react-native-facebook-login",
   "peerDependencies": {
-    "react-native": ">=0.14.2"
+    "react-native": ">=0.18.1"
   }
 }
