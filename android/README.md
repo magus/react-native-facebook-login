@@ -30,35 +30,22 @@ dependencies {
 
 ```java
 ...
-import android.content.Intent; // import
-import com.magus.fblogin.FacebookLoginPackage; // import
+import com.magus.fblogin.FacebookLoginPackage; // <--- import
 
 public class MainActivity extends ReactActivity {
-
-    // declare package
-    private FacebookLoginPackage mFacebookLoginPackage;
 
     ...
     
     @Override
     protected List<ReactPackage> getPackages() {
-
-        mFacebookLoginPackage = new FacebookLoginPackage(this); //Instantiate
-
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
-            mFacebookLoginPackage); // Add to the package list
+            new FacebookLoginPackage() // <------ add the package
+        );
     }
 
-    @Override
-    public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // handle onActivityResult
-        mFacebookLoginPackage.handleActivityResult(requestCode, resultCode, data);
-    }
-...
-
+    ...
+}
 ```
 
 #### Step 4 - Add Facebook App ID to String resources
