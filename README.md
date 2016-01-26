@@ -241,6 +241,10 @@ Use the simple toy project under the example directory to verify your changes.
 open example/toy.xcodeproj
 ```
 
+## Contact
+[Twitter - @imnmj](http://twitter.com/imnmj)
+[iamnoah.com](http://iamnoah.com)
+
 ## todo
 - Auth with javascript Api as an exposed method on button
 - Clean up duplicate code in login methods
