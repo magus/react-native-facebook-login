@@ -7,6 +7,6 @@
   },
   "dependencies": {
     "react-native": ">=0.18.1",
-    "react-native-facebook-login": "file:../"
+    "react-native-facebook-login": "1.0.2"
   }
 }

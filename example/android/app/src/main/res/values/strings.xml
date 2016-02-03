@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">example</string>
+    <string name="fb_app_name">FB_NAME</string>
+    <string name="fb_app_id">FB_CLIENT_ID</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example;
 
+import android.content.Intent;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -10,22 +11,26 @@ import com.facebook.react.ReactRootView;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.magus.fblogin.FacebookLoginPackage;
 
 public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
 
     private ReactInstanceManager mReactInstanceManager;
     private ReactRootView mReactRootView;
+    private FacebookLoginPackage mFacebookLoginPackage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mReactRootView = new ReactRootView(this);
+        mFacebookLoginPackage = new FacebookLoginPackage(this);
 
         mReactInstanceManager = ReactInstanceManager.builder()
                 .setApplication(getApplication())
                 .setBundleAssetName("index.android.bundle")
                 .setJSMainModuleName("index.android")
                 .addPackage(new MainReactPackage())
+                .addPackage(mFacebookLoginPackage)
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
                 .setInitialLifecycleState(LifecycleState.RESUMED)
                 .build();
@@ -33,6 +38,13 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
         mReactRootView.startReactApplication(mReactInstanceManager, "example", null);
 
         setContentView(mReactRootView);
+    }
+
+    @Override
+    public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        mFacebookLoginPackage.handleActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -72,7 +84,8 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
         super.onResume();
 
         if (mReactInstanceManager != null) {
-            mReactInstanceManager.onResume(this);
+            mReactInstanceManager.onResume(this, this);
         }
     }
 }
+
