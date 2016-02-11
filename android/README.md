@@ -31,6 +31,7 @@ dependencies {
 ```java
 ...
 import com.magus.fblogin.FacebookLoginPackage; // <--- import
+import android.content.Intent;                 // <--- import
 
 public class MainActivity extends ReactActivity {
 
