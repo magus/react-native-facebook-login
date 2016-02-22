@@ -28,7 +28,12 @@ dependencies {
 
 #### Step 3 - Register React Package and Handle onActivityResult
 
+```gradle
+// file: android/app/src/main/java/com/APP-NAME/MainActivity.java
+...
+
 ```java
+
 ...
 import com.magus.fblogin.FacebookLoginPackage; // <--- import
 
@@ -50,6 +55,10 @@ public class MainActivity extends ReactActivity {
 
 #### Step 4 - Add Facebook App ID to String resources
 
+```gradle
+// file: android/app/src/main/res/values/string.xml
+...
+
 ```xml
 <resources>
     <string name="app_name">your-app-name</string>
@@ -58,6 +67,10 @@ public class MainActivity extends ReactActivity {
 ```
 
 #### Step 5 - update AndroidManifest
+
+```gradle
+// file: android/app/src/main/AndroidManifest.xml
+...
 
 ```xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
