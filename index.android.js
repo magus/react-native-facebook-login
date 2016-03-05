@@ -30,12 +30,18 @@ componentWillMount: function(){
   var self = this;
   FBLoginManager.getCurrentToken(function(token){
     if(itypeof(token) === 'string' && token.length > 0){
-      self.setState({isLoggedIn:true, buttonText: self.state.statics.logoutText});
+      self.setState({isLoggedIn:true, buttonText: self._getLoginText()});
     }else{
-      self.setState({isLoggedIn:false, buttonText: self.state.statics.loginText});
+      self.setState({isLoggedIn:false, buttonText: self._getLogoutText()});
     }
   })
 },
+  _getLoginText: function(){
+      return this.props.loginText || this.state.statics.loginText;
+  },
+  _getLogoutText: function(){
+      return this.props.logoutText || this.state.statics.logoutText;
+  },
   _handleEvent(e, data) {
 
     var result = e || data;
