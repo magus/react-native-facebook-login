@@ -131,6 +131,9 @@ subscriber.remove();
 ```
 
 ## Setup
+### [Android](/android/README.md)
+[Click here for Android setup instructions](/android/README.md)
+### iOS
 ```sh
 npm install --save react-native-facebook-login
 ```
@@ -139,15 +142,15 @@ npm install --save react-native-facebook-login
 - Select your main project in the navigator to bring up settings
 - Under `Build Phases` expand the `Link Binary With Libraries` header
 - Scroll down and click the `+` to add a library
-- Find and add `libRTCFBLogin.a` under the `Workspace` group
+- Find and add `libRCTFBLogin.a` under the `Workspace` group
 - ⌘+B
 
 **Note**: If your build fails, you most likely forgot to setup the [Facebook SDK](#facebook-sdk)
 
-### Facebook SDK
+#### Facebook SDK
 [Facebook : Quick Start for iOS](https://developers.facebook.com/quickstarts/?platform=ios)
 
-Be sure to [configure your .plist file](https://developers.facebook.com/docs/ios/getting-started#xcode)
+Be sure to [configure your .plist file](https://developers.facebook.com/docs/ios/getting-started#xcode). This file is located under the `ios/<project-name>` directory of your generated react-native project. It should be in the same folder as your `AppDelegate.m` file.
 
 As of iOS 9 you must now explicitly whitelist requests your application makes in the `Info.plist`. Be sure to [follow the instructions for iOS 9](https://developers.facebook.com/docs/ios/ios9) during the setup process.
 
@@ -163,7 +166,7 @@ As of iOS 9 you must now explicitly whitelist requests your application makes in
 </array>
 ```
 
-#### Adding the Facebook SDK
+##### Adding the Facebook SDK
 - Run `open node_modules/react-native-facebook-login/FacebookSDK`
 - Select all the `.framework` files and click drag them into your project
 - Select your main project in the navigator to bring up settings
@@ -176,7 +179,7 @@ $(SRCROOT)/../node_modules/react-native-facebook-login/FacebookSDK
 
 <img src="https://raw.githubusercontent.com/magus/react-native-facebook-login/master/images/framework-search-paths.png" alt="framework-search-paths" />
 
-#### AppDelegate.m modifications
+##### AppDelegate.m modifications
 - Add the following import statements for FBSDK kits at the top of your `AppDelegate.m`
 
 ```objectivec
@@ -239,6 +242,10 @@ Use the simple toy project under the example directory to verify your changes.
 open example/toy.xcodeproj
 ```
 
+## Contact
+[Twitter - @imnmj](http://twitter.com/imnmj)
+[iamnoah.com](http://iamnoah.com)
+
 ## todo
 - Auth with javascript Api as an exposed method on button
 - Clean up duplicate code in login methods
@@ -248,7 +255,7 @@ open example/toy.xcodeproj
 
 ## Copyright and license
 
-Code and documentation copyright 2015 Noah M Jorgenson. Code released under [the MIT license](https://github.com/magus/react-native-facebook-login/blob/master/LICENSE).
+Code and documentation copyright 2015 Noah. Code released under [the MIT license](https://github.com/magus/react-native-facebook-login/blob/master/LICENSE).
 
 
 [react-native]: http://facebook.github.io/react-native/

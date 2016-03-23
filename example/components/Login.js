@@ -100,6 +100,8 @@ var Photo = React.createClass({
   },
 
   render: function(){
+    if(this.state.photo == null) return this.renderLoading();
+    
     var photo = this.state.photo;
 
     return (
@@ -114,6 +116,13 @@ var Photo = React.createClass({
           }
           source={{uri: photo && photo.url}}
         />
+      </View>
+    );
+  },
+  renderLoading: function(){
+    return (
+      <View>
+        <Text>Loading...</Text>
       </View>
     );
   }

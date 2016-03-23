@@ -30,50 +30,22 @@ dependencies {
 
 ```java
 ...
-import android.content.Intent; // import
-import com.magus.fblogin.FacebookLoginPackage; // import
+import com.magus.fblogin.FacebookLoginPackage; // <--- import
 
-public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
+public class MainActivity extends ReactActivity {
 
-    private ReactInstanceManager mReactInstanceManager;
-    private ReactRootView mReactRootView;
-
-    // declare package
-    private FacebookLoginPackage mFacebookLoginPackage;
-
+    ...
+    
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mReactRootView = new ReactRootView(this);
-
-        // instantiate package
-        mFacebookLoginPackage = new FacebookLoginPackage(this);
-
-        mReactInstanceManager = ReactInstanceManager.builder()
-                .setApplication(getApplication())
-                .setBundleAssetName("index.android.bundle")
-                .setJSMainModuleName("index.android")
-                .addPackage(new MainReactPackage())
-
-                // register package here
-                .addPackage(mFacebookLoginPackage)
-
-                .setUseDeveloperSupport(BuildConfig.DEBUG)
-                .setInitialLifecycleState(LifecycleState.RESUMED)
-                .build();
-        mReactRootView.startReactApplication(mReactInstanceManager, "AwesomeProject", null);
-        setContentView(mReactRootView);
+    protected List<ReactPackage> getPackages() {
+        return Arrays.<ReactPackage>asList(
+            new MainReactPackage(),
+            new FacebookLoginPackage() // <------ add the package
+        );
     }
 
-    @Override
-    public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // handle onActivityResult
-        mFacebookLoginPackage.handleActivityResult(requestCode, resultCode, data);
-    }
-...
-
+    ...
+}
 ```
 
 #### Step 4 - Add Facebook App ID to String resources
