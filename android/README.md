@@ -35,7 +35,7 @@ import com.magus.fblogin.FacebookLoginPackage; // <--- import
 public class MainActivity extends ReactActivity {
 
     ...
-    
+
     @Override
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
@@ -94,13 +94,50 @@ public class MainActivity extends ReactActivity {
 ```js
 var {NativeModules} = require('react-native');
 var FBLogin = require('react-native-facebook-login');
-var FBLoginManager = NativeModules.FBLoginManager; // if needed
+var FBLoginManager = NativeModules.FBLoginManager;
 
 //eg.
 <FBLogin
+    loginBehavior={FBLoginManager.LoginBehaviors.NATIVE_ONLY}
     onLogin={function(e){console.log(e)}}
     onLogout={function(e){console.log(e)}}
     onCancel={function(e){console.log(e)}}
     onPermissionsMissing={function(e){console.log(e)}}
   />
+```
+
+#### Tips
+
+**Android version now has a `setLoginBehavior()` function**
+
+You can use this to set the login behavior when not using the default button.
+It accepts an enum from `FBLoginManager.LoginBehaviors`
+eg.
+
+```js
+FBLoginManager.setLoginBehavior(FBLoginManager.LoginBehaviors.NATIVE_WITH_FALLBACK);
+```
+
+**In some case you may get the following error when compiling:**
+
+```java
+Unknown source file : UNEXPECTED TOP-LEVEL EXCEPTION:
+Unknown source file : com.android.dex.DexException: Multiple dex files define Lbolts/AggregateException;
+```
+This happens because Gradle is trying to load two versions of bolts.
+
+Current Solution that worked [ somehow :) ]
+
+in your `build.gradle` you can put the following configuration:
+
+```gradle
+configurations {
+    all*.exclude group: 'com.parse.bolts', module: 'bolts-android'
+}
+
+...
+
+dependencies{
+  ...
+}
 ```

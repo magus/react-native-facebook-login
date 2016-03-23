@@ -9,7 +9,6 @@
 ## Table of contents
 - [Usage](#usage)
 - [Setup](#setup)
-- [Android Setup](Android.md)
 - [Example project](#example-project)
 - [Documentation](#documentation)
 - [Contributing](#contributing)
@@ -131,8 +130,9 @@ subscriber.remove();
 ```
 
 ## Setup
-### [Android](/android/README.md)
+### [Android](/android)
 [Click here for Android setup instructions](/android/README.md)
+
 ### iOS
 ```sh
 npm install --save react-native-facebook-login

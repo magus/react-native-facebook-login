@@ -13,6 +13,7 @@ import com.facebook.FacebookRequestError;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.facebook.login.LoginBehavior;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.react.bridge.ActivityEventListener;
@@ -27,8 +28,10 @@ import com.facebook.react.bridge.WritableMap;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.text.SimpleDateFormat;
+import java.util.Map;
 
 public class FacebookLoginModule extends ReactContextBaseJavaModule implements ActivityEventListener {
 
@@ -157,6 +160,30 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule implements A
         return "FBLoginManager";
     }
 
+    @Override
+    public Map<String, Object> getConstants() {
+        final Map<String, Object> constants = new HashMap<>();
+        constants.put("LoginBehaviors", getLoginBehaviorMap());
+        return constants;
+    }
+
+    private Map<String,String>  getLoginBehaviorMap(){
+        Map<String,String> LoginBehaviourMap = new HashMap<String, String>();
+        for (LoginBehavior type : LoginBehavior.values()) {
+            LoginBehaviourMap.put(type.name(), type.name());
+        }
+        return LoginBehaviourMap;
+    }
+
+    @ReactMethod
+    public void setLoginBehavior(String loginBehavior){
+        Log.i("LoginBehavior", "Received: " + loginBehavior);
+        if(loginBehavior != null && (loginBehavior != null && LoginBehavior.valueOf(loginBehavior) != null)){
+            LoginManager.getInstance().setLoginBehavior(LoginBehavior.valueOf(loginBehavior));
+        }
+        Log.i("LoginBehavior", "Using: " + LoginManager.getInstance().getLoginBehavior().name());
+    }
+
     @ReactMethod
     public void loginWithPermissions(ReadableArray permissions, final Callback callback) {
         if (mTokenCallback != null) {
@@ -185,6 +212,7 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule implements A
             Activity currentActivity = getCurrentActivity();
 
             if(currentActivity != null){
+                Log.i("FBLoginBehavior", "Using for login: " + LoginManager.getInstance().getLoginBehavior().name());
                 LoginManager.getInstance().logInWithReadPermissions(currentActivity, _permissions);
             }else{
                 handleError("Activity doesn't exist", "onError", CALLBACK_TYPE_ERROR);

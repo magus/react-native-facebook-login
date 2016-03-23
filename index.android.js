@@ -36,6 +36,10 @@ componentWillMount: function(){
     }
   })
 },
+componentDidMount: function(){
+  var self = this;
+  FBLoginManager.setLoginBehavior(self.props.loginBehavior);
+},
   _handleEvent(e, data) {
 
     var result = e || data;
@@ -69,11 +73,14 @@ componentWillMount: function(){
     if( itypeof(this.props.permissions) === 'array'){
       permissions = this.props.permissions;
     }
-    
+
     if(this.state.isLoggedIn){
       FBLoginManager.logout((err,data) => this._handleEvent(err,data));
     }else{
-      FBLoginManager.loginWithPermissions(permissions, (err,data) => this._handleEvent(err,data));
+      FBLoginManager.loginWithPermissions(
+        permissions,
+        (err,data) => this._handleEvent(err,data)
+      );
     }
    },
 
