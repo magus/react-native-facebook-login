@@ -26,6 +26,9 @@ var FBLogin = React.createClass({
     buttonText: statics.loginText
   };
 },
+  logout() {
+    FBLoginManager.logout((err, data) => this._handleEvent(err, data));
+},
 componentWillMount: function(){
   var self = this;
   FBLoginManager.getCurrentToken(function(token){
