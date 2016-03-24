@@ -33,12 +33,18 @@ componentWillMount: function(){
   var self = this;
   FBLoginManager.getCurrentToken(function(token){
     if(itypeof(token) === 'string' && token.length > 0){
-      self.setState({isLoggedIn:true, buttonText: self.state.statics.logoutText});
+      self.setState({isLoggedIn:true, buttonText: this._getLogoutText()});
     }else{
-      self.setState({isLoggedIn:false, buttonText: self.state.statics.loginText});
+      self.setState({isLoggedIn:false, buttonText: self._getLoginText()});
     }
   })
 },
+  _getLoginText: function(){
+      return this.props.loginText || this.state.statics.loginText;
+  },
+  _getLogoutText: function(){
+      return this.props.logoutText || this.state.statics.logoutText;
+  },
   _handleEvent(e, data) {
 
     var result = e || data;
@@ -52,9 +58,9 @@ componentWillMount: function(){
     }
 
     if(result.eventName === 'onLogin' || result.eventName === 'onLoginFound'){
-      this.setState({isLoggedIn:true, buttonText: this.state.statics.logoutText});
+      this.setState({isLoggedIn:true, buttonText:  this._getLogoutText()});
     }else if(result.eventName === 'onLogout'){
-      this.setState({isLoggedIn:false, buttonText: this.state.statics.loginText});
+      this.setState({isLoggedIn:false, buttonText: this._getLoginText()});
     }
 
     if(result.eventName && this.props.hasOwnProperty(result.eventName)){
