@@ -192,12 +192,13 @@ compile ('com.facebook.android:facebook-android-sdk:4.10.+'){
     }
 ```
 
-If this, gives issues in the future, please report an issue. Thanks.
+If this gives issues in the future, please report an issue.
+
+Thanks.
 
 #### Login Behavior Differences
 
-LoginBehaviors enum seems to be diff from IOS
-Mapping was done but there are still two differences :
+LoginBehaviors enum seems to be diff from IOS so a mapping was done but there are still two differences:
 - android has no Browser behavior **(IOS does)**  [if used, this will default to **Native**]
 - android has a NativeOnly behavior **(IOS doesn't)**
 
