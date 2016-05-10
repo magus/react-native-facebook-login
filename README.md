@@ -21,7 +21,7 @@ Provides a React Native component which wraps the Facebook SDK `FBSDKLoginButton
 
 ##### Defaults
 ```js
-var FBLogin = require('react-native-facebook-login');
+var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
 
 var Login = React.createClass({
   render: function() {
@@ -34,8 +34,7 @@ var Login = React.createClass({
 
 ##### Exhaustive
 ```js
-var FBLogin = require('react-native-facebook-login');
-var FBLoginManager = require('NativeModules').FBLoginManager;
+var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
 
 var Login = React.createClass({
   render: function() {
@@ -94,7 +93,7 @@ See [example/components/facebook/FBLoginMock.js](example/components/facebook/FBL
 
 ### Usage
 ```js
-var FBLoginManager = require('NativeModules').FBLoginManager;
+var {FBLoginManager} = require('react-native-facebook-login');
 
 FBLoginManager.loginWithPermissions(["email","user_friends"], function(error, data){
   if (!error) {
@@ -111,7 +110,7 @@ A variety of events are emitted across the React Native bridge back to your java
 ### Usage
 ```js
 var RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
-var FBLoginManager = require('NativeModules').FBLoginManager;
+var {FBLoginManager} = require('react-native-facebook-login');
 
 ...
 
