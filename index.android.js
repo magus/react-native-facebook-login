@@ -9,12 +9,23 @@ var {
 
 var FBLoginManager = NativeModules.FBLoginManager;
 
-var itypeof = function (val) {
-    return Object.prototype.toString.call(val).replace(/(\[|object|\s|\])/g, '').toLowerCase();
-};
-
+var services = require('./lib/services');
 
 var FBLogin = React.createClass({
+  childContextTypes: {
+    isLoggedIn: React.PropTypes.bool,
+    login: React.PropTypes.func,
+    logout: React.PropTypes.func,
+    props: React.PropTypes.object
+  },
+  getChildContext: function () {
+    return {
+      isLoggedIn: this.state.isLoggedIn,
+      login: this.login,
+      logout: this.logout,
+      props: this.props
+    };
+  },
   getInitialState() {
    var statics = {
      loginText: 'Login with Facebook',
@@ -26,17 +37,28 @@ var FBLogin = React.createClass({
     buttonText: statics.loginText
   };
 },
-  logout() {
+logout() {
     FBLoginManager.logout((err, data) => this._handleEvent(err, data));
 },
-componentWillMount: function(){
+login(permissions) {
+  FBLoginManager.loginWithPermissions(
+    permissions || this.props.permissions,
+    (err,data) => this._handleEvent(err,data)
+  );
+},
+componentDidMount: function(){
   var self = this;
-  FBLoginManager.getCurrentToken(function(token){
-    if(itypeof(token) === 'string' && token.length > 0){
+  FBLoginManager.setLoginBehavior(self.props.loginBehavior);
+  FBLoginManager.getCredentials(function(data){
+    if(data &&
+        services.itypeof(data.credentials) === 'object' &&
+        services.itypeof(data.credentials.token) === 'string' &&
+        data.credentials.token.length > 0){
       self.setState({isLoggedIn:true, buttonText: self.state.statics.logoutText});
     }else{
       self.setState({isLoggedIn:false, buttonText: self.state.statics.loginText});
     }
+    self._handleEvent(null,data);
   })
 },
   _handleEvent(e, data) {
@@ -68,24 +90,31 @@ componentWillMount: function(){
   },
 
   _onFacebookPress() {
-    var permissions = ['email', 'public_profile'];
-    if( itypeof(this.props.permissions) === 'array'){
+    var permissions = [];
+    if( services.itypeof(this.props.permissions) === 'array'){
       permissions = this.props.permissions;
     }
-    
+
     if(this.state.isLoggedIn){
-      FBLoginManager.logout((err,data) => this._handleEvent(err,data));
+      this.logout()
     }else{
-      FBLoginManager.loginWithPermissions(permissions, (err,data) => this._handleEvent(err,data));
+      this.login(permissions)
     }
    },
 
   render: function(){
+    var FBLoginButtonView = <View style={[styles.login, this.props.style]}>
+      <Text style={[styles.whiteFont, this.fontStyle]}> {this.state.buttonText} </Text>
+    </View>;
+    if(this.props.buttonView){
+      FBLoginButtonView = this.props.buttonView
+    }
+
     return (
-      <TouchableHighlight onPress={this._onFacebookPress}>
-          <View style={styles.login}>
-              <Text style={styles.whiteFont}> {this.state.buttonText} </Text>
-          </View>
+      <TouchableHighlight onPress={this._onFacebookPress} >
+        <View style={[this.props.containerStyle]}>
+          {FBLoginButtonView}
+        </View>
       </TouchableHighlight>
     )
   }
