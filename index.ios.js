@@ -103,4 +103,4 @@ var styles = StyleSheet.create({
   },
 });
 
-module.exports = FBLogin;
+module.exports = {FBLogin, FBLoginManager};
