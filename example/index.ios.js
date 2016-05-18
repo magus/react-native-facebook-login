@@ -1,4 +1,5 @@
-var React = require('react-native');
+var React = require('react');
+var ReactNative = require('react-native');
 
 // Make react global
 window.React = React;
@@ -7,7 +8,7 @@ var {
   AppRegistry,
   NavigatorIOS,
   StyleSheet,
-} = React;
+} = ReactNative;
 
 var Login = require('./components/Login');
 var LoginMock = require('./components/LoginMock');

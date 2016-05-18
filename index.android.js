@@ -1,11 +1,13 @@
-var React = require('react-native');
+var React = require('react');
+var ReactNative = require('react-native');
+
 var {
   NativeModules,
   StyleSheet,
   View,
   TouchableHighlight,
   Text
-} = React;
+} = ReactNative;
 
 var FBLoginManager = NativeModules.FBLoginManager;
 

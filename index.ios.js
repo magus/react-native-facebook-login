@@ -1,13 +1,18 @@
-var React = require('react-native');
+var React = require('react');
+var ReactNative = require('react-native');
+
+var {
+    PropTypes,
+} = React;
+
 var {
   View,
   StyleSheet,
-  PropTypes,
   NativeModules,
   requireNativeComponent,
   NativeMethodsMixin,
   DeviceEventEmitter,
-} = React;
+} = ReactNative;
 
 var { FBLoginManager } = NativeModules;
 
@@ -54,7 +59,7 @@ var FBLogin = React.createClass({
           eventHandler && eventHandler(eventData);
         }
       ));
-    })
+    });
 
     // Add listeners to state
     this.setState({ subscriptions : subscriptions });
