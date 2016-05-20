@@ -1,7 +1,7 @@
 # Android Setup: react-native-facebook-login
 
 **Assumptions**
-- You have a facebook app setup (Key Hash, App Id, etc)
+- You have a [Facebook App Setup](https://developers.facebook.com/quickstarts/?platform=android) (Key Hash, App Id, etc)
 - You installed this module via npm
 
 #### Step 1 - Update Gradle Settings
