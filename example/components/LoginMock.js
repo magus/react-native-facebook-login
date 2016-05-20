@@ -1,11 +1,13 @@
 'use strict';
+var React = require('react');
+var ReactNative = require('react-native');
 
 var {
   StyleSheet,
   Image,
   Text,
   View,
-} = React;
+} = ReactNative;
 
 var FBLoginMock = require('./facebook/FBLoginMock.js');
 var FBLoginManager = require('NativeModules').FBLoginManager;

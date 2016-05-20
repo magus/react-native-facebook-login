@@ -1,4 +1,6 @@
 'use strict';
+var React = require('react');
+var ReactNative = require('react-native');
 
 var {
   StyleSheet,
@@ -6,7 +8,7 @@ var {
   Image,
   View,
   TouchableHighlight,
-} = React;
+} = ReactNative;
 
 var FBLoginManager = require('NativeModules').FBLoginManager;
 
