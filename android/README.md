@@ -31,6 +31,7 @@ dependencies {
 ```java
 ...
 import com.magus.fblogin.FacebookLoginPackage; // <--- import
+import android.content.Intent;                 // <--- import
 
 public class MainActivity extends ReactActivity {
 
@@ -46,6 +47,15 @@ public class MainActivity extends ReactActivity {
 
     ...
 }
+```
+
+If MainActivity.java does not already have the `onActivityResultHandler` handler, add this after the `getPackages` block (known to affect at least RN 0.18 and 0.19):
+
+```java
+@Override
+    public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 ```
 
 #### Step 4 - Add Facebook App ID to String resources
