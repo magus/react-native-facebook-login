@@ -11,7 +11,7 @@ var {
 
 var FBLoginManager = NativeModules.FBLoginManager;
 
-var services = require('./lib/services');
+var itypeof = require('itypeof');
 
 var FBLogin = React.createClass({
   childContextTypes: {
@@ -53,8 +53,8 @@ componentDidMount: function(){
   FBLoginManager.setLoginBehavior(self.props.loginBehavior);
   FBLoginManager.getCredentials(function(data){
     if(data &&
-        services.itypeof(data.credentials) === 'object' &&
-        services.itypeof(data.credentials.token) === 'string' &&
+        itypeof(data.credentials) === 'object' &&
+        itypeof(data.credentials.token) === 'string' &&
         data.credentials.token.length > 0){
       self.setState({isLoggedIn:true, buttonText: self.state.statics.logoutText});
     }else{
@@ -93,7 +93,7 @@ componentDidMount: function(){
 
   _onFacebookPress() {
     var permissions = [];
-    if( services.itypeof(this.props.permissions) === 'array'){
+    if( itypeof(this.props.permissions) === 'array'){
       permissions = this.props.permissions;
     }
 
