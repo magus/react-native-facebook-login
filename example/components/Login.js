@@ -9,9 +9,8 @@ var {
   View,
 } = ReactNative;
 
-var FBLogin = require('react-native-facebook-login');
+var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
 var FBLoginMock = require('./facebook/FBLoginMock.js');
-var FBLoginManager = require('NativeModules').FBLoginManager;
 
 var FB_PHOTO_WIDTH = 200;
 
@@ -103,7 +102,7 @@ var Photo = React.createClass({
 
   render: function(){
     if(this.state.photo == null) return this.renderLoading();
-    
+
     var photo = this.state.photo;
 
     return (

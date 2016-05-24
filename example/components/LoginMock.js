@@ -10,7 +10,7 @@ var {
 } = ReactNative;
 
 var FBLoginMock = require('./facebook/FBLoginMock.js');
-var FBLoginManager = require('NativeModules').FBLoginManager;
+var {FBLoginManager} = require('react-native-facebook-login');
 
 var FB_PHOTO_WIDTH = 200;
 

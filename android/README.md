@@ -92,9 +92,7 @@ public class MainActivity extends ReactActivity {
 #### Step 6 - include in Javascript
 
 ```js
-var {NativeModules} = require('react-native');
-var FBLogin = require('react-native-facebook-login');
-var FBLoginManager = NativeModules.FBLoginManager;
+var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
 
 /**
   eg.
@@ -195,8 +193,8 @@ A simple solution you may use is as follows:
 
 ```js
 //eg.
-var { Platform, NativeModules } = React;
-var FBLoginManager = NativeModules.FBLoginManager;
+var { Platform } = React;
+var {FBLoginManager} = require('react-native-facebook-login');
 var LoginBehavior = {
   'ios': FBLoginManager.LoginBehaviors.Browser,
   'android': FBLoginManager.LoginBehaviors.Native
