@@ -1,75 +1,103 @@
-var React = require('react');
-var ReactNative = require('react-native');
+import React, {
+  PropTypes,
+  Component
+} from 'react';
 
-var {
-  NativeModules,
-  StyleSheet,
+import {
   View,
+  Text,
+  StyleSheet,
+  NativeModules,
   TouchableHighlight,
-  Text
-} = ReactNative;
+} from 'react-native';
 
-var FBLoginManager = NativeModules.FBLoginManager;
+import itypeof from 'itypeof';
 
-var itypeof = require('itypeof');
+const { FBLoginManager } = NativeModules;
 
-var FBLogin = React.createClass({
-  childContextTypes: {
-    isLoggedIn: React.PropTypes.bool,
-    login: React.PropTypes.func,
-    logout: React.PropTypes.func,
-    props: React.PropTypes.object
+const styles = StyleSheet.create({
+  login: {
+    flex: 1,
+    backgroundColor: '#3B5998',
+    padding: 10,
+    alignItems: 'center'
   },
-  getChildContext: function () {
+  whiteFont: {
+    color: 'white'
+  }
+});
+
+const statics = {
+  loginText: 'Login with Facebook',
+  logoutText: 'Logout from Facebook'
+};
+
+class FBLogin extends Component {
+  constructor (props) {
+    super(props);
+
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
+    this._handleEvent = this._handleEvent.bind(this);
+    this._getButtonView = this._getButtonView.bind(this);
+    this.getChildContext = this.getChildContext.bind(this);
+    this._onFacebookPress = this._onFacebookPress.bind(this);
+
+    this.state = {
+      statics:statics,
+      isLoggedIn: false,
+      buttonText: statics.loginText
+    };
+  }
+
+  componentDidMount(){
+    FBLoginManager.setLoginBehavior(self.props.loginBehavior);
+    FBLoginManager.getCredentials((data) => {
+      if(data &&
+        itypeof(data.credentials) === 'object' &&
+        itypeof(data.credentials.token) === 'string' &&
+        data.credentials.token.length > 0) {
+        this.setState({isLoggedIn:true, buttonText: self.state.statics.logoutText});
+      } else {
+        this.setState({isLoggedIn:false, buttonText: self.state.statics.loginText});
+      }
+      this._handleEvent(null,data);
+    })
+  }
+
+  static childContextTypes = {
+    isLoggedIn: PropTypes.bool,
+    login: PropTypes.func,
+    logout: PropTypes.func,
+    props: PropTypes.object
+  }
+
+  getChildContext () {
     return {
       isLoggedIn: this.state.isLoggedIn,
       login: this.login,
       logout: this.logout,
       props: this.props
     };
-  },
-  getInitialState() {
-   var statics = {
-     loginText: 'Login with Facebook',
-     logoutText: 'Logout from Facebook'
-   };
-  return {
-    statics:statics,
-    isLoggedIn: false,
-    buttonText: statics.loginText
-  };
-},
-logout() {
-    FBLoginManager.logout((err, data) => this._handleEvent(err, data));
-},
-login(permissions) {
-  FBLoginManager.loginWithPermissions(
-    permissions || this.props.permissions,
-    (err,data) => this._handleEvent(err,data)
-  );
-},
-componentDidMount: function(){
-  var self = this;
-  FBLoginManager.setLoginBehavior(self.props.loginBehavior);
-  FBLoginManager.getCredentials(function(data){
-    if(data &&
-        itypeof(data.credentials) === 'object' &&
-        itypeof(data.credentials.token) === 'string' &&
-        data.credentials.token.length > 0){
-      self.setState({isLoggedIn:true, buttonText: self.state.statics.logoutText});
-    }else{
-      self.setState({isLoggedIn:false, buttonText: self.state.statics.loginText});
-    }
-    self._handleEvent(null,data);
-  })
-},
-  _handleEvent(e, data) {
+  }
 
-    var result = e || data;
+  login(permissions) {
+    FBLoginManager.loginWithPermissions(
+      permissions || this.props.permissions,
+      (err,data) => this._handleEvent(err,data)
+    );
+  }
+
+  logout() {
+    FBLoginManager.logout((err, data) => this._handleEvent(err, data));
+  }
+
+  _handleEvent(e, data) {
+    const result = e || data;
     if(result.type === 'success' && result.profile){
       try{
         result.profile = JSON.parse(result.profile)
-      }catch(err){
+      } catch (err) {
         console.warn('Could not parse facebook profile: ', result.profile);
         console.error(err);
       }
@@ -77,22 +105,22 @@ componentDidMount: function(){
 
     if(result.eventName === 'onLogin' || result.eventName === 'onLoginFound'){
       this.setState({isLoggedIn:true, buttonText: this.state.statics.logoutText});
-    }else if(result.eventName === 'onLogout'){
+    } else if (result.eventName === 'onLogout'){
       this.setState({isLoggedIn:false, buttonText: this.state.statics.loginText});
     }
 
     if(result.eventName && this.props.hasOwnProperty(result.eventName)){
-      var event = result.eventName;
+      const event = result.eventName;
       delete result.eventName;
       console.log('Triggering \'%s\' event', event)
       this.props[event](result);
-    }else{
+    } else {
       console.log('\'%s\' Event is not defined or recognized', result.eventName)
     }
-  },
+  }
 
   _onFacebookPress() {
-    var permissions = [];
+    let permissions = [];
     if( itypeof(this.props.permissions) === 'array'){
       permissions = this.props.permissions;
     }
@@ -102,36 +130,30 @@ componentDidMount: function(){
     }else{
       this.login(permissions)
     }
-   },
+  }
 
-  render: function(){
-    var FBLoginButtonView = <View style={[styles.login, this.props.style]}>
-      <Text style={[styles.whiteFont, this.fontStyle]}> {this.state.buttonText} </Text>
-    </View>;
-    if(this.props.buttonView){
-      FBLoginButtonView = this.props.buttonView
-    }
+  _getButtonView () {
+    return (this.props.buttonView)
+      ? this.props.buttonView
+      : (
+        <View style={[styles.login, this.props.style]}>
+          <Text style={[styles.whiteFont, this.fontStyle]}> {this.state.buttonText} </Text>
+        </View>
+      );
+  }
 
+  render(){
     return (
       <TouchableHighlight onPress={this._onFacebookPress} >
         <View style={[this.props.containerStyle]}>
-          {FBLoginButtonView}
+          {this._getButtonView()}
         </View>
       </TouchableHighlight>
     )
   }
-});
+}
 
-var styles = StyleSheet.create({
-    login: {
-        flex: 1,
-        backgroundColor: '#3B5998',
-        padding: 10,
-        alignItems: 'center'
-    },
-    whiteFont: {
-        color: 'white'
-    }
-});
-
-module.exports = {FBLogin, FBLoginManager};
+export default {
+  FBLogin,
+  FBLoginManager
+};
