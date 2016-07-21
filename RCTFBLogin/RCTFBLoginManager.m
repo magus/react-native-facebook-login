@@ -11,6 +11,7 @@
 {
   RCTFBLogin *_fbLogin;
   NSArray *_defaultPermissions;
+  NSNumber *_loginBehavior;
 }
 
 @synthesize bridge = _bridge;
@@ -19,8 +20,10 @@
 {
   _fbLogin = [[RCTFBLogin alloc] init];
   _defaultPermissions = @[@"email"];
+  _loginBehavior = FBSDKLoginBehaviorNative;
 
   [_fbLogin setPermissions:_defaultPermissions];
+  [_fbLogin setLoginBehavior:_loginBehavior];
   [_fbLogin setDelegate:self];
   return _fbLogin;
 }
@@ -164,6 +167,7 @@ RCT_EXPORT_METHOD(loginWithPermissions:(NSArray *)permissions callback:(RCTRespo
 
   // No existing access token or missing permissions
   FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+  login.loginBehavior = [_loginBehavior unsignedIntValue];
   [login logInWithReadPermissions:permissions fromViewController:nil handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
     if (error) {
       [self fireEvent:@"Error" withData:@{
@@ -218,6 +222,10 @@ RCT_EXPORT_METHOD(getCredentials:(RCTResponseSenderBlock)callback) {
     [self fireEvent:@"LoginNotFound"];
     callback(@[@"LoginNotFound", [NSNull null]]);
   }
+}
+
+RCT_EXPORT_METHOD(setLoginBehavior:(NSNumber * _Nonnull)loginBehavior) {
+  _loginBehavior = loginBehavior;
 }
 
 @end
