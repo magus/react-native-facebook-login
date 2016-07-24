@@ -95,6 +95,8 @@ See [example/components/facebook/FBLoginMock.js](example/components/facebook/FBL
 ```js
 var {FBLoginManager} = require('react-native-facebook-login');
 
+FBLoginManager.setLoginBehavior(FBLoginManager.LoginBehaviors.Web); // defaults to Native
+
 FBLoginManager.loginWithPermissions(["email","user_friends"], function(error, data){
   if (!error) {
     console.log("Login data: ", data);
