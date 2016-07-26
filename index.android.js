@@ -2,12 +2,12 @@ var React = require('react');
 var ReactNative = require('react-native');
 
 var {
-  NativeModules,
-  StyleSheet,
-  View,
-  TouchableHighlight,
-  Text
-} = ReactNative;
+        NativeModules,
+        StyleSheet,
+        View,
+        TouchableHighlight,
+        Text
+    } = ReactNative;
 
 var FBLoginManager = NativeModules.FBLoginManager;
 
@@ -29,40 +29,40 @@ var FBLogin = React.createClass({
     };
   },
   getInitialState() {
-   var statics = {
-     loginText: 'Login with Facebook',
-     logoutText: 'Logout from Facebook'
-   };
-  return {
-    statics:statics,
-    isLoggedIn: false,
-    buttonText: statics.loginText
-  };
-},
-logout() {
+    var statics = {
+      loginText: 'Login with Facebook',
+      logoutText: 'Logout from Facebook'
+    };
+    return {
+      statics:statics,
+      isLoggedIn: false,
+      buttonText: statics.loginText
+    };
+  },
+  logout() {
     FBLoginManager.logout((err, data) => this._handleEvent(err, data));
-},
-login(permissions) {
-  FBLoginManager.loginWithPermissions(
-    permissions || this.props.permissions,
-    (err,data) => this._handleEvent(err,data)
-  );
-},
-componentDidMount: function(){
-  var self = this;
-  FBLoginManager.setLoginBehavior(self.props.loginBehavior);
-  FBLoginManager.getCredentials(function(data){
-    if(data &&
-        itypeof(data.credentials) === 'object' &&
-        itypeof(data.credentials.token) === 'string' &&
-        data.credentials.token.length > 0){
-      self.setState({isLoggedIn:true, buttonText: self.state.statics.logoutText});
-    }else{
-      self.setState({isLoggedIn:false, buttonText: self.state.statics.loginText});
-    }
-    self._handleEvent(null,data);
-  })
-},
+  },
+  login(permissions) {
+    FBLoginManager.loginWithPermissions(
+        permissions || this.props.permissions,
+        (err,data) => this._handleEvent(err,data)
+    );
+  },
+  componentDidMount: function(){
+    var self = this;
+    FBLoginManager.setLoginBehavior(self.props.loginBehavior);
+    FBLoginManager.getCredentials(function(data){
+      if(data &&
+          itypeof(data.credentials) === 'object' &&
+          itypeof(data.credentials.token) === 'string' &&
+          data.credentials.token.length > 0){
+        self.setState({isLoggedIn:true, buttonText: self.state.statics.logoutText});
+      }else{
+        self.setState({isLoggedIn:false, buttonText: self.state.statics.loginText});
+      }
+      self._handleEvent(null,data);
+    })
+  },
   _handleEvent(e, data) {
 
     var result = e || data;
@@ -102,36 +102,37 @@ componentDidMount: function(){
     }else{
       this.login(permissions)
     }
-   },
+  },
 
   render: function(){
+    const buttonText = this.props.facebookText ? this.props.facebookText:this.state.buttonText;
     var FBLoginButtonView = <View style={[styles.login, this.props.style]}>
-      <Text style={[styles.whiteFont, this.fontStyle]}> {this.state.buttonText} </Text>
+      <Text style={[styles.whiteFont, this.props.fontStyle]}> {buttonText} </Text>
     </View>;
     if(this.props.buttonView){
       FBLoginButtonView = this.props.buttonView
     }
 
     return (
-      <TouchableHighlight onPress={this._onFacebookPress} >
-        <View style={[this.props.containerStyle]}>
-          {FBLoginButtonView}
-        </View>
-      </TouchableHighlight>
+        <TouchableHighlight onPress={this._onFacebookPress} >
+          <View style={[this.props.containerStyle]}>
+            {FBLoginButtonView}
+          </View>
+        </TouchableHighlight>
     )
   }
 });
 
 var styles = StyleSheet.create({
-    login: {
-        flex: 1,
-        backgroundColor: '#3B5998',
-        padding: 10,
-        alignItems: 'center'
-    },
-    whiteFont: {
-        color: 'white'
-    }
+  login: {
+    flex: 1,
+    backgroundColor: '#3B5998',
+    padding: 10,
+    alignItems: 'center'
+  },
+  whiteFont: {
+    color: 'white'
+  }
 });
 
 module.exports = {FBLogin, FBLoginManager};
