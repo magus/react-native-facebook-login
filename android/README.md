@@ -102,6 +102,7 @@ var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
 **/
 <FBLogin
     buttonView={<FBLoginView />}
+    ref={(fbLogin) => { this.fbLogin = fbLogin }}
     loginBehavior={FBLoginManager.LoginBehaviors.Native}
     permissions={["email","user_friends"]}
     onLogin={function(e){console.log(e)}}
