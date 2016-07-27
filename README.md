@@ -101,7 +101,7 @@ FBLoginManager.loginWithPermissions(["email","user_friends"], function(error, da
   if (!error) {
     console.log("Login data: ", data);
   } else {
-    console.log("Error: ", data);
+    console.log("Error: ", error);
   }
 })
 ```
