@@ -79,6 +79,7 @@ class FBLogin extends Component {
       logout: this.logout,
       props: this.props
     };
+
   }
 
   login(permissions) {
@@ -133,11 +134,12 @@ class FBLogin extends Component {
   }
 
   _getButtonView () {
+    const buttonText = this.props.facebookText ? this.props.facebookText:this.state.buttonText;
     return (this.props.buttonView)
       ? this.props.buttonView
       : (
         <View style={[styles.login, this.props.style]}>
-          <Text style={[styles.whiteFont, this.fontStyle]}> {this.state.buttonText} </Text>
+          <Text style={[styles.whiteFont, this.fontStyle]}> {buttonText} </Text>
         </View>
       );
   }
@@ -152,6 +154,7 @@ class FBLogin extends Component {
     )
   }
 }
+
 
 export default {
   FBLogin,
