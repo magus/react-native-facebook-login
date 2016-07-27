@@ -1,106 +1,107 @@
-var React = require('react');
-var ReactNative = require('react-native');
+import React, {
+  PropTypes,
+  Component
+}from 'react';
 
-var {
-    PropTypes,
-} = React;
-
-var {
+import {
   View,
   StyleSheet,
   NativeModules,
-  requireNativeComponent,
   NativeMethodsMixin,
   DeviceEventEmitter,
-} = ReactNative;
+  requireNativeComponent
+} from 'react-native';
 
-var { FBLoginManager } = NativeModules;
+const { FBLoginManager } = NativeModules;
+const RCTFBLogin = requireNativeComponent('RCTFBLogin', FBLogin);
 
-var FBLogin = React.createClass({
-  statics: {
-    Events: FBLoginManager.Events,
-  },
-
-  propTypes: {
-    style: View.propTypes.style,
-    permissions: PropTypes.array, // default: ["public_profile", "email"]
-    loginBehavior: PropTypes.number, // default: Native
-    onLogin: PropTypes.func,
-    onLogout: PropTypes.func,
-    onLoginFound: PropTypes.func,
-    onLoginNotFound: PropTypes.func,
-    onError: PropTypes.func,
-    onCancel: PropTypes.func,
-    onPermissionsMissing: PropTypes.func,
-  },
-
-  getInitialState: function(){
-    return {
-      credentials: null,
-      subscriptions: [],
-    };
-  },
-
-  mixins: [NativeMethodsMixin],
-
-  componentWillMount: function(){
-    var _this = this;
-    var subscriptions = this.state.subscriptions;
-
-    // For each event key in FBLoginManager constantsToExport
-    // Create listener and call event handler from props
-    // e.g.  this.props.onError, this.props.onLogin
-    Object.keys(FBLoginManager.Events).forEach(function(event){
-      subscriptions.push(DeviceEventEmitter.addListener(
-        FBLoginManager.Events[event],
-        (eventData) => {
-          // event handler defined? call it and pass along any event data
-          var eventHandler = _this.props["on"+event];
-          eventHandler && eventHandler(eventData);
-        }
-      ));
-    });
-
-    // Add listeners to state
-    this.setState({ subscriptions : subscriptions });
-  },
-
-  componentWillUnmount: function(){
-    var subscriptions = this.state.subscriptions;
-    subscriptions.forEach(function(subscription){
-      subscription.remove();
-    });
-  },
-
-  componentDidMount: function(){
-    var _this = this;
-    FBLoginManager.getCredentials(function(error, data){
-      if( !_this.isMounted() ) return;
-      if (!error) {
-        _this.setState({ credentials : data.credentials });
-      } else {
-        _this.setState({ credentials : null });
-      }
-    });
-  },
-
-  render: function() {
-    var props = {
-      ...this.props,
-      style: ([styles.base, this.props.style]),
-    };
-
-    return <RCTFBLogin {...props} />
-  },
-});
-
-var RCTFBLogin = requireNativeComponent('RCTFBLogin', FBLogin);
-
-var styles = StyleSheet.create({
+const  styles = StyleSheet.create({
   base: {
     width: 175,
     height: 30,
   },
 });
 
-module.exports = {FBLogin, FBLoginManager};
+
+class FBLogin extends Component {
+  constructor (props) {
+    super(props);
+
+    this.bindAll = this.bindAll.bind(this);
+    this.bindAll();
+
+    this.statics = {
+      Events : FBLoginManager.Events,
+    };
+
+    this.state = {
+      credentials   : null,
+      subscriptions : [],
+    }
+  }
+
+  bindAll() {
+    for( const prop in NativeMethodsMixin) {
+      if( typeof NativeMethodsMixin[ prop ] === 'function') {
+        this[prop] = NativeMethodsMixin[prop].bind(this);
+      }
+    }
+  }
+
+  componentWillMount(){
+    const subscriptions = this.state.subscriptions;
+
+    // For each event key in FBLoginManager constantsToExport
+    // Create listener and call event handler from props
+    // e.g.  this.props.onError, this.props.onLogin
+    Object.keys(FBLoginManager.Events).forEach((event) => {
+      subscriptions.push(DeviceEventEmitter.addListener(
+        FBLoginManager.Events[event],
+        (eventData) => {
+          // event handler defined? call it and pass along any event data
+          let eventHandler = this.props["on"+event];
+          eventHandler && eventHandler(eventData);
+        }
+      ));
+    });
+    // Add listeners to state
+    this.setState({ subscriptions : subscriptions });
+  }
+
+  componentWillUnmount(){
+    const subscriptions = this.state.subscriptions;
+    subscriptions.forEach(subscription => subscription.remove());
+  }
+
+  componentDidMount(){
+    FBLoginManager.getCredentials((error, data) => {
+      if (!error) {
+        this.setState({ credentials : data.credentials });
+      } else {
+        this.setState({ credentials : null });
+      }
+    });
+  }
+
+  render() {
+    return <RCTFBLogin {...this.props} style={[styles.base, this.props.style]} />
+  }
+}
+
+FBLogin.propTypes = {
+  style: View.propTypes.style,
+  permissions: PropTypes.array, // default: ["public_profile", "email"]
+  loginBehavior: PropTypes.number, // default: Native
+  onLogin: PropTypes.func,
+  onLogout: PropTypes.func,
+  onLoginFound: PropTypes.func,
+  onLoginNotFound: PropTypes.func,
+  onError: PropTypes.func,
+  onCancel: PropTypes.func,
+  onPermissionsMissing: PropTypes.func,
+};
+
+export default {
+  FBLogin,
+  FBLoginManager
+};
