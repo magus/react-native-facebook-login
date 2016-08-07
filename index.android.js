@@ -51,15 +51,15 @@ class FBLogin extends Component {
   }
 
   componentDidMount(){
-    FBLoginManager.setLoginBehavior(self.props.loginBehavior);
+    FBLoginManager.setLoginBehavior(this.props.loginBehavior);
     FBLoginManager.getCredentials((data) => {
       if(data &&
         itypeof(data.credentials) === 'object' &&
         itypeof(data.credentials.token) === 'string' &&
         data.credentials.token.length > 0) {
-        this.setState({isLoggedIn:true, buttonText: self.state.statics.logoutText});
+        this.setState({isLoggedIn:true, buttonText: this.state.statics.logoutText});
       } else {
-        this.setState({isLoggedIn:false, buttonText: self.state.statics.loginText});
+        this.setState({isLoggedIn:false, buttonText: this.state.statics.loginText});
       }
       this._handleEvent(null,data);
     })
