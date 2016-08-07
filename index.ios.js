@@ -101,7 +101,7 @@ FBLogin.propTypes = {
   onPermissionsMissing: PropTypes.func,
 };
 
-export default {
+export {
   FBLogin,
   FBLoginManager
 };

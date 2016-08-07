@@ -156,7 +156,7 @@ class FBLogin extends Component {
 }
 
 
-export default {
+export {
   FBLogin,
   FBLoginManager
 };
