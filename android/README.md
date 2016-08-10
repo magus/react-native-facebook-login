@@ -32,7 +32,7 @@ dependencies {
 ...
 import com.magus.fblogin.FacebookLoginPackage; // <--- import
 
-public class MainActivity extends ReactActivity {
+public class MainApplication extends Application implements ReactApplication {
 
     ...
 
@@ -92,7 +92,7 @@ public class MainActivity extends ReactActivity {
 #### Step 6 - include in Javascript
 
 ```js
-var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
+import {FBLogin, FBLoginManager} from 'react-native-facebook-login';
 
 /**
   eg.
@@ -116,8 +116,8 @@ var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
 
 eg. FBLoginView class
 ```js
-var React = require('react-native');
-var {View, Text, StyleSheet} = React;
+import React, { Component } from 'react';
+import { StyleSheet,Text,View } from 'react-native';
 var Icon = require('react-native-vector-icons/FontAwesome');
 
 /**
@@ -126,7 +126,7 @@ var Icon = require('react-native-vector-icons/FontAwesome');
   - this is not meant to be a full example but highlights what you have access to
   - If you use a touchable component, you will need to set the onPress event like below
 **/
-class FBLoginView extends React.Component {
+class FBLoginView extends Component {
   static contextTypes = {
     isLoggedIn: React.PropTypes.bool,
     login: React.PropTypes.func,
@@ -194,8 +194,8 @@ A simple solution you may use is as follows:
 
 ```js
 //eg.
-var { Platform } = React;
-var {FBLoginManager} = require('react-native-facebook-login');
+import { Platform } from 'react-native';
+import {FBLoginManager} from 'react-native-facebook-login';
 var LoginBehavior = {
   'ios': FBLoginManager.LoginBehaviors.Browser,
   'android': FBLoginManager.LoginBehaviors.Native
