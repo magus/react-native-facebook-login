@@ -4,8 +4,8 @@
 #import "RCTEventDispatcher.h"
 #import "RCTLog.h"
 
-#import "RCTMFBLogin.h"
-#import "RCTMFBLoginManager.h"
+#import "RCTFBLogin.h"
+#import "RCTFBLoginManager.h"
 
 @implementation RCTMFBLoginManager
 {
