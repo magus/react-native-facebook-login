@@ -4,12 +4,12 @@
 #import "RCTEventDispatcher.h"
 #import "RCTLog.h"
 
-#import "RCTFBLogin.h"
-#import "RCTFBLoginManager.h"
+#import "RCTMFBLogin.h"
+#import "RCTMFBLoginManager.h"
 
-@implementation RCTFBLoginManager
+@implementation RCTMFBLoginManager
 {
-  RCTFBLogin *_fbLogin;
+  RCTMFBLogin *_fbLogin;
   NSArray *_defaultPermissions;
   NSNumber *_loginBehavior;
 }
@@ -18,7 +18,7 @@
 
 - (UIView *)view
 {
-  _fbLogin = [[RCTFBLogin alloc] init];
+  _fbLogin = [[RCTMFBLogin alloc] init];
   _defaultPermissions = @[@"email"];
   _loginBehavior = FBSDKLoginBehaviorNative;
 
