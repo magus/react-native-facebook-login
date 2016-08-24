@@ -1,7 +1,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-#import "RCTMFBLogin.h"
+#import "RCTFBLogin.h"
 #import "RCTLog.h"
 
 @implementation RCTMFBLogin
