@@ -7,9 +7,9 @@
 #import "RCTFBLogin.h"
 #import "RCTFBLoginManager.h"
 
-@implementation RCTFBLoginManager
+@implementation RCTMFBLoginManager
 {
-  RCTFBLogin *_fbLogin;
+  RCTMFBLogin *_fbLogin;
   NSArray *_defaultPermissions;
   NSNumber *_loginBehavior;
 }
@@ -18,7 +18,7 @@
 
 - (UIView *)view
 {
-  _fbLogin = [[RCTFBLogin alloc] init];
+  _fbLogin = [[RCTMFBLogin alloc] init];
   _defaultPermissions = @[@"email"];
   _loginBehavior = FBSDKLoginBehaviorNative;
 

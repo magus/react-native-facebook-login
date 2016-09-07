@@ -1,6 +1,6 @@
 #import "RCTView.h"
 
-@interface RCTFBLogin : RCTView
+@interface RCTMFBLogin : RCTView
 
 @property (nonatomic, assign) NSArray *permissions;
 @property (nonatomic, assign) NSNumber *loginBehavior;

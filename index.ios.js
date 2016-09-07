@@ -12,8 +12,8 @@ import {
   requireNativeComponent
 } from 'react-native';
 
-const { FBLoginManager } = NativeModules;
-const RCTFBLogin = requireNativeComponent('RCTFBLogin', FBLogin);
+const FBLoginManager = NativeModules.MFBLoginManager;
+const RCTMFBLogin = requireNativeComponent('RCTMFBLogin', FBLogin);
 
 const  styles = StyleSheet.create({
   base: {
@@ -84,7 +84,7 @@ class FBLogin extends Component {
   }
 
   render() {
-    return <RCTFBLogin {...this.props} style={[styles.base, this.props.style]} />
+    return <RCTMFBLogin {...this.props} style={[styles.base, this.props.style]} />
   }
 }
 
