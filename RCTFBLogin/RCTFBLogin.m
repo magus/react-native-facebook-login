@@ -4,7 +4,7 @@
 #import "RCTFBLogin.h"
 #import "RCTLog.h"
 
-@implementation RCTFBLogin
+@implementation RCTMFBLogin
 {
     FBSDKLoginButton *_loginButton;
 }
