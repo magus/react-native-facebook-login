@@ -156,7 +156,7 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule implements A
 
     @Override
     public String getName() {
-        return "FBLoginManager";
+        return "MFBLoginManager";
     }
 
     @Override
@@ -344,7 +344,7 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule implements A
     public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
-    
+
     public void onNewIntent(Intent intent) {
 
     }
