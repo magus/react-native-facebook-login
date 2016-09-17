@@ -13,7 +13,7 @@ import {
 
 import itypeof from 'itypeof';
 
-const { MFBLoginManager } = NativeModules;
+const FBLoginManager = NativeModules.MFBLoginManager;
 
 const styles = StyleSheet.create({
   login: {
@@ -155,8 +155,7 @@ class FBLogin extends Component {
   }
 }
 
-
-export {
-  FBLogin: FBLogin,
-  FBLoginManager: MFBLoginManager
+module.exports =  {
+  FBLogin,
+  FBLoginManager
 };
