@@ -307,7 +307,7 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule implements A
 
         map.putString("provider", "facebook");
         map.putArray("declinedPermissions", getDeclinedPermissions(currentAccessToken));
-        callback.invoke(map);
+        callback.invoke(null, map);
     }
 
     private WritableMap getCredentialsFromToken(AccessToken currentAccessToken){
