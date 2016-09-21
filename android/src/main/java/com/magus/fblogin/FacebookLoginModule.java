@@ -307,7 +307,7 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule implements A
 
         map.putString("provider", "facebook");
         map.putArray("declinedPermissions", getDeclinedPermissions(currentAccessToken));
-        callback.invoke(map);
+        callback.invoke(null, map);
     }
 
     private WritableMap getCredentialsFromToken(AccessToken currentAccessToken){
@@ -342,6 +342,10 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule implements A
     }
 
     public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
