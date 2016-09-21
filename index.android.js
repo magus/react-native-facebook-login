@@ -52,7 +52,7 @@ class FBLogin extends Component {
 
   componentDidMount(){
     FBLoginManager.setLoginBehavior(this.props.loginBehavior);
-    FBLoginManager.getCredentials((data) => {
+    FBLoginManager.getCredentials((err, data) => {
       if(data &&
         itypeof(data.credentials) === 'object' &&
         itypeof(data.credentials.token) === 'string' &&
