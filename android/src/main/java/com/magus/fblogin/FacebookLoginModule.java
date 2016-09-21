@@ -348,11 +348,7 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule implements A
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
-
-    public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
-    }
-
+    
     public void onNewIntent(Intent intent) {
 
     }
