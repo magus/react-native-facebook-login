@@ -255,8 +255,9 @@ Thanks.
 
 **Receiving issues After an update? Please:**
 
+- Ensure this module is up to date
 - Clean your gradle build `cd android && ./gradlew clean && cd ..`
-- Ensure your `AndroidManifest.xml` and `strings.xml` is up to date
+- Ensure your `AndroidManifest.xml` and `strings.xml` are up to date
 - Double check setup guide on the [Facebook Documentation](https://developers.facebook.com/docs/facebook-login/android) for your sanity
 
 If you are still receiving issues after all this then open an issue.
