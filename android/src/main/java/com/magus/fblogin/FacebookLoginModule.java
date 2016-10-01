@@ -186,16 +186,36 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule implements A
         LoginBehaviourMap.put("NativeOnly", LoginBehavior.NATIVE_ONLY.name());
         LoginBehaviourMap.put("SystemAccount", LoginBehavior.DEVICE_AUTH.name());
         LoginBehaviourMap.put("Web", LoginBehavior.WEB_ONLY.name());
+        LoginBehaviourMap.put("WebView", LoginBehavior.WEB_VIEW_ONLY.name());
+        LoginBehaviourMap.put("Katana", LoginBehavior.KATANA_ONLY.name());
+
         return LoginBehaviourMap;
     }
 
+    private WritableMap mapBehavior(){
+        WritableMap map = Arguments.createMap();
+        LoginBehavior loginBehavior = LoginManager.getInstance().getLoginBehavior();
+        map.putString("name", loginBehavior.name());
+        map.putInt("ordinal", loginBehavior.ordinal());
+        return map;
+    }
+
     @ReactMethod
-    public void setLoginBehavior(String loginBehavior){
+    public void setLoginBehavior(String loginBehavior, Promise promise){
         Log.i("LoginBehavior", "Received: " + loginBehavior);
         if(loginBehavior != null && (loginBehavior != null && LoginBehavior.valueOf(loginBehavior) != null)){
             LoginManager.getInstance().setLoginBehavior(LoginBehavior.valueOf(loginBehavior));
         }
-        Log.i("LoginBehavior", "Using: " + LoginManager.getInstance().getLoginBehavior().name());
+        String currentLoginBehaviorName = LoginManager.getInstance().getLoginBehavior().name();
+        Log.i("LoginBehavior", "Using: " + currentLoginBehaviorName);
+        promise.resolve(mapBehavior());
+    }
+
+    @ReactMethod
+    public void getLoginBehavior(final Callback callback){
+        LoginBehavior loginBehavior = LoginManager.getInstance().getLoginBehavior();
+        Log.i("LoginBehavior", "Using: " + loginBehavior.name());
+        callback.invoke(mapBehavior());
     }
 
     @ReactMethod
@@ -348,7 +368,7 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule implements A
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
-    
+
     public void onNewIntent(Intent intent) {
 
     }

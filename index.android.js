@@ -51,7 +51,10 @@ class FBLogin extends Component {
   }
 
   componentDidMount(){
-    FBLoginManager.setLoginBehavior(this.props.loginBehavior);
+    FBLoginManager.setLoginBehavior(this.props.loginBehavior)
+      .then((behaviour)=>{
+        console.log(`FbLogin: using ${behaviour.name} behaviour`, behaviour)
+      });
     FBLoginManager.getCredentials((err, data) => {
       if(data &&
         itypeof(data.credentials) === 'object' &&
