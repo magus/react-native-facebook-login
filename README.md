@@ -172,7 +172,8 @@ As of iOS 9 you must now explicitly whitelist requests your application makes in
 
 ##### Adding the Facebook SDK
 - Run `open node_modules/react-native-facebook-login/FacebookSDK`
-- Select all the `.framework` files and click drag them into your project
+- Open your main project in xcode and right click on your project’s name in the left sidebar and select “New Group” and type in “Frameworks”.
+- Select all the `.framework` files in the FacebookSDK folder and click drag them into the Frameworks folder/group you just created in xcode or highlight the Frameworks group in left sidebar and go to File > Add files to "yourProjectName" and select the `.framework` files.
 - Select your main project in the navigator to bring up settings
 - Under `Build Settings` scroll down to `Search Paths`
 - Add the following path to your `Framework Search Paths`
