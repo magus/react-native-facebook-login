@@ -75,6 +75,7 @@ class FBLogin extends Component {
 
   componentDidMount(){
     FBLoginManager.getCredentials((error, data) => {
+      if( !_this.isMounted() ) return;
       if (!error) {
         this.setState({ credentials : data.credentials });
       } else {
