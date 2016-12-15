@@ -142,7 +142,7 @@ subscriber.remove();
 npm install --save react-native-facebook-login
 ```
 - Run ```open node_modules/react-native-facebook-login```
-- Drag `RCTFBLogin.xcodeproj` into your `Libraries` group
+- Have your react native xcode project open and drag `RCTFBLogin.xcodeproj` into your `Libraries` group.
 - Select your main project in the navigator to bring up settings
 - Under `Build Phases` expand the `Link Binary With Libraries` header
 - Scroll down and click the `+` to add a library
