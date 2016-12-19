@@ -26,9 +26,10 @@ dependencies {
 }
 ```
 
-#### Step 3 - Register React Package and Handle onActivityResult
+#### Step 3 - Register React Package 
 
 ```java
+//file: android/app/src/main/java/com/{Your Package Name}/MainApplication.java
 ...
 import com.magus.fblogin.FacebookLoginPackage; // <--- import
 
