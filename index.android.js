@@ -149,7 +149,7 @@ class FBLogin extends Component {
 
   render(){
     return (
-      <TouchableHighlight onPress={this._onFacebookPress} >
+      <TouchableHighlight onPress={this._onFacebookPress} underlayColor={this.containerStyle.onClickColor} >
         <View style={[this.props.containerStyle]}>
           {this._getButtonView()}
         </View>
