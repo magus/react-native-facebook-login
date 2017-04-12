@@ -2,7 +2,7 @@
 
 # Deprecation Notice
 
-> This module will no longer be maintained. If you still decide to use this module please use master and not the version on npm. Please read and follow the instructions carefully and look at closed/open issues to resolve your queries. 
+> This module will no longer be maintained. If you still decide to use this module please use master (`npm i magus/react-native-facebook-login`) and not the version on npm. Please read and follow the instructions carefully and look at closed/open issues to resolve your queries. 
 
 > For an alternative please use 
 [react-native-fbsdk](https://github.com/facebook/react-native-fbsdk)
