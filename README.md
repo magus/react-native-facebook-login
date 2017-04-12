@@ -5,7 +5,7 @@
 > This module will no longer be maintained. If you still decide to use this module please use master and not the version on npm. Please read and follow the instructions carefully and look at closed/open issues to resolve your queries. 
 
 > For an alternative please use 
-(react-native-fbsdk)[https://github.com/facebook/react-native-fbsdk]
+[react-native-fbsdk](https://github.com/facebook/react-native-fbsdk)
 ---------------
 
 `<FBLogin />` provides a [React Native][react-native] component wrapping the native [Facebook SDK login button](https://developers.facebook.com/docs/reference/ios/current/class/FBSDKLoginButton/) and [manager](https://developers.facebook.com/docs/reference/ios/current/class/FBSDKLoginManager/).
