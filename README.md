@@ -1,6 +1,6 @@
 # React Native : Facebook SDK Login Button [![npm version](https://img.shields.io/npm/v/react-native-facebook-login.svg?style=flat)](https://www.npmjs.com/package/react-native-facebook-login)
 
-# Depreciation Notice
+# Deprecation Notice
 
 > This module will no longer be maintained. If you still decide to use this module please use master and not the version on npm. Please read and follow the instructions carefully and look at closed/open issues to resolve your queries. 
 
