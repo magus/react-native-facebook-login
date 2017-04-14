@@ -236,6 +236,11 @@ $(SRCROOT)/../node_modules/react-native-facebook-login/FacebookSDK
 
 <img src="https://raw.githubusercontent.com/magus/react-native-facebook-login/master/images/fbsdkapplicationdelegate-methods-example.png" alt="example-fbsdk-frameworks" />
 
+##### Link the `libRCTFBLogin.a` file
+
+Add `libRCTFBLogin.a` to build target's Linked Frameworks and Libraries list
+
+
 ## Example project
 ### Toy
 ```sh
