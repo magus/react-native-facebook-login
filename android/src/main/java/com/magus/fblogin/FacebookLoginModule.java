@@ -279,6 +279,22 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule implements A
             handleError("Insufficient permissions", "onPermissionsMissing", CALLBACK_TYPE_ERROR);
         }
     }
+    
+    @ReactMethod
+    public void sendImage(String path, String title, String desc, Callback errCallback) {
+        Bitmap bitmap = null;
+        File localFile = new File(path);
+        if (localFile.exists()) {
+            bitmap = BitmapFactory.decodeFile(path);
+        }
+        SharePhoto photo = new SharePhoto.Builder()
+                .setBitmap(bitmap)
+                .build();
+        SharePhotoContent content = new SharePhotoContent.Builder()
+                .addPhoto(photo)
+                .build();
+        ShareDialog.show(mActivityContext, content);
+    }
 
     @ReactMethod
     public void logout(final Callback callback) {

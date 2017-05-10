@@ -201,6 +201,23 @@ RCT_EXPORT_METHOD(loginWithPermissions:(NSArray *)permissions callback:(RCTRespo
   }];
 }
 
+RCT_EXPORT_METHOD(sendImage:(NSString *)path
+                  :(NSString *)title
+                  :(NSString *)desc
+                  :(RCTResponseSenderBlock)callback) {
+    FBSDKSharePhoto *photo = [[FBSDKSharePhoto alloc] init];
+    NSData *imageData = [NSData dataWithContentsOfFile:path];
+    photo.image = [UIImage imageWithData:imageData];
+    photo.userGenerated = YES;
+    FBSDKSharePhotoContent *content = [[FBSDKSharePhotoContent alloc] init];
+    content.photos = @[photo];
+    [FBSDKShareDialog showFromViewController:nil
+                                 withContent:content
+                                    delegate:nil];
+//    [self fireEvent:@"SendImage"];
+    callback(@[[NSNull null], @"SendImage"]);
+}
+
 RCT_EXPORT_METHOD(logout:(RCTResponseSenderBlock)callback) {
   FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
   [login logOut];
