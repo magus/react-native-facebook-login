@@ -21,8 +21,9 @@ Provides a React Native component which wraps the Facebook SDK `FBSDKLoginButton
 
 ##### Defaults
 ```js
-import React, { PropTypes, Component } from 'react';
-var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+var { FBLogin, FBLoginManager } = require('react-native-facebook-login');
 
 class Login extends Component {
   render() {
@@ -35,8 +36,9 @@ class Login extends Component {
 
 ##### Exhaustive
 ```js
-import React, { PropTypes, Component } from 'react';
-var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+var { FBLogin, FBLoginManager } = require('react-native-facebook-login');
 
 class Login extends Component {
   render() {
