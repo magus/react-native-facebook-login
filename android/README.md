@@ -134,7 +134,8 @@ import {FBLogin, FBLoginManager} from 'react-native-facebook-login';
 eg. FBLoginView class
 ```js
 import React, { Component } from 'react';
-import { StyleSheet,Text,View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import PropTypes from 'prop-types';
 var Icon = require('react-native-vector-icons/FontAwesome');
 
 /**
@@ -145,10 +146,10 @@ var Icon = require('react-native-vector-icons/FontAwesome');
 **/
 class FBLoginView extends Component {
   static contextTypes = {
-    isLoggedIn: React.PropTypes.bool,
-    login: React.PropTypes.func,
-    logout: React.PropTypes.func,
-    props: React.PropTypes.object
+    isLoggedIn: PropTypes.bool,
+    login: PropTypes.func,
+    logout: PropTypes.func,
+    props: PropTypes.shape({})
 	};
 
   constructor(props) {
