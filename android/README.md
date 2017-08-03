@@ -23,6 +23,7 @@ project(':react-native-facebook-login').projectDir = new File(rootProject.projec
 dependencies {
     ...
     compile project(':react-native-facebook-login')
+    compile 'com.facebook.android:facebook-android-sdk:4.20.0'
 }
 ```
 
