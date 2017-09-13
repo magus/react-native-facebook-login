@@ -54,6 +54,7 @@ class FBLogin extends Component {
         console.log(`FbLogin: using ${behaviour.name} behaviour`, behaviour)
       });
     FBLoginManager.getCredentials((err, data) => {
+      if (!this.mounted) return;
       if(data &&
         itypeof(data.credentials) === 'object' &&
         itypeof(data.credentials.token) === 'string' &&
@@ -63,7 +64,12 @@ class FBLogin extends Component {
         this.setState({isLoggedIn:false, buttonText: this.state.statics.loginText});
       }
       this._handleEvent(null,data);
-    })
+    });
+    this.mounted = true;
+  }
+
+  componentWillUnmount(){
+    this.mounted = false;
   }
 
   static childContextTypes = {
