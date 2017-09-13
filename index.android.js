@@ -1,7 +1,5 @@
-import React, {
-  PropTypes,
-  Component
-} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import {
   View,
@@ -56,6 +54,7 @@ class FBLogin extends Component {
         console.log(`FbLogin: using ${behaviour.name} behaviour`, behaviour)
       });
     FBLoginManager.getCredentials((err, data) => {
+      if (!this.mounted) return;
       if(data &&
         itypeof(data.credentials) === 'object' &&
         itypeof(data.credentials.token) === 'string' &&
@@ -65,14 +64,19 @@ class FBLogin extends Component {
         this.setState({isLoggedIn:false, buttonText: this.state.statics.loginText});
       }
       this._handleEvent(null,data);
-    })
+    });
+    this.mounted = true;
+  }
+
+  componentWillUnmount(){
+    this.mounted = false;
   }
 
   static childContextTypes = {
     isLoggedIn: PropTypes.bool,
     login: PropTypes.func,
     logout: PropTypes.func,
-    props: PropTypes.object
+    props: PropTypes.shape({})
   }
 
   getChildContext () {

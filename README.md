@@ -21,8 +21,9 @@ Provides a React Native component which wraps the Facebook SDK `FBSDKLoginButton
 
 ##### Defaults
 ```js
-import React, { PropTypes, Component } from 'react';
-var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+var { FBLogin, FBLoginManager } = require('react-native-facebook-login');
 
 class Login extends Component {
   render() {
@@ -35,8 +36,9 @@ class Login extends Component {
 
 ##### Exhaustive
 ```js
-import React, { PropTypes, Component } from 'react';
-var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+var { FBLogin, FBLoginManager } = require('react-native-facebook-login');
 
 class Login extends Component {
   render() {
@@ -152,7 +154,7 @@ npm install --save react-native-facebook-login
 **Note**: If your build fails, you most likely forgot to setup the [Facebook SDK](#facebook-sdk)
 
 #### Facebook SDK
-[Facebook : Quick Start for iOS](https://developers.facebook.com/quickstarts/?platform=ios)
+[Facebook : Quick Start for iOS](https://developers.facebook.com/docs/facebook-login/ios)
 
 Be sure to [configure your .plist file](https://developers.facebook.com/docs/ios/getting-started#xcode). This file is located under the `ios/<project-name>` directory of your generated react-native project. It should be in the same folder as your `AppDelegate.m` file.
 

@@ -1,6 +1,6 @@
 {
   "name": "react-native-facebook-login",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "React Native wrapper for native iOS Facebook SDK login button and manager",
   "main": "index",
   "scripts": {
