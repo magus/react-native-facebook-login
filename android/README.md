@@ -65,7 +65,7 @@ public class MainApplication extends Application implements ReactApplication {
 ```xml
  <!-- file: android/app/src/main/AndroidManifest.xml -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
+          xmlns:tools="http://schemas.android.com/tools" // <-- add this if missing
           package="com.your.app.namespace">
 
     ...
