@@ -29,7 +29,7 @@
   "homepage": "https://github.com/magus/react-native-facebook-login",
   "peerDependencies": {
     "react-native": ">=0.26.2",
-    "react": ">=15.0.2",
+    "react": ">=15.0.2 || ^16.0.0-0",
     "prop-types": "^15.5.10"
   },
   "dependencies": {
