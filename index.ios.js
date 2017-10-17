@@ -7,7 +7,8 @@ import {
   NativeModules,
   NativeMethodsMixin,
   DeviceEventEmitter,
-  requireNativeComponent
+  requireNativeComponent,
+  ViewPropTypes,
 } from 'react-native';
 
 const FBLoginManager = NativeModules.MFBLoginManager;
@@ -20,6 +21,7 @@ const  styles = StyleSheet.create({
   },
 });
 
+const RNViewPropTypes = ViewPropTypes || View.propTypes;
 
 class FBLogin extends Component {
   constructor (props) {
@@ -90,7 +92,7 @@ class FBLogin extends Component {
 }
 
 FBLogin.propTypes = {
-  style: View.propTypes.style,
+  style: RNViewPropTypes.style,
   permissions: PropTypes.array, // default: ["public_profile", "email"]
   loginBehavior: PropTypes.number, // default: Native
   onLogin: PropTypes.func,
