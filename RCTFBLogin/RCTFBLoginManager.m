@@ -57,6 +57,11 @@ RCT_EXPORT_MODULE();
   };
 }
 
++ (BOOL)requiresMainQueueSetup
+{
+    return YES;
+}
+
 - (BOOL)hasPermission:(NSString *)permission {
   return [[FBSDKAccessToken currentAccessToken] hasGranted:permission];
 }
