@@ -106,6 +106,9 @@ public class MainApplication extends Application implements ReactApplication {
 </manifest>
 ```
 
+- You can put this `FB_APP_ID` values in a `.env` file using [react-native-config](https://github.com/luggit/react-native-config#usage). **Step 4** would not be necessary.
+
+
 #### Step 6 - include in Javascript
 
 ```js
