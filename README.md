@@ -1,4 +1,7 @@
 # React Native : Facebook SDK Login Button [![npm version](https://img.shields.io/npm/v/react-native-facebook-login.svg?style=flat)](https://www.npmjs.com/package/react-native-facebook-login)
+
+## NOTE: This is a forked repo to handled a unhandled ReactNative breaking update.
+
 `<FBLogin />` provides a [React Native][react-native] component wrapping the native [Facebook SDK login button](https://developers.facebook.com/docs/reference/ios/current/class/FBSDKLoginButton/) and [manager](https://developers.facebook.com/docs/reference/ios/current/class/FBSDKLoginManager/).
 
 
