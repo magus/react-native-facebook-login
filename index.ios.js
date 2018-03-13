@@ -90,10 +90,8 @@ class FBLogin extends Component {
   }
 }
 
-const viewPropTypes = ViewPropTypes || View.propTypes
-
 FBLogin.propTypes = {
-  style: viewPropTypes.style,
+  style: ViewPropTypes.style,
   permissions: PropTypes.array, // default: ["public_profile", "email"]
   loginBehavior: PropTypes.number, // default: Native
   onLogin: PropTypes.func,
