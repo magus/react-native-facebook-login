@@ -18,27 +18,24 @@
 
 #import <Foundation/Foundation.h>
 
-#import <FBSDKCoreKit/FBSDKMacros.h>
+#import <FBSDKShareKit/FBSDKSharingContent.h>
 
-#import "FBSDKBridgeAPIProtocolType.h"
+/**
+  A model for media content (photo or video) to be shared.
+ */
+@interface FBSDKShareMediaContent : NSObject <FBSDKSharingContent>
 
-@class FBSDKBridgeAPIRequest;
+/**
+  Media to be shared.
+ - Returns: Array of the media (FBSDKSharePhoto or FBSDKShareVideo)
+ */
+@property (nonatomic, copy) NSArray *media;
 
-FBSDK_EXTERN NSString *const FBSDKBridgeAPIAppIDKey;
-FBSDK_EXTERN NSString *const FBSDKBridgeAPISchemeSuffixKey;
-FBSDK_EXTERN NSString *const FBSDKBridgeAPIVersionKey;
-
-@protocol FBSDKBridgeAPIProtocol <NSObject>
-
-- (NSURL *)requestURLWithActionID:(NSString *)actionID
-                           scheme:(NSString *)scheme
-                       methodName:(NSString *)methodName
-                    methodVersion:(NSString *)methodVersion
-                       parameters:(NSDictionary *)parameters
-                            error:(NSError *__autoreleasing *)errorRef;
-- (NSDictionary *)responseParametersForActionID:(NSString *)actionID
-                                queryParameters:(NSDictionary *)queryParameters
-                                      cancelled:(BOOL *)cancelledRef
-                                          error:(NSError *__autoreleasing *)errorRef;
+/**
+  Compares the receiver to another media content.
+ - Parameter content: The other content
+ - Returns: YES if the receiver's values are equal to the other content's values; otherwise NO
+ */
+- (BOOL)isEqualToShareMediaContent:(FBSDKShareMediaContent *)content;
 
 @end
