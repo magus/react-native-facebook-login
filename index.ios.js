@@ -3,16 +3,17 @@ import PropTypes from 'prop-types';
 
 import {
   View,
-  ViewPropTypes,
   StyleSheet,
   NativeModules,
   NativeMethodsMixin,
   DeviceEventEmitter,
-  requireNativeComponent
+  requireNativeComponent,
+  ViewPropTypes
 } from 'react-native';
 
 const FBLoginManager = NativeModules.MFBLoginManager;
 const RCTMFBLogin = requireNativeComponent('RCTMFBLogin', FBLogin);
+const viewPropTypes = ViewPropTypes || View.propTypes
 
 const  styles = StyleSheet.create({
   base: {
@@ -89,9 +90,6 @@ class FBLogin extends Component {
     return <RCTMFBLogin {...this.props} style={[styles.base, this.props.style]} />
   }
 }
-
-
-const viewPropTypes = ViewPropTypes || View.propTypes;
 
 FBLogin.propTypes = {
   style: viewPropTypes.style,
