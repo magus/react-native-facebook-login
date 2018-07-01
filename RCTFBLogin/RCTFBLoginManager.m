@@ -72,6 +72,11 @@ RCT_EXPORT_MODULE();
   return [missingPermissions allObjects];
 }
 
++ (BOOL)requiresMainQueueSetup
+{
+  return YES;
+}
+
 
 - (NSDictionary *)buildCredentials {
   NSDictionary *credentials = nil;
