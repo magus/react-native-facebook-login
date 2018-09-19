@@ -1,6 +1,6 @@
 {
   "name": "@outfix/react-native-facebook-login",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "React Native wrapper for native iOS Facebook SDK login button and manager",
   "main": "index",
   "scripts": {
@@ -28,9 +28,9 @@
   },
   "homepage": "https://github.com/magus/react-native-facebook-login",
   "peerDependencies": {
-    "react-native": ">=0.26.2",
+    "prop-types": "^15.5.10",
     "react": ">=15.0.2 || ^16.0.0-0",
-    "prop-types": "^15.5.10"
+    "react-native": ">=0.26.2"
   },
   "dependencies": {
     "itypeof": "^1.1.2"
