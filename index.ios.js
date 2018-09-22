@@ -129,6 +129,13 @@ class FBLogin extends Component {
     );
   }
 
+  static childContextTypes = {
+    isLoggedIn: PropTypes.bool,
+    login: PropTypes.func,
+    logout: PropTypes.func,
+    props: PropTypes.shape({})
+  }
+
   getChildContext () {
     return {
       isLoggedIn: this.state.isLoggedIn,
