@@ -13,7 +13,7 @@
 {
   if ((self = [super init])) {
       _loginButton = [[FBSDKLoginButton alloc] init];
-      _loginButton.readPermissions = @[@"email"];
+      _loginButton.permissions = @[@"email"];
       [self addSubview:_loginButton];
   }
 
@@ -27,7 +27,7 @@
 
 - (void)setPermissions:(NSArray *)permissions
 {
-    _loginButton.readPermissions = permissions;
+    _loginButton.permissions = permissions;
 }
 
 - (void)setLoginBehavior:(NSNumber *)loginBehavior

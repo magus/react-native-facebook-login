@@ -16,6 +16,6 @@ Pod::Spec.new do |s|
   s.source_files  = "RCTFBLogin/*.{h,m}"
 
   s.dependency 'React'
-  s.dependency 'FBSDKCoreKit', '~> 4.40.0'
-  s.dependency 'FBSDKLoginKit', '~> 4.40.0'
+  s.dependency 'FBSDKCoreKit', '~> 5.8.0'
+  s.dependency 'FBSDKLoginKit', '~> 5.8.0'
 end
