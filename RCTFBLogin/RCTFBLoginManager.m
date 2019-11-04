@@ -20,7 +20,7 @@
 {
   _fbLogin = [[RCTMFBLogin alloc] init];
   _defaultPermissions = @[@"email"];
-  _loginBehavior = FBSDKLoginBehaviorNative;
+  _loginBehavior = FBSDKLoginBehaviorBrowser;
 
   [_fbLogin setPermissions:_defaultPermissions];
   [_fbLogin setLoginBehavior:_loginBehavior];
@@ -49,10 +49,7 @@ RCT_EXPORT_MODULE();
       @"LoginNotFound": @"FBLoginLoginNotFoundEvent"
     },
     @"LoginBehaviors": @{
-      @"Web": [NSNumber numberWithInt:FBSDKLoginBehaviorWeb],
       @"Browser": [NSNumber numberWithInt:FBSDKLoginBehaviorBrowser],
-      @"Native": [NSNumber numberWithInt:FBSDKLoginBehaviorNative],
-      @"SystemAccount": [NSNumber numberWithInt:FBSDKLoginBehaviorSystemAccount]
     }
   };
 }
@@ -119,7 +116,7 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
   } else if (result.isCancelled) {
     [self fireEvent:@"Cancel"];
   } else {
-    NSArray *permissions = [loginButton.readPermissions arrayByAddingObjectsFromArray:loginButton.publishPermissions];
+    NSArray *permissions = [loginButton.permissions arrayByAddingObjectsFromArray:loginButton.permissions];
     NSArray *missingPermissions = [self getMissingPermissions:permissions];
     NSArray *decliendPermissions = [result.declinedPermissions allObjects];
     NSDictionary *loginData = @{
@@ -168,7 +165,10 @@ RCT_EXPORT_METHOD(loginWithPermissions:(NSArray *)permissions callback:(RCTRespo
   // No existing access token or missing permissions
   FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
   login.loginBehavior = [_loginBehavior unsignedIntValue];
-  [login logInWithReadPermissions:permissions fromViewController:nil handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+  [login
+   logInWithPermissions:permissions
+         fromViewController:nil
+                    handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
     if (error) {
       [self fireEvent:@"Error" withData:@{
         @"description": error.localizedDescription

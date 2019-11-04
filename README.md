@@ -140,6 +140,7 @@ subscriber.remove();
 [Click here for Android setup instructions](/android/README.md)
 
 ### iOS
+**Skip this step if you are using RN >= 0.60**
 ```sh
 npm install --save react-native-facebook-login
 ```
@@ -173,6 +174,7 @@ As of iOS 9 you must now explicitly whitelist requests your application makes in
 ```
 
 ##### Adding the Facebook SDK
+**Skip this step if you are using RN >= 0.60**
 - Run `open node_modules/react-native-facebook-login/FacebookSDK`
 - Open your main project in xcode and right click on your project’s name in the left sidebar and select “New Group” and type in “Frameworks”.
 - Select all the `.framework` files in the FacebookSDK folder and click drag them into the Frameworks folder/group you just created in xcode or highlight the Frameworks group in left sidebar and go to File > Add files to "yourProjectName" and select the `.framework` files.
