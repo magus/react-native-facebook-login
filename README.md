@@ -1,3 +1,8 @@
+# Give [react-native-fbsdk](https://github.com/facebook/react-native-fbsdk) a try!
+
+This project is no longer maintained. If you would like to maintain it, please reach out with a pull request.
+
+
 # React Native : Facebook SDK Login Button
 
 <div>
@@ -8,7 +13,7 @@
 `<FBLogin />` provides a [React Native][react-native] component wrapping the native [Facebook SDK login button](https://developers.facebook.com/docs/reference/ios/current/class/FBSDKLoginButton/) and [manager](https://developers.facebook.com/docs/reference/ios/current/class/FBSDKLoginManager/).
 
 
-<img src="https://raw.githubusercontent.com/magus/react-native-facebook-login/master/images/preview.gif" alt="preview" />
+preview.gif
 
 **Note**: Demo above includes debug text to confirm login (i.e. user name, email and access token). `<FBLogin />`, by default, will only display the native blue 'Log in with Facebook' button.
 
@@ -179,8 +184,8 @@ As of iOS 9 you must now explicitly whitelist requests your application makes in
 </array>
 ```
 
-##### Adding the Facebook SDK
-**Skip this step if you are using RN >= 0.60**
+##### Adding the Facebook SDK (RN < 0.60)
+**SKIP THIS STEP IF YOU ARE USING RN >= 0.60**
 - Run `open node_modules/react-native-facebook-login/FacebookSDK`
 - Open your main project in xcode and right click on your project’s name in the left sidebar and select “New Group” and type in “Frameworks”.
 - Select all the `.framework` files in the FacebookSDK folder and click drag them into the Frameworks folder/group you just created in xcode or highlight the Frameworks group in left sidebar and go to File > Add files to "yourProjectName" and select the `.framework` files.
