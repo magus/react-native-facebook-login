@@ -1,6 +1,6 @@
-# React Native : Facebook SDK Login Button 
+# React Native : Facebook SDK Login Button
 
-<div align="center">
+<div>
     <a href="https://www.npmjs.com/package/react-native-facebook-login"><img src="https://img.shields.io/npm/dm/react-native-facebook-login.svg?style=flat-square" alt="NPM downloads"></a>
     <a href="https://www.npmjs.com/package/react-native-facebook-login"><img src="https://img.shields.io/npm/v/react-native-facebook-login.svg?style=flat" alt="NPM version"></a>
 </div>
@@ -258,7 +258,8 @@ open example/toy.xcodeproj
 ```
 
 ## Contact
-[Twitter - @magusnn](http://twitter.com/magusnn)
+[@magusnn (Twitter)](http://twitter.com/magusnn)
+
 [iamnoah.com](http://iamnoah.com)
 
 ## todo
