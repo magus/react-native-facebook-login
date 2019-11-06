@@ -1,39 +1,39 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
+buildscript {
+    repositories {
+        jcenter()
+    }
 
-    dependencies {
-        classpath 'com.android.tools.build:gradle:1.2.+'
-    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.1'
+    }
 }
 
-apply plugin: 'com.android.library'
+apply plugin: 'com.android.library'
 
-android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+android {
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
 
-    defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
-    }
-    lintOptions {
-        abortOnError false
-    }
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+    }
+    lintOptions {
+        abortOnError false
+    }
 }
 
-repositories {
-    mavenCentral()
+repositories {
+    mavenCentral()
 }
 
-dependencies {
-    compile 'com.facebook.react:react-native:+'
-    compile ('com.facebook.android:facebook-android-sdk:4.16.+'){
-        exclude group: 'com.parse.bolts', module: 'bolts-android';
-        exclude group: 'com.parse.bolts', module: 'bolts-applinks';
-        exclude group: 'com.parse.bolts', module: 'bolts-tasks';
-    }
+dependencies {
+    compile 'com.facebook.react:react-native:+'
+    compile ('com.facebook.android:facebook-android-sdk:5.+'){
+        exclude group: 'com.parse.bolts', module: 'bolts-android';
+        exclude group: 'com.parse.bolts', module: 'bolts-applinks';
+        exclude group: 'com.parse.bolts', module: 'bolts-tasks';
+    }
 }
